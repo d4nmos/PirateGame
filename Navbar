@@ -1,0 +1,93 @@
+<template>
+  <div id="app" class="container-fluid">
+    <nav class="navbar navbar-light px-5" style="background-color: #63FDBC;">
+
+      <nuxt-link to="/listUsers" class="navbar-brand">
+        <font-awesome-icon icon="fa-solid fa-ghost"/>  
+        Пользователи
+      </nuxt-link>
+
+      <nuxt-link to="/listCategories" class="navbar-brand">
+        <font-awesome-icon icon="fa-solid fa-dollar-sign" />
+        Все категории
+      </nuxt-link>
+      
+      <!-- <div v-if="currentUser">
+        <nuxt-link :to="{
+            name: 'list-expenses',
+            params: { user_id: currentUser.id }
+          }"
+          class="navbar-brand"
+          >
+          <font-awesome-icon icon="fa-solid fa-sack-dollar" />
+          Все расходы
+        </nuxt-link> 
+      </div> -->
+
+      <!-- <div v-if="currentUser">
+        <nuxt-link :to="{
+            name: 'user-categories',
+            params: { user_id: currentUser.id }
+          }"
+          class="navbar-brand"
+          >
+          <font-awesome-icon icon="fa-solid fa-user-astronaut" />
+          Категории пользователя
+        </nuxt-link>
+        <nuxt-link :to="{
+            name: 'user-expenses',
+            params: { user_id: currentUser.id }
+        }"
+        class="navbar-brand"
+        >
+        <font-awesome-icon icon="fa-solid fa-chart-simple" />
+        Учёт расходов
+    </nuxt-link>
+    </div>
+      <div v-if="currentUser">
+        <nuxt-link to="/profile" class="navbar-brand">
+          <div class="enter-font" size="4">
+          {{ currentUser.name }}
+         </div>
+        </nuxt-link>
+        <a href @click.prevent="logOut" class="navbar-brand">
+          <font-awesome-icon icon="fa-solid fa-person-through-window" />
+          Выйти
+        </a>
+        </div>
+      <div v-else>
+        <nuxt-link to="/login" class="navbar-brand">
+          <font-awesome-icon icon="fa-solid fa-fingerprint"/> 
+          Войти
+        </nuxt-link>
+      </div> -->
+    </nav>
+  </div>
+</template>
+
+<script>
+    export default {
+    name: "NavBar",
+    data() {
+        return {};
+
+    },
+    computed: { // вычисляемые свойства
+        currentUser() {
+            return this.$store.state.auth.user;
+        }
+    },
+    methods: {
+        logOut() {
+            this.$store.dispatch('auth/logout'); // обращаемся к методу logout, который определён в auth.service.js
+            window.location.href = '/login'; // // Используем такую конструкцию, а не this.$router.push, так как требуется перезагрузить страницу для обновления локального хранилища
+        }
+    }
+};
+</script>
+
+<style>
+  .item {
+    margin-right: 5px;
+  }
+</style>
