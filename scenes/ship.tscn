@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwci1od6xosgd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bcvaq"]
+size = Vector3(3, 0.5, 6)
+
+[node name="ship" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_bcvaq")
+
+[node name="visuals" type="Node3D" parent="."]
+
+[node name="floor" type="CSGBox3D" parent="visuals"]
+size = Vector3(2.889, 0.5, 5.862)
+
+[node name="steeringWheelStand" type="CSGBox3D" parent="visuals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.866953, -2.31897)
+size = Vector3(0.2, 1.2, 0.2)
+
+[node name="CSGTorus3D" type="CSGTorus3D" parent="visuals"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.42109, -2.11406)
+inner_radius = 0.361076
+outer_radius = 0.507158
