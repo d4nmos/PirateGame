@@ -18,9 +18,9 @@ func _ready():
 
 func _input(event):
 	if event is InputEventMouseMotion:
-		var rotation = deg_to_rad(-event.relative.x * sens_horizontal)
-		rotate_y(rotation)
-		visuals.rotate_y(-rotation)
+		var hRotation = deg_to_rad(-event.relative.x * sens_horizontal)
+		rotate_y(hRotation)
+		visuals.rotate_y(-hRotation)
 		camera_mount.rotate_x(deg_to_rad(-event.relative.y * sens_vertical))
 
 func _physics_process(delta):
