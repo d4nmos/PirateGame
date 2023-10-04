@@ -1,10 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://cwci1od6xosgd"]
+[gd_scene load_steps=3 format=3 uid="uid://cwci1od6xosgd"]
+
+[ext_resource type="Script" path="res://scripts/ship.gd" id="1_tf4lj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bcvaq"]
 size = Vector3(3, 0.5, 6)
 
 [node name="ship" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
+script = ExtResource("1_tf4lj")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_bcvaq")
