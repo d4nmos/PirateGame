@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://blyk4xqiubgh2"]
+
+[node name="health_bar_enemy_3D" type="Sprite3D"]
