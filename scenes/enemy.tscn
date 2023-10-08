@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://duq5y7kindbmh"]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_fopre"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dhoqb"]
+radius = 0.440631
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_edaft"]
+albedo_color = Color(0.92549, 0.247059, 0.305882, 1)
+
+[node name="enemy" type="CharacterBody3D" groups=["Enemies"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000211656, 0.00267243, 0.000436664)
+script = ExtResource("1_fopre")
+
+[node name="hit_box" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01787, 0)
+shape = SubResource("CapsuleShape3D_dhoqb")
+
+[node name="visuals" type="Node3D" parent="."]
+
+[node name="body" type="CSGBox3D" parent="visuals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0013752, 0.996891, -0.000581026)
+size = Vector3(0.6, 1.4, 0.6)
+material = SubResource("StandardMaterial3D_edaft")

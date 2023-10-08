@@ -9,6 +9,7 @@ const JUMP_VELOCITY = 4.5
 
 @export var sens_horizontal = 0.5
 @export var sens_vertical = 0.5
+@export var damage = 1.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -49,5 +50,18 @@ func _physics_process(delta):
 			animation_player.play("idle")
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
-
 	move_and_slide()
+
+func _process(delta):
+	if Input.is_mouse_button_pressed(1):
+		$attack/attack_range.disabled = false
+		$visuals/visual_attack_range.visible = true 
+	else:
+		$attack/attack_range.disabled = true
+		$visuals/visual_attack_range.visible = false 
+		
+func _on_attack_body_entered(body):
+	if body.is_in_group("Enemies"):
+		body.take_damage(damage)
+	else:
+		pass
