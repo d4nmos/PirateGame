@@ -19,6 +19,7 @@ func _ready():
 
 func _input(event):
 	if event is InputEventMouseMotion:
+#		if !Globals.controlShip:
 		var hRotation = deg_to_rad(-event.relative.x * sens_horizontal)
 		rotate_y(hRotation)
 		visuals.rotate_y(-hRotation)
@@ -30,19 +31,22 @@ func _physics_process(delta):
 		velocity.y -= gravity * delta
 
 	# Handle Jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+	if !Globals.controlShip:
+		if Input.is_action_just_pressed("jump") and is_on_floor():
+			velocity.y = JUMP_VELOCITY
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir = Input.get_vector("left", "right", "forward", "backward")
-	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	var direction = 0
+	if !Globals.controlShip:
+		var input_dir = Input.get_vector("left", "right", "forward", "backward")
+		direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
 		if animation_player.current_animation != "walking":
 			animation_player.play("walking")
 		
 		visuals.look_at(position + direction)
-		
+
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
 	else:
@@ -53,12 +57,16 @@ func _physics_process(delta):
 	move_and_slide()
 
 func _process(delta):
-	if Input.is_mouse_button_pressed(1):
-		$attack/attack_range.disabled = false
-		$visuals/visual_attack_range.visible = true 
-	else:
-		$attack/attack_range.disabled = true
-		$visuals/visual_attack_range.visible = false 
+	if !Globals.controlShip:
+		if Input.is_mouse_button_pressed(1):
+			$attack/attack_range.disabled = false
+			$visuals/visual_attack_range.visible = true 
+		else:
+			$attack/attack_range.disabled = true
+			$visuals/visual_attack_range.visible = false
+	else: 
+		if Input.is_action_pressed("quit alt controls"):
+			Globals.controlShip = false
 		
 func _on_attack_body_entered(body):
 	if body.is_in_group("Enemies"):
