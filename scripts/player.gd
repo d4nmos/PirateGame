@@ -37,7 +37,7 @@ func _physics_process(delta):
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction = 0
+	var direction = Vector3.ZERO
 	if !Globals.controlShip:
 		var input_dir = Input.get_vector("left", "right", "forward", "backward")
 		direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
@@ -65,7 +65,7 @@ func _process(delta):
 			$attack/attack_range.disabled = true
 			$visuals/visual_attack_range.visible = false
 	else: 
-		if Input.is_action_pressed("quit alt controls"):
+		if Input.is_action_pressed("action"):
 			Globals.controlShip = false
 		
 func _on_attack_body_entered(body):

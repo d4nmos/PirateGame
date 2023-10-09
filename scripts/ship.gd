@@ -3,7 +3,7 @@ extends AnimatableBody3D
 @onready var visuals = $visuals
 
 const SPEED = 1.0
-const ROTATIONSPEED = 1.0
+const ROTATIONSPEED = 10.0
 
 func _physics_process(delta):
 
