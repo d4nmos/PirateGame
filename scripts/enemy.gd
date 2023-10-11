@@ -1,10 +1,13 @@
 extends CharacterBody3D
 
 @export var max_hp_value = 5
+
 var hp
+var bounty
 
 func _ready():
 	hp = max_hp_value
+	bounty = 2
 	
 func take_damage(damage):
 	hp -= damage
@@ -14,3 +17,5 @@ func take_damage(damage):
 	
 	if hp <= 0:
 		queue_free()
+
+		
