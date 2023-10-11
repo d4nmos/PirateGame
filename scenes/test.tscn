@@ -92,4 +92,8 @@ size = Vector3(1.96935, 0.491137, 4.00507)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.74309, -0.3, 0)
 
 [node name="enemy" parent="." instance=ExtResource("7_0hs50")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.327637, -2.53987)
+transform = Transform3D(0.770936, 0, -0.636913, 0, 1, 0, 0.636913, 0, 0.770936, 2.25814, -0.327637, -2.53987)
+
+[node name="enemy2" parent="." instance=ExtResource("7_0hs50")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000211656, -0.272365, -2.71613)
+max_hp_value = 10
