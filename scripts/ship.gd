@@ -2,8 +2,11 @@ extends AnimatableBody3D
 
 @onready var visuals = $visuals
 
+const ACCELIRATION = 1.02
+const DECELERATION = 1.06
+const SPEED_LIMIT = 5.0
+
 var speed = 0.0
-const ACCELIRATION = 0.005
 var rotationSpeed = 10.0
 
 func _physics_process(delta):
@@ -15,10 +18,25 @@ func _physics_process(delta):
 		var input_dir = Input.get_vector("left", "right", "forward", "backward")
 			#	(transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 		
+		
 		if Input.is_action_pressed("forward"): 
-			speed += ACCELIRATION
-		if Input.is_action_pressed("backward") and speed - ACCELIRATION >= 0: 
-			speed -= ACCELIRATION
+			if speed == 0:
+				speed = 1.0
+			elif speed >= SPEED_LIMIT:
+				pass
+			else: 
+				speed *= ACCELIRATION
+		if Input.is_action_pressed("backward") and speed / DECELERATION >= 0: 
+			if speed <= 1:
+				speed = 0.0
+			else:
+				speed /= DECELERATION
+				
+#		if Input.is_action_pressed("left"):
+#			rotate_object_local(Vector3(0, 1, 0), deg_to_rad(rotationSpeed * delta))
+#		elif Input.is_action_pressed("right"):
+#			rotate_object_local(Vector3(0, 1, 0), deg_to_rad(-rotationSpeed * delta))
+
 #		if Input.is_action_pressed("right"):
 #			direction.x += 1
 #		if Input.is_action_pressed("left"):
