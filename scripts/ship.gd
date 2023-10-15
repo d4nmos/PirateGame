@@ -25,10 +25,11 @@ func accelerate(speed, base_speed = BASE_SPEED, speed_limit = SPEED_LIMIT, accel
 func decelerate(speed, base_speed = BASE_SPEED, speed_limit = SPEED_LIMIT, deceleration = DECELERATION):
 	if speed / deceleration >= 0: 
 		if speed <= base_speed:
-			speed = 0.0
+			speed = 0
 		else:
 			speed /= deceleration
 	return speed
+
 
 func _physics_process(delta):
 
@@ -54,19 +55,11 @@ func _physics_process(delta):
 				rotation_speed = -accelerate(abs(rotation_speed), BASE_ROTATION_SPEED, ROTATION_SPEED_LIMIT)
 			else:
 				rotation_speed = decelerate(abs(rotation_speed), BASE_ROTATION_SPEED, ROTATION_SPEED_LIMIT)
-
-	var rotation = rotation_speed * delta
-	var translation = direction * speed * delta
-	rotate_y(rotation)
-#	translate(translation)
 	
-		
-#		var angle = -direction.x * rotation_speed * delta
-#		var axis = Vector3.UP
-#		rotate(axis, angle)
-
-
-
+	direction = direction.rotated(Vector3(0,1,0), rotation_speed)
+	var translation = direction * speed * delta
+	translate(translation)
+	
 func _on_control_area_body_entered(body):
 	if body.name == "player":
 		# The body is a player
