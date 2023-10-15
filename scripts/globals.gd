@@ -1,3 +1,3 @@
 extends Node
 
-var controlShip = false
+var control_ship = false

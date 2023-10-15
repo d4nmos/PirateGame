@@ -19,7 +19,7 @@ func _ready():
 
 func _input(event):
 	if event is InputEventMouseMotion:
-#		if !Globals.controlShip:
+#		if !Globals.control_ship:
 		var hRotation = deg_to_rad(-event.relative.x * sens_horizontal)
 		rotate_y(hRotation)
 		visuals.rotate_y(-hRotation)
@@ -31,14 +31,14 @@ func _physics_process(delta):
 		velocity.y -= gravity * delta
 
 	# Handle Jump.
-	if !Globals.controlShip:
+	if !Globals.control_ship:
 		if Input.is_action_just_pressed("jump") and is_on_floor():
 			velocity.y = JUMP_VELOCITY
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = Vector3.ZERO
-	if !Globals.controlShip:
+	if !Globals.control_ship:
 		var input_dir = Input.get_vector("left", "right", "forward", "backward")
 		direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
@@ -57,7 +57,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 func _process(delta):
-	if !Globals.controlShip:
+	if !Globals.control_ship:
 		if Input.is_mouse_button_pressed(1):
 			$attack/attack_range.disabled = false
 			$visuals/visual_attack_range.visible = true 
@@ -66,7 +66,7 @@ func _process(delta):
 			$visuals/visual_attack_range.visible = false
 	else: 
 		if Input.is_action_pressed("action"):
-			Globals.controlShip = false
+			Globals.control_ship = false
 		
 func _on_attack_body_entered(body):
 	if body.is_in_group("Enemies"):

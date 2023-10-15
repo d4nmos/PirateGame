@@ -17,5 +17,3 @@ func take_damage(damage):
 	
 	if hp <= 0:
 		queue_free()
-
-		
