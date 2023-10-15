@@ -4,11 +4,31 @@ extends AnimatableBody3D
 
 const ACCELIRATION = 1.02
 const DECELERATION = 1.06
+
+const BASE_SPEED = 1.0
 const SPEED_LIMIT = 5.0
+
+const BASE_ROTATION_SPEED = 0.1
 const ROTATION_SPEED_LIMIT = 1.5
 
 var speed = 0.0
 var rotation_speed = 0.0
+
+func accelerate(speed, base_speed = BASE_SPEED, speed_limit = SPEED_LIMIT, acceleration = ACCELIRATION):
+	if speed < speed_limit: 
+		if speed == 0:
+			speed = base_speed
+		else: 
+			speed *= acceleration
+	return speed
+	
+func decelerate(speed, base_speed = BASE_SPEED, speed_limit = SPEED_LIMIT, deceleration = DECELERATION):
+	if speed / deceleration >= 0: 
+		if speed <= base_speed:
+			speed = 0.0
+		else:
+			speed /= deceleration
+	return speed
 
 func _physics_process(delta):
 
@@ -19,48 +39,25 @@ func _physics_process(delta):
 		var input_dir = Input.get_vector("left", "right", "forward", "backward")
 			#	(transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 		
-		
-		if Input.is_action_pressed("forward") and speed < SPEED_LIMIT: 
-			if speed == 0:
-				speed = 1.0
-			else: 
-				speed *= ACCELIRATION
-		if Input.is_action_pressed("backward") and speed / DECELERATION >= 0: 
-			if speed <= 1:
-				speed = 0.0
+		if Input.is_action_pressed("forward"):
+			speed = accelerate(speed)
+		if Input.is_action_pressed("backward"):
+			speed = decelerate(speed)
+			
+		if Input.is_action_pressed("left"): 
+			if rotation_speed >= 0:
+				rotation_speed = accelerate(abs(rotation_speed), BASE_ROTATION_SPEED, ROTATION_SPEED_LIMIT)
 			else:
-				speed /= DECELERATION
-				
-#		if Input.is_action_pressed("left"):
-#			rotate_object_local(Vector3(0, 1, 0), deg_to_rad(rotation_speed * delta))
-#		elif Input.is_action_pressed("right"):
-#			rotate_object_local(Vector3(0, 1, 0), deg_to_rad(-rotation_speed * delta))
-
-		if Input.is_action_pressed("left") and rotation_speed < ROTATION_SPEED_LIMIT: 
-			if rotation_speed == 0:
-				rotation_speed = 0.1
-			elif rotation_speed > 0:
-				rotation_speed *= ACCELIRATION
+				rotation_speed = -decelerate(abs(rotation_speed), BASE_ROTATION_SPEED, ROTATION_SPEED_LIMIT)
+		if Input.is_action_pressed("right"): 
+			if rotation_speed <= 0:
+				rotation_speed = -accelerate(abs(rotation_speed), BASE_ROTATION_SPEED, ROTATION_SPEED_LIMIT)
 			else:
-				if rotation_speed >= -0.1:
-					rotation_speed = 0.0
-				else:
-					rotation_speed /= DECELERATION
-		
-		if Input.is_action_pressed("right") and rotation_speed > -ROTATION_SPEED_LIMIT: 
-			if rotation_speed == 0:
-				rotation_speed = -0.1
-			elif rotation_speed < 0:
-				rotation_speed *= ACCELIRATION
-			else:
-				if rotation_speed <= 0.1:
-					rotation_speed = 0.0
-				else:
-					rotation_speed /= DECELERATION
+				rotation_speed = decelerate(abs(rotation_speed), BASE_ROTATION_SPEED, ROTATION_SPEED_LIMIT)
 
 	var rotation = rotation_speed * delta
 	var translation = direction * speed * delta
-	rotate_y(rotation)	
+	rotate_y(rotation)
 #	translate(translation)
 	
 		
