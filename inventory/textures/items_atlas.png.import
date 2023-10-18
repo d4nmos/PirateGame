@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddamqm7o5udqu"
-path="res://.godot/imported/headband.png-caac9a045dbbe3212934118d1963bf24.ctex"
+uid="uid://dlklh423nlg3q"
+path="res://.godot/imported/items_atlas.png-926d55f2fc7bd13f1f856148f21f0da0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://inventory/textures/headband.png"
-dest_files=["res://.godot/imported/headband.png-caac9a045dbbe3212934118d1963bf24.ctex"]
+source_file="res://inventory/textures/items_atlas.png"
+dest_files=["res://.godot/imported/items_atlas.png-926d55f2fc7bd13f1f856148f21f0da0.ctex"]
 
 [params]
 
