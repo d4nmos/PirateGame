@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 @onready var camera_mount = $camera_mount
-@onready var animation_player = $visuals/mixamo_base/AnimationPlayer
+@onready var animation_player = $visuals/character/AnimationPlayer
 @onready var visuals = $visuals
 
 const SPEED = 3.0
@@ -34,6 +34,8 @@ func _physics_process(delta):
 	if !Globals.control_ship:
 		if Input.is_action_just_pressed("jump") and is_on_floor():
 			velocity.y = JUMP_VELOCITY
+			if animation_player.current_animation != "jumping":
+				animation_player.play("jumping")
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -42,16 +44,16 @@ func _physics_process(delta):
 		var input_dir = Input.get_vector("left", "right", "forward", "backward")
 		direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
-		if animation_player.current_animation != "walking":
-			animation_player.play("walking")
+		if animation_player.current_animation != "happy walk":
+			animation_player.play("happy walk")
 		
 		visuals.look_at(position + direction)
 
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
 	else:
-		if animation_player.current_animation != "idle":
-			animation_player.play("idle")
+		if animation_player.current_animation != "Happy Idle":
+			animation_player.play("Happy Idle")
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 	move_and_slide()
@@ -61,6 +63,9 @@ func _process(delta):
 		if Input.is_mouse_button_pressed(1):
 			$attack/attack_range.disabled = false
 			$visuals/visual_attack_range.visible = true 
+			
+			if animation_player.current_animation != "Jab Punch":
+				animation_player.play("Jab Punch")
 		else:
 			$attack/attack_range.disabled = true
 			$visuals/visual_attack_range.visible = false

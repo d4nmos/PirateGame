@@ -19,6 +19,10 @@ config/icon="res://icon.png"
 
 Globals="*res://scripts/globals.gd"
 
+[filesystem]
+
+import/fbx/enabled=false
+
 [input]
 
 forward={
