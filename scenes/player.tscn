@@ -1,6 +1,7 @@
-[gd_scene load_steps=66 format=3 uid="uid://d1a4px4hdm364"]
+[gd_scene load_steps=67 format=3 uid="uid://d1a4px4hdm364"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_lvw8j"]
+[ext_resource type="PackedScene" uid="uid://cuuy5suppc24a" path="res://inventory/scenes/inventory.tscn" id="2_mt06l"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_521f0"]
 radius = 0.3
@@ -3819,6 +3820,23 @@ transform = Transform3D(1, 0, 0, 0, 0.86523, 0.501375, 0, -0.501375, 0.86523, 0,
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0049845, 0.726712, -0.704005)
 shape = SubResource("BoxShape3D_f1ga4")
 disabled = true
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="InventoryInterface" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayerInventory" parent="UI/InventoryInterface" instance=ExtResource("2_mt06l")]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 50.0
+offset_bottom = 50.0
 
 [connection signal="area_shape_entered" from="attack" to="." method="_on_attack_area_shape_entered"]
 [connection signal="body_entered" from="attack" to="." method="_on_attack_body_entered"]

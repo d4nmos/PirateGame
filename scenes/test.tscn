@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bs8p6bybn6dhd"]
+[gd_scene load_steps=16 format=3 uid="uid://bs8p6bybn6dhd"]
 
 [ext_resource type="Texture2D" uid="uid://b58xv1joypxo5" path="res://assets/textures/grids/Orange/texture_09.png" id="1_aaccn"]
 [ext_resource type="Texture2D" uid="uid://cm5m7nr7dugjd" path="res://assets/textures/grids/Purple/texture_09.png" id="2_dt7ba"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c8arnlq67qi7" path="res://assets/textures/grids/Dark/texture_05.png" id="4_6iaca"]
 [ext_resource type="PackedScene" uid="uid://d1a4px4hdm364" path="res://scenes/player.tscn" id="5_te34d"]
 [ext_resource type="PackedScene" uid="uid://cwci1od6xosgd" path="res://scenes/ship.tscn" id="6_38hs0"]
+[ext_resource type="Resource" uid="uid://bafm4ninl8gno" path="res://inventory/test_inventory.tres" id="6_hnms0"]
 [ext_resource type="PackedScene" uid="uid://duq5y7kindbmh" path="res://scenes/enemy.tscn" id="7_0hs50"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_txvjt"]
@@ -87,6 +88,7 @@ use_collision = true
 size = Vector3(1.96935, 0.491137, 4.00507)
 
 [node name="player" parent="." instance=ExtResource("5_te34d")]
+inventory_data = ExtResource("6_hnms0")
 
 [node name="ship" parent="." instance=ExtResource("6_38hs0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.74309, -0.3, 0)
