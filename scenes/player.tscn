@@ -83,7 +83,7 @@ nodes/punch/node = SubResource("AnimationNodeAnimation_k48bq")
 nodes/punch/position = Vector2(-592, 256)
 nodes/walk/node = SubResource("AnimationNodeAnimation_8xmey")
 nodes/walk/position = Vector2(-464, 48)
-node_connections = [&"output", 0, &"in_air", &"air movements", 0, &"fall", &"air movements", 1, &"TimeSeek", &"air movements", 2, &"fall forward", &"in_air", 0, &"movements", &"in_air", 1, &"air movements", &"movements", 0, &"idle", &"movements", 1, &"walk", &"movements", 2, &"punch", &"TimeSeek", 0, &"jump"]
+node_connections = [&"output", 0, &"in_air", &"TimeSeek", 0, &"jump", &"air movements", 0, &"fall", &"air movements", 1, &"TimeSeek", &"air movements", 2, &"fall forward", &"in_air", 0, &"movements", &"in_air", 1, &"air movements", &"movements", 0, &"idle", &"movements", 1, &"walk", &"movements", 2, &"punch"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_v2qcl"]
 height = 0.39656

@@ -11,14 +11,14 @@ const JUMP_VELOCITY = 4.5
 @export var sens_horizontal = 0.5
 @export var sens_vertical = 0.5
 @export var damage = 1.0
-
 @export var inventory_data: InventoryData
+var attack_is_ready: bool = true
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-func _ready():
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+#Signals
+signal toggle_inventory()
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -63,7 +63,7 @@ func _physics_process(delta):
 
 func _process(delta):
 	if !Globals.control_ship and is_on_floor():
-		if Input.is_mouse_button_pressed(1):
+		if Input.is_mouse_button_pressed(1) and attack_is_ready:
 			$attack/attack_range.disabled = false
 			$visuals/visual_attack_range.visible = true 
 			animation_tree.set("parameters/movements/transition_request", "punch")
@@ -74,6 +74,9 @@ func _process(delta):
 	else: 
 		if Input.is_action_pressed("action"):
 			Globals.control_ship = false
+	
+	if Input.is_action_just_pressed("inventory"):
+		toggle_inventory.emit()
 		
 func _on_attack_body_entered(body):
 	if body.is_in_group("Enemies"):

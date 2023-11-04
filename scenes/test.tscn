@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://bs8p6bybn6dhd"]
+[gd_scene load_steps=19 format=3 uid="uid://bs8p6bybn6dhd"]
 
 [ext_resource type="Texture2D" uid="uid://b58xv1joypxo5" path="res://assets/textures/grids/Orange/texture_09.png" id="1_aaccn"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_hrbei"]
 [ext_resource type="Texture2D" uid="uid://cm5m7nr7dugjd" path="res://assets/textures/grids/Purple/texture_09.png" id="2_dt7ba"]
 [ext_resource type="Texture2D" uid="uid://djg8y25y06h5n" path="res://assets/textures/grids/Green/texture_09.png" id="3_q1254"]
 [ext_resource type="Texture2D" uid="uid://c8arnlq67qi7" path="res://assets/textures/grids/Dark/texture_05.png" id="4_6iaca"]
@@ -8,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://cwci1od6xosgd" path="res://scenes/ship.tscn" id="6_38hs0"]
 [ext_resource type="Resource" uid="uid://bafm4ninl8gno" path="res://inventory/test_inventory.tres" id="6_hnms0"]
 [ext_resource type="PackedScene" uid="uid://duq5y7kindbmh" path="res://scenes/enemy.tscn" id="7_0hs50"]
+[ext_resource type="PackedScene" uid="uid://cuuy5suppc24a" path="res://inventory/scenes/inventory.tscn" id="9_sxj2t"]
+[ext_resource type="Script" path="res://inventory/scripts/InventoryInterface.gd" id="10_c3hkw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_txvjt"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -42,6 +45,7 @@ albedo_texture = ExtResource("4_6iaca")
 uv1_triplanar = true
 
 [node name="world" type="Node3D"]
+script = ExtResource("1_hrbei")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0.121918, 0.30203, 0.94547, -0.484912, 0.849279, -0.208773, 0, 4.79416, 0)
@@ -99,3 +103,17 @@ transform = Transform3D(0.770936, 0, -0.636913, 0, 1, 0, 0.636913, 0, 0.770936, 
 [node name="enemy2" parent="." instance=ExtResource("7_0hs50")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000211656, -0.272365, -2.71613)
 max_hp_value = 10
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="InventoryInterface" type="Control" parent="UI"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("10_c3hkw")
+metadata/_edit_use_anchors_ = true
+
+[node name="PlayerInventory" parent="UI/InventoryInterface" instance=ExtResource("9_sxj2t")]
+layout_mode = 0
