@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bs8p6bybn6dhd"]
+[gd_scene load_steps=20 format=3 uid="uid://bs8p6bybn6dhd"]
 
 [ext_resource type="Texture2D" uid="uid://b58xv1joypxo5" path="res://assets/textures/grids/Orange/texture_09.png" id="1_aaccn"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_hrbei"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://duq5y7kindbmh" path="res://scenes/enemy.tscn" id="7_0hs50"]
 [ext_resource type="PackedScene" uid="uid://cuuy5suppc24a" path="res://inventory/scenes/inventory.tscn" id="9_sxj2t"]
 [ext_resource type="Script" path="res://inventory/scripts/InventoryInterface.gd" id="10_c3hkw"]
+[ext_resource type="PackedScene" uid="uid://n5dc7p2v18kr" path="res://inventory/scenes/slot.tscn" id="12_8qxxp"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_txvjt"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -116,4 +117,10 @@ script = ExtResource("10_c3hkw")
 metadata/_edit_use_anchors_ = true
 
 [node name="PlayerInventory" parent="UI/InventoryInterface" instance=ExtResource("9_sxj2t")]
+layout_mode = 0
+
+[node name="GrabbedSlot" parent="UI/InventoryInterface" instance=ExtResource("12_8qxxp")]
+visible = false
+modulate = Color(1, 1, 1, 0.52549)
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
