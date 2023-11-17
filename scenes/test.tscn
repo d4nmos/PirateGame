@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bs8p6bybn6dhd"]
+[gd_scene load_steps=21 format=3 uid="uid://bs8p6bybn6dhd"]
 
 [ext_resource type="Texture2D" uid="uid://b58xv1joypxo5" path="res://assets/textures/grids/Orange/texture_09.png" id="1_aaccn"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_hrbei"]
@@ -6,12 +6,13 @@
 [ext_resource type="Texture2D" uid="uid://djg8y25y06h5n" path="res://assets/textures/grids/Green/texture_09.png" id="3_q1254"]
 [ext_resource type="Texture2D" uid="uid://c8arnlq67qi7" path="res://assets/textures/grids/Dark/texture_05.png" id="4_6iaca"]
 [ext_resource type="PackedScene" uid="uid://d1a4px4hdm364" path="res://scenes/player.tscn" id="5_te34d"]
-[ext_resource type="PackedScene" uid="uid://cwci1od6xosgd" path="res://scenes/ship.tscn" id="6_38hs0"]
+[ext_resource type="PackedScene" uid="uid://cwci1od6xosgd" path="res://scenes/interactable/ship.tscn" id="6_38hs0"]
 [ext_resource type="Resource" uid="uid://bafm4ninl8gno" path="res://inventory/test_inventory.tres" id="6_hnms0"]
-[ext_resource type="PackedScene" uid="uid://duq5y7kindbmh" path="res://scenes/enemy.tscn" id="7_0hs50"]
+[ext_resource type="PackedScene" uid="uid://duq5y7kindbmh" path="res://scenes/enemies/enemy.tscn" id="7_0hs50"]
 [ext_resource type="PackedScene" uid="uid://cuuy5suppc24a" path="res://inventory/scenes/inventory.tscn" id="9_sxj2t"]
 [ext_resource type="Script" path="res://inventory/scripts/InventoryInterface.gd" id="10_c3hkw"]
 [ext_resource type="PackedScene" uid="uid://n5dc7p2v18kr" path="res://inventory/scenes/slot.tscn" id="12_8qxxp"]
+[ext_resource type="PackedScene" uid="uid://cmhjr0iop0nnq" path="res://scenes/interactable/chest.tscn" id="13_ulm8m"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_txvjt"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -124,3 +125,8 @@ visible = false
 modulate = Color(1, 1, 1, 0.52549)
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+
+[node name="Chest" parent="." instance=ExtResource("13_ulm8m")]
+transform = Transform3D(-0.0977218, 0, -0.995214, 0, 1, 0, 0.995214, 0, -0.0977218, 4.00748, -0.276607, 1.19959)

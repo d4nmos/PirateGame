@@ -72,7 +72,7 @@ func _process(delta):
 			$attack/attack_range.disabled = true
 			$visuals/visual_attack_range.visible = false
 	else: 
-		if Input.is_action_pressed("action"):
+		if Input.is_action_pressed("interact"):
 			Globals.control_ship = false
 	
 	if Input.is_action_just_pressed("inventory"):
@@ -83,9 +83,16 @@ func _on_attack_body_entered(body):
 		body.take_damage(damage)
 	else:
 		pass
+		
+func _on_interaction_area_body_entered(body):
+	if body.is_in_group("Treasure"):
+		print("treasure is near")
+	else:
+		pass
 
 func _on_animation_tree_animation_finished(anim_name):
 	if is_on_floor(): 
 		animation_tree.set("parameters/movements/transition_request", "idle")
 	else:
 		animation_tree.set("parameters/air movements/transition_request", "fall")
+
