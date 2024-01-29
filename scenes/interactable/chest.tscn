@@ -1,4 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://cmhjr0iop0nnq"]
+[gd_scene load_steps=5 format=3 uid="uid://cmhjr0iop0nnq"]
+
+[ext_resource type="PackedScene" uid="uid://y8djoipw7nk2" path="res://scenes/UI/interact_arrow_3d.tscn" id="1_53nbg"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h6gnn"]
 albedo_color = Color(0.847059, 0.627451, 0.0392157, 1)
@@ -20,3 +22,7 @@ mesh = SubResource("BoxMesh_b8rnn")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("ConcavePolygonShape3D_qqige")
+
+[node name="interact_arrow_3D" parent="." instance=ExtResource("1_53nbg")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 1.35663, 0)
+visible = false

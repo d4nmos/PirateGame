@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="InteractionManager" load_steps=2 format=3 uid="uid://c7m61twqm3v4p"]
+
+[ext_resource type="Script" path="res://scripts/interaction_manager.gd" id="1_4gxe7"]
+
+[resource]
+script = ExtResource("1_4gxe7")

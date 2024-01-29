@@ -89,8 +89,8 @@ node_connections = [&"output", 0, &"in_air", &"TimeSeek", 0, &"jump", &"air move
 height = 0.39656
 radius = 0.50087
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_m31jq"]
-size = Vector3(2.55248, 1.20016, 1.85806)
+[sub_resource type="SphereShape3D" id="SphereShape3D_4y2pm"]
+radius = 1.488
 
 [node name="player" type="CharacterBody3D"]
 script = ExtResource("1_lvw8j")
@@ -239,12 +239,12 @@ disabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 
 [node name="interaction_range" type="CollisionShape3D" parent="interaction_area"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.202376, -0.709345)
-shape = SubResource("BoxShape3D_m31jq")
+shape = SubResource("SphereShape3D_4y2pm")
 
 [connection signal="animation_finished" from="visuals/character/AnimationTree" to="." method="_on_animation_tree_animation_finished"]
 [connection signal="area_shape_entered" from="attack" to="." method="_on_attack_area_shape_entered"]
 [connection signal="body_entered" from="attack" to="." method="_on_attack_body_entered"]
 [connection signal="body_entered" from="interaction_area" to="." method="_on_interaction_area_body_entered"]
+[connection signal="body_exited" from="interaction_area" to="." method="_on_interaction_area_body_exited"]
 
 [editable path="visuals/character"]
