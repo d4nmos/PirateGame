@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bs8p6bybn6dhd"]
+[gd_scene load_steps=22 format=3 uid="uid://bs8p6bybn6dhd"]
 
 [ext_resource type="Texture2D" uid="uid://b58xv1joypxo5" path="res://assets/textures/grids/Orange/texture_09.png" id="1_aaccn"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_hrbei"]
@@ -14,7 +14,6 @@
 [ext_resource type="Script" path="res://inventory/scripts/InventoryInterface.gd" id="10_c3hkw"]
 [ext_resource type="PackedScene" uid="uid://n5dc7p2v18kr" path="res://inventory/scenes/slot.tscn" id="12_8qxxp"]
 [ext_resource type="PackedScene" uid="uid://cmhjr0iop0nnq" path="res://scenes/interactable/chest.tscn" id="13_ulm8m"]
-[ext_resource type="PackedScene" uid="uid://bshutfsemsc8i" path="res://scenes/UI/current_item.tscn" id="14_n8k0m"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_txvjt"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -72,25 +71,6 @@ self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
-
-[node name="OtherInterface" type="Control" parent="UI"]
-layout_mode = 3
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -40.0
-offset_bottom = 40.0
-grow_horizontal = 0
-metadata/_edit_use_anchors_ = true
-
-[node name="CurrentItem" parent="UI/OtherInterface" instance=ExtResource("14_n8k0m")]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -178.0
-offset_right = 0.0
-grow_horizontal = 0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0.121918, 0.30203, 0.94547, -0.484912, 0.849279, -0.208773, 0, 4.79416, 0)
