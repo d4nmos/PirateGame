@@ -6,14 +6,13 @@ extends CharacterBody3D
 @onready var visuals = $visuals
 @onready var interface = $"../UI/OtherInterface"
 
-const SPEED = 3.0
-const JUMP_VELOCITY = 4.5
-
 @export var sens_horizontal = 0.5
 @export var sens_vertical = 0.5
 @export var damage = 1.0
 @export var inventory_data: InventoryData
 @export var interaction_manager: InteractionManager
+@export var speed = 3.0
+@export var jump_velocity = 4.5
 
 var attack_is_ready: bool = true
 
@@ -45,7 +44,7 @@ func _physics_process(delta):
 	# Handle Jump.
 	if !Globals.control_ship:
 		if Input.is_action_just_pressed("jump") and is_on_floor():
-			velocity.y = JUMP_VELOCITY
+			velocity.y = jump_velocity
 #			animation_tree.set("parameters/air movements/transition_request", "jump")
 
 	# Get the input direction and handle the movement/deceleration.
@@ -56,12 +55,12 @@ func _physics_process(delta):
 	if direction:
 		animation_tree.set("parameters/movements/transition_request", "walk")
 		visuals.look_at(position + direction)
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+		velocity.x = direction.x * speed
+		velocity.z = direction.z * speed
 	else:
 		animation_tree.set("parameters/movements/transition_request", "idle")
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, speed)
+		velocity.z = move_toward(velocity.z, 0, speed)
 	move_and_slide()
 
 func _process(delta):
@@ -73,20 +72,21 @@ func _process(delta):
 		else:
 			$attack/attack_range.disabled = true
 			$visuals/visual_attack_range.visible = false
-	else: 
-		if Input.is_action_pressed("interact"):
-			Globals.control_ship = false
+#	else: 
+#		if Input.is_action_just_pressed("interact"):
+#			Globals.control_ship = false
 	
 	if Input.is_action_just_pressed("inventory"):
 		toggle_inventory.emit()
 	
 	if Input.is_action_just_pressed("next_interact_object"):
 		interaction_manager.up_pointer()
-		print(interaction_manager.current_object)
 	
 	if Input.is_action_just_pressed("prev_interact_object"):
 		interaction_manager.down_pointer()
-		print(interaction_manager.current_object)
+	
+	if Input.is_action_just_pressed("interact") and interaction_manager.current_object != null:
+		interaction_manager.current_object.player_interact()
 	
 	
 
@@ -99,9 +99,8 @@ func _on_attack_body_entered(body):
 		
 #Добавление объекта в список взаимодействия, когда он входит в радиус взаимодействия		
 func _on_interaction_area_body_entered(body):
-	if body.is_in_group("Treasure"):
+	if body.is_in_group("Interactable"):
 		interaction_manager.add_interactable_object(body)
-		print(interaction_manager.current_object)
 	else:
 		pass
 		
@@ -109,7 +108,6 @@ func _on_interaction_area_body_entered(body):
 func _on_interaction_area_body_exited(body):
 	if body in interaction_manager.interactable_objects:
 		interaction_manager.remove_interactable_object(body)
-		print(interaction_manager.current_object)
 	else:
 		pass 
 

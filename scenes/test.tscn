@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bs8p6bybn6dhd"]
+[gd_scene load_steps=30 format=3 uid="uid://bs8p6bybn6dhd"]
 
 [ext_resource type="Texture2D" uid="uid://b58xv1joypxo5" path="res://assets/textures/grids/Orange/texture_09.png" id="1_aaccn"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_hrbei"]
@@ -14,6 +14,10 @@
 [ext_resource type="Script" path="res://inventory/scripts/InventoryInterface.gd" id="10_c3hkw"]
 [ext_resource type="PackedScene" uid="uid://n5dc7p2v18kr" path="res://inventory/scenes/slot.tscn" id="12_8qxxp"]
 [ext_resource type="PackedScene" uid="uid://cmhjr0iop0nnq" path="res://scenes/interactable/chest.tscn" id="13_ulm8m"]
+[ext_resource type="Script" path="res://inventory/scripts/inventory_data.gd" id="15_8x5kw"]
+[ext_resource type="Resource" uid="uid://nbkh7pdmewma" path="res://inventory/items/pirate_hat.tres" id="16_fi500"]
+[ext_resource type="Script" path="res://inventory/scripts/slot_data.gd" id="17_akhrw"]
+[ext_resource type="Resource" uid="uid://dhyko00qg7vfm" path="res://inventory/items/coin.tres" id="18_8bw0r"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_txvjt"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -47,6 +51,24 @@ uv1_triplanar = true
 albedo_texture = ExtResource("4_6iaca")
 uv1_triplanar = true
 
+[sub_resource type="Resource" id="Resource_5xiqg"]
+script = ExtResource("17_akhrw")
+item_data = ExtResource("16_fi500")
+quantity = 1
+
+[sub_resource type="Resource" id="Resource_ofebk"]
+script = ExtResource("15_8x5kw")
+slot_data = Array[ExtResource("17_akhrw")]([null, SubResource("Resource_5xiqg"), null, null, null])
+
+[sub_resource type="Resource" id="Resource_3e6p8"]
+script = ExtResource("17_akhrw")
+item_data = ExtResource("18_8bw0r")
+quantity = 50
+
+[sub_resource type="Resource" id="Resource_cltdj"]
+script = ExtResource("15_8x5kw")
+slot_data = Array[ExtResource("17_akhrw")]([SubResource("Resource_3e6p8"), null, null, null, null])
+
 [node name="world" type="Node3D"]
 script = ExtResource("1_hrbei")
 
@@ -63,6 +85,14 @@ metadata/_edit_use_anchors_ = true
 
 [node name="PlayerInventory" parent="UI/InventoryInterface" instance=ExtResource("9_sxj2t")]
 layout_mode = 0
+
+[node name="ExternalInventory" parent="UI/InventoryInterface" instance=ExtResource("9_sxj2t")]
+visible = false
+layout_mode = 0
+offset_left = 697.0
+offset_top = 257.0
+offset_right = 737.0
+offset_bottom = 297.0
 
 [node name="GrabbedSlot" parent="UI/InventoryInterface" instance=ExtResource("12_8qxxp")]
 visible = false
@@ -132,6 +162,8 @@ max_hp_value = 10
 
 [node name="Chest" parent="." instance=ExtResource("13_ulm8m")]
 transform = Transform3D(-0.0977218, 0, -0.995214, 0, 1, 0, 0.995214, 0, -0.0977218, 4.00748, -0.276607, 1.19959)
+inventory_data = SubResource("Resource_ofebk")
 
 [node name="Chest2" parent="." instance=ExtResource("13_ulm8m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.64112, -0.287782, 2.24821)
+inventory_data = SubResource("Resource_cltdj")
