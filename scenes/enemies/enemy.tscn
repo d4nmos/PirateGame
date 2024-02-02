@@ -9,11 +9,13 @@ radius = 0.440631
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_edaft"]
 albedo_color = Color(0.92549, 0.247059, 0.305882, 1)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_n8pqv"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_pwhpp"]
 viewport_path = NodePath("SubViewport")
 
 [node name="enemy" type="CharacterBody3D" groups=["Enemies"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000211656, 0.00267243, 0.000436664)
+collision_layer = 3
+collision_mask = 0
 script = ExtResource("1_fopre")
 
 [node name="hit_box" type="CollisionShape3D" parent="."]
@@ -29,4 +31,4 @@ material = SubResource("StandardMaterial3D_edaft")
 
 [node name="health_bar_3D" parent="." instance=ExtResource("2_qb4ch")]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 2.27468, 0)
-texture = SubResource("ViewportTexture_n8pqv")
+texture = SubResource("ViewportTexture_pwhpp")

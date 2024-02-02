@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bs8p6bybn6dhd"]
+[gd_scene load_steps=33 format=3 uid="uid://bs8p6bybn6dhd"]
 
 [ext_resource type="Texture2D" uid="uid://b58xv1joypxo5" path="res://assets/textures/grids/Orange/texture_09.png" id="1_aaccn"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_hrbei"]
@@ -18,6 +18,7 @@
 [ext_resource type="Resource" uid="uid://nbkh7pdmewma" path="res://inventory/items/pirate_hat.tres" id="16_fi500"]
 [ext_resource type="Script" path="res://inventory/scripts/slot_data.gd" id="17_akhrw"]
 [ext_resource type="Resource" uid="uid://dhyko00qg7vfm" path="res://inventory/items/coin.tres" id="18_8bw0r"]
+[ext_resource type="PackedScene" uid="uid://c3khr7h6xdici" path="res://inventory/items/pick_up/pick_up.tscn" id="19_yyvib"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_txvjt"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -69,6 +70,16 @@ quantity = 50
 script = ExtResource("15_8x5kw")
 slot_data = Array[ExtResource("17_akhrw")]([SubResource("Resource_3e6p8"), null, null, null, null])
 
+[sub_resource type="Resource" id="Resource_61o43"]
+script = ExtResource("17_akhrw")
+item_data = ExtResource("16_fi500")
+quantity = 1
+
+[sub_resource type="Resource" id="Resource_441kw"]
+script = ExtResource("17_akhrw")
+item_data = ExtResource("18_8bw0r")
+quantity = 40
+
 [node name="world" type="Node3D"]
 script = ExtResource("1_hrbei")
 
@@ -115,23 +126,27 @@ environment = SubResource("Environment_hyx3i")
 transform = Transform3D(0.792673, 0, 0.609647, 0, 1, 0, -0.609647, 0, 0.792673, -2, 0.5, -2)
 material_override = SubResource("StandardMaterial3D_d3g07")
 use_collision = true
+collision_mask = 0
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="map"]
 transform = Transform3D(0.977257, 0, -0.212058, 0, 1, 0, 0.212058, 0, 0.977257, 3.8, 1, -0.8)
 material_override = SubResource("StandardMaterial3D_fywn7")
 use_collision = true
+collision_mask = 0
 size = Vector3(1, 2.03094, 1)
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="map"]
 transform = Transform3D(0.977257, 0, -0.212058, 0, 1, 0, 0.212058, 0, 0.977257, -1, 1.4, 3)
 material_override = SubResource("StandardMaterial3D_jvsyo")
 use_collision = true
+collision_mask = 0
 size = Vector3(0.52052, 2.90228, 0.599273)
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="map"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
 material_override = SubResource("StandardMaterial3D_s4d52")
 use_collision = true
+collision_mask = 0
 radius = 5.0
 height = 0.5
 sides = 16
@@ -139,11 +154,13 @@ sides = 16
 [node name="CSGBox3D" type="CSGBox3D" parent="map"]
 transform = Transform3D(1, 0, 0, 0, 0.875228, -0.48371, 0, 0.48371, 0.875228, 0, 0.617095, -6.24318)
 use_collision = true
+collision_mask = 0
 size = Vector3(1.96935, 0.491137, 4.00507)
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="map"]
 transform = Transform3D(0.999999, 0, -0.00111701, -0.000778936, 0.71674, -0.69734, 0.000800606, 0.69734, 0.71674, 0, 2.39931, -8.89477)
 use_collision = true
+collision_mask = 0
 size = Vector3(1.96935, 0.491137, 4.00507)
 
 [node name="player" parent="." instance=ExtResource("5_te34d")]
@@ -167,3 +184,13 @@ inventory_data = SubResource("Resource_ofebk")
 [node name="Chest2" parent="." instance=ExtResource("13_ulm8m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.64112, -0.287782, 2.24821)
 inventory_data = SubResource("Resource_cltdj")
+
+[node name="PickUp" parent="." instance=ExtResource("19_yyvib")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.23743, 0.377955, 2.59837)
+slot_data = SubResource("Resource_61o43")
+
+[node name="PickUp2" parent="." instance=ExtResource("19_yyvib")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.23743, 0.377955, -0.997131)
+slot_data = SubResource("Resource_441kw")
+
+[connection signal="gui_input" from="UI/InventoryInterface" to="UI/InventoryInterface" method="_on_gui_input"]

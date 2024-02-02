@@ -43,6 +43,20 @@ func drop_single_slot_data(grabbed_slot_data: SlotData,index: int) -> SlotData:
 		return grabbed_slot_data
 	else:
 		return null
+
+func pick_up_slot_data(one_slot_data: SlotData):
+	for index in slot_data.size():
+		if slot_data[index] and slot_data[index].can_fully_merge_with(one_slot_data):
+			slot_data[index].fully_merge_with(one_slot_data)
+			inventory_update.emit(self)
+			return true
+	
+	for index in slot_data.size():
+		if not slot_data[index]:
+			slot_data[index] = one_slot_data
+			inventory_update.emit(self)
+			return true
+	return false
 	
 func on_slot_clicked(index: int, button: int):
 	inventory_interact.emit(self, index, button)
