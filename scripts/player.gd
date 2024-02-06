@@ -5,6 +5,7 @@ extends CharacterBody3D
 @onready var animation_tree = $visuals/character/AnimationTree
 @onready var visuals = $visuals
 @onready var interface = $"../UI/OtherInterface"
+@onready var interaction_range = $interaction_area/interaction_range
 
 @export var sens_horizontal = 0.5
 @export var sens_vertical = 0.5
@@ -87,8 +88,6 @@ func _process(delta):
 	
 	if Input.is_action_just_pressed("interact") and interaction_manager.current_object != null:
 		interaction_manager.current_object.player_interact()
-	
-	
 
 #Нанесение урона противнику		
 func _on_attack_body_entered(body):
@@ -116,6 +115,12 @@ func _on_animation_tree_animation_finished(anim_name):
 		animation_tree.set("parameters/movements/transition_request", "idle")
 	else:
 		animation_tree.set("parameters/air movements/transition_request", "fall")
+
+func get_drop_position():
+	var direction = -camera_mount.global_transform.basis.z
+	var radius = interaction_range.shape.radius + 1
+	var range = (camera_mount.global_position + direction) * radius
+	return range
 
 
 

@@ -9,6 +9,9 @@ var external_inventory_owner
 @onready var grabbed_slot = $GrabbedSlot
 @onready var external_inventory = $ExternalInventory
 
+func _ready():
+	set_process_input(true)
+
 func _physics_process(delta):
 	if grabbed_slot.visible:
 		grabbed_slot.global_position = get_global_mouse_position() + Vector2(10, 10)
@@ -56,12 +59,16 @@ func update_grabbed_slot():
 	else:
 		grabbed_slot.hide()
 
-
 func _on_gui_input(event):
 	if event is InputEventMouseButton and event.is_pressed() and grabbed_slot_data:
-			
 		match event.button_index:
 			MOUSE_BUTTON_LEFT:
 				drop_slot_data.emit(grabbed_slot_data)
-				print("drop slot")
+				grabbed_slot_data = null
+			MOUSE_BUTTON_RIGHT:
+				drop_slot_data.emit(grabbed_slot_data.create_single_slot_data())
+				if grabbed_slot_data.quantity < 1:
+					grabbed_slot_data = null
 				
+		update_grabbed_slot()
+

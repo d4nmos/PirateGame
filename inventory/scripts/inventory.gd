@@ -23,3 +23,6 @@ func populate_item_grid(inventory_data: InventoryData):
 		
 		if one_slot_data:
 			slot.set_slot_data(one_slot_data)
+
+
+
