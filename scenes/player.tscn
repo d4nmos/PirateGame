@@ -227,6 +227,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.847358, 0)
 [node name="Camera3D" type="Camera3D" parent="camera_mount"]
 transform = Transform3D(1, 0, 0, 0, 0.86523, 0.501375, 0, -0.501375, 0.86523, 0, 2.05527, 2.20653)
 
+[node name="drop_item_range" type="Node3D" parent="camera_mount"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.757902, -1.76318)
+
 [node name="attack" type="Area3D" parent="."]
 collision_layer = 0
 collision_mask = 2

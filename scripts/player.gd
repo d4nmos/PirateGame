@@ -5,7 +5,7 @@ extends CharacterBody3D
 @onready var animation_tree = $visuals/character/AnimationTree
 @onready var visuals = $visuals
 @onready var interface = $"../UI/OtherInterface"
-@onready var interaction_range = $interaction_area/interaction_range
+@onready var drop_item_range = $camera_mount/drop_item_range
 
 @export var sens_horizontal = 0.5
 @export var sens_vertical = 0.5
@@ -14,6 +14,7 @@ extends CharacterBody3D
 @export var interaction_manager: InteractionManager
 @export var speed = 3.0
 @export var jump_velocity = 4.5
+@export var health = 5
 
 var attack_is_ready: bool = true
 
@@ -117,10 +118,10 @@ func _on_animation_tree_animation_finished(anim_name):
 		animation_tree.set("parameters/air movements/transition_request", "fall")
 
 func get_drop_position():
-	var direction = -camera_mount.global_transform.basis.z
-	var radius = interaction_range.shape.radius + 1
-	var range = (camera_mount.global_position + direction) * radius
-	return range
+#	var direction = -camera_mount.global_transform.basis.z
+#	var radius = interaction_range.shape.radius + 1
+#	var range = (camera_mount.global_position + direction) * radius
+	return drop_item_range.global_position
 
 
 
