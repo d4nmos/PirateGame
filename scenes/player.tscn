@@ -1,0 +1,256 @@
+[gd_scene load_steps=17 format=3 uid="uid://d1a4px4hdm364"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_lvw8j"]
+[ext_resource type="PackedScene" uid="uid://d0dh7cs6k8iye" path="res://assets/models/character.glb" id="2_uxk3n"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7a6ce"]
+
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_bs1rq"]
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_h2h40"]
+xfade_time = 0.2
+input_0/name = "fall"
+input_0/auto_advance = false
+input_0/reset = true
+input_1/name = "jump"
+input_1/auto_advance = false
+input_1/reset = true
+input_2/name = "fall forward"
+input_2/auto_advance = false
+input_2/reset = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ujb3l"]
+animation = &"Falling in the air Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rck60"]
+animation = &"Falling mid-air idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5xirp"]
+animation = &"Happy Idle"
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_2jcyi"]
+xfade_time = 0.2
+input_0/name = "false"
+input_0/auto_advance = false
+input_0/reset = true
+input_1/name = "true"
+input_1/auto_advance = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yff7v"]
+animation = &"jumping short"
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_tkha8"]
+xfade_time = 0.2
+input_0/name = "idle"
+input_0/auto_advance = false
+input_0/reset = true
+input_1/name = "walk"
+input_1/auto_advance = false
+input_1/reset = true
+input_2/name = "punch"
+input_2/auto_advance = false
+input_2/reset = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_k48bq"]
+animation = &"Jab Punch"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8xmey"]
+animation = &"happy walk"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_is7s2"]
+graph_offset = Vector2(-560.146, 139.679)
+nodes/TimeSeek/node = SubResource("AnimationNodeTimeSeek_bs1rq")
+nodes/TimeSeek/position = Vector2(-128, 448)
+"nodes/air movements/node" = SubResource("AnimationNodeTransition_h2h40")
+"nodes/air movements/position" = Vector2(80, 304)
+nodes/fall/node = SubResource("AnimationNodeAnimation_rck60")
+nodes/fall/position = Vector2(-208, 336)
+"nodes/fall forward/node" = SubResource("AnimationNodeAnimation_ujb3l")
+"nodes/fall forward/position" = Vector2(-112, 576)
+nodes/idle/node = SubResource("AnimationNodeAnimation_5xirp")
+nodes/idle/position = Vector2(-352, -64)
+nodes/in_air/node = SubResource("AnimationNodeTransition_2jcyi")
+nodes/in_air/position = Vector2(272, 144)
+nodes/jump/node = SubResource("AnimationNodeAnimation_yff7v")
+nodes/jump/position = Vector2(-304, 480)
+nodes/movements/node = SubResource("AnimationNodeTransition_tkha8")
+nodes/movements/position = Vector2(-32, 80)
+nodes/output/position = Vector2(464, 144)
+nodes/punch/node = SubResource("AnimationNodeAnimation_k48bq")
+nodes/punch/position = Vector2(-592, 256)
+nodes/walk/node = SubResource("AnimationNodeAnimation_8xmey")
+nodes/walk/position = Vector2(-464, 48)
+node_connections = [&"output", 0, &"in_air", &"TimeSeek", 0, &"jump", &"air movements", 0, &"fall", &"air movements", 1, &"TimeSeek", &"air movements", 2, &"fall forward", &"in_air", 0, &"movements", &"in_air", 1, &"air movements", &"movements", 0, &"idle", &"movements", 1, &"walk", &"movements", 2, &"punch"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_v2qcl"]
+height = 0.39656
+radius = 0.50087
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4y2pm"]
+radius = 1.13903
+
+[node name="player" type="CharacterBody3D"]
+collision_layer = 0
+script = ExtResource("1_lvw8j")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("CapsuleShape3D_7a6ce")
+
+[node name="visuals" type="Node3D" parent="."]
+
+[node name="visual_attack_range" type="CSGBox3D" parent="visuals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.725382, -0.700209)
+visible = false
+size = Vector3(0.0395141, 0.0352789, 0.978614)
+
+[node name="character" parent="visuals" instance=ExtResource("2_uxk3n")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Skeleton3D" parent="visuals/character/character armature" index="0"]
+bones/0/position = Vector3(0.000701226, 0.2658, -0.0122176)
+bones/0/rotation = Quaternion(-0.00809866, -0.007699, -0.0120647, 0.999865)
+bones/1/rotation = Quaternion(-0.0578128, 0.000194969, -0.016318, 0.998194)
+bones/2/rotation = Quaternion(-0.0904296, -0.0542218, -0.0818297, 0.991053)
+bones/9/rotation = Quaternion(0.659345, 0.242356, -0.669574, 0.241243)
+bones/10/rotation = Quaternion(0.132791, 0.195322, 0.0127652, 0.971624)
+bones/11/rotation = Quaternion(-0.00243746, -0.0155957, 0.0752701, 0.997038)
+bones/12/rotation = Quaternion(0.0136667, 0.00186627, 0.028759, 0.999491)
+bones/13/rotation = Quaternion(0.00937673, 0.117277, 0.270921, 0.955385)
+bones/14/rotation = Quaternion(0.18217, 0.0619704, -0.106448, 0.975522)
+bones/15/rotation = Quaternion(0.166215, -0.0247274, 0.0248286, 0.985467)
+bones/18/rotation = Quaternion(-0.424969, -0.497642, 0.377608, 0.655108)
+bones/19/rotation = Quaternion(0.000160102, 1.89769e-07, -2.45981e-08, 1)
+bones/20/rotation = Quaternion(0.643899, -0.277252, 0.65874, 0.273107)
+bones/21/rotation = Quaternion(0.225016, 0.00268691, 0.0896517, 0.970218)
+bones/22/rotation = Quaternion(-0.00397013, 0.0254006, -0.122592, 0.992124)
+bones/23/rotation = Quaternion(0.00250229, -0.0790367, -0.153288, 0.985012)
+bones/24/rotation = Quaternion(0.0795224, -0.111618, -0.279796, 0.950227)
+bones/25/rotation = Quaternion(0.120387, -0.0967429, 0.134252, 0.978838)
+bones/26/rotation = Quaternion(0.102104, 0.0245188, -0.0483971, 0.993293)
+bones/29/rotation = Quaternion(-0.29031, 0.590453, -0.333062, 0.675393)
+bones/30/rotation = Quaternion(0.000160313, -1.91568e-07, -3.40199e-09, 1)
+bones/32/rotation = Quaternion(0.0556565, 0.150467, 0.979898, -0.118586)
+bones/33/rotation = Quaternion(-0.45643, -0.0155462, 0.0348843, 0.888939)
+bones/34/rotation = Quaternion(0.624695, -0.0190859, -0.149327, 0.76622)
+bones/35/rotation = Quaternion(0.387366, 0.00553215, 0.00226707, 0.921907)
+bones/38/rotation = Quaternion(0.0556565, 0.150467, 0.979898, -0.118586)
+bones/39/rotation = Quaternion(-0.45643, -0.0155462, 0.0348843, 0.888939)
+bones/40/rotation = Quaternion(-0.177598, -0.0766339, 0.957083, 0.215822)
+bones/41/rotation = Quaternion(-0.0613416, 0.0560426, -0.00562334, 0.996526)
+bones/42/rotation = Quaternion(0.416587, 0.00191085, 0.25416, 0.872843)
+bones/43/rotation = Quaternion(0.395608, 0.000766032, 0.000308556, 0.918419)
+bones/46/rotation = Quaternion(-0.177598, -0.076634, 0.957083, 0.215822)
+bones/47/rotation = Quaternion(-0.0613417, 0.0560427, -0.00562338, 0.996526)
+bones/49/position = Vector3(0.180369, 0.108373, -0.0350176)
+bones/49/rotation = Quaternion(0.0873585, 0.370909, 0.924431, -0.0149104)
+bones/51/position = Vector3(0.203102, 0.533182, 0.777771)
+bones/53/position = Vector3(-0.221358, 0.111507, -0.0728451)
+bones/53/rotation = Quaternion(-0.160026, 0.353719, 0.919442, 0.062461)
+bones/55/position = Vector3(-0.317609, 0.51859, 0.744779)
+
+[node name="eye_L" parent="visuals/character/character armature/Skeleton3D" index="0"]
+transform = Transform3D(0.968885, 0.230043, -0.0913327, -0.190189, 0.928108, 0.320069, 0.158396, -0.29274, 0.942981, 0.199086, 1.20328, 0.236253)
+bone_idx = 4
+
+[node name="eye_R" parent="visuals/character/character armature/Skeleton3D" index="1"]
+transform = Transform3D(-0.968885, 0.230043, -0.0913327, 0.190189, 0.928108, 0.320069, -0.158396, -0.29274, 0.942981, -0.0842446, 1.25889, 0.189933)
+bone_idx = 6
+
+[node name="hat tricorne" parent="visuals/character/character armature/Skeleton3D" index="2"]
+transform = Transform3D(0.968885, 0.241641, -0.0535813, -0.190189, 0.865385, 0.463613, 0.158396, -0.438997, 0.884416, 0.196098, 1.53946, -0.264901)
+bone_idx = 7
+
+[node name="head" parent="visuals/character/character armature/Skeleton3D" index="3"]
+transform = Transform3D(0.968885, 0.230043, -0.0913327, -0.190189, 0.928108, 0.320069, 0.158396, -0.29274, 0.942981, 0.098868, 1.18747, -0.0928048)
+bone_idx = 8
+
+[node name="forearm_L" parent="visuals/character/character armature/Skeleton3D" index="4"]
+transform = Transform3D(0.331267, 0.868944, -0.367695, -0.911391, 0.395539, 0.113646, 0.244189, 0.297466, 0.922976, 0.314965, 0.376094, -0.0287788)
+bone_idx = 16
+
+[node name="arm_L" parent="visuals/character/character armature/Skeleton3D" index="5"]
+transform = Transform3D(0.378394, 0.859501, -0.343622, -0.92002, 0.390081, -0.0374134, 0.101883, 0.330296, 0.938362, 0.246995, 0.570422, -0.0608459)
+bone_idx = 17
+
+[node name="forearm_R" parent="visuals/character/character armature/Skeleton3D" index="6"]
+transform = Transform3D(-0.428827, -0.898924, -0.0896802, -0.885792, 0.398902, 0.237169, 0.177424, -0.181143, 0.96732, -0.294915, 0.406356, -0.0696067)
+bone_idx = 27
+
+[node name="arm_R" parent="visuals/character/character armature/Skeleton3D" index="7"]
+transform = Transform3D(-0.391019, -0.909607, -0.140424, -0.918297, 0.395831, -0.00696955, -0.0619237, -0.126226, 0.990067, -0.215982, 0.600129, -0.0822094)
+bone_idx = 28
+
+[node name="chest" parent="visuals/character/character armature/Skeleton3D" index="8"]
+transform = Transform3D(0.998245, 0.0583716, -0.010025, -0.0565501, 0.989692, 0.131578, 0.0176021, -0.13078, 0.991255, 0.0143495, 0.676862, -0.0442926)
+bone_idx = 31
+
+[node name="leg_L" parent="visuals/character/character armature/Skeleton3D" index="9"]
+transform = Transform3D(0.953214, -0.157766, 0.257863, 0.261506, 0.85827, -0.441574, -0.151651, 0.488347, 0.859371, 0.175631, 0.141427, -0.0164668)
+bone_idx = 36
+
+[node name="hip_L" parent="visuals/character/character armature/Skeleton3D" index="10"]
+transform = Transform3D(0.972714, -0.221307, 0.0696438, 0.190017, 0.932161, 0.308169, -0.133119, -0.286527, 0.948779, 0.158977, 0.23197, 0.00191906)
+bone_idx = 37
+
+[node name="leg_R" parent="visuals/character/character armature/Skeleton3D" index="11"]
+transform = Transform3D(-0.772368, 0.424172, -0.472785, 0.473662, 0.880557, 0.0162158, -0.423192, 0.211415, 0.881029, -0.206239, 0.145749, -0.065221)
+bone_idx = 44
+
+[node name="hip_R" parent="visuals/character/character armature/Skeleton3D" index="12"]
+transform = Transform3D(-0.828072, 0.398343, -0.394487, 0.455378, 0.88835, -0.0588556, -0.326998, 0.228378, 0.917014, -0.165547, 0.243928, -0.0358306)
+bone_idx = 45
+
+[node name="belly" parent="visuals/character/character armature/Skeleton3D" index="13"]
+transform = Transform3D(0.99959, 0.024252, -0.0152005, -0.0240026, 0.999578, 0.0163808, 0.0155913, -0.0160092, 0.99975, 0.00358512, 0.390619, -0.00495301)
+bone_idx = 48
+
+[node name="AnimationTree" type="AnimationTree" parent="visuals/character"]
+tree_root = SubResource("AnimationNodeBlendTree_is7s2")
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/TimeSeek/seek_request = 0.5
+"parameters/air movements/current_state" = ""
+"parameters/air movements/transition_request" = "fall"
+"parameters/air movements/current_index" = -1
+parameters/in_air/current_state = "false"
+parameters/in_air/transition_request = ""
+parameters/in_air/current_index = 0
+parameters/movements/current_state = "idle"
+parameters/movements/transition_request = ""
+parameters/movements/current_index = 0
+
+[node name="camera_mount" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.847358, 0)
+
+[node name="Camera3D" type="Camera3D" parent="camera_mount"]
+transform = Transform3D(1, 0, 0, 0, 0.86523, 0.501375, 0, -0.501375, 0.86523, 0, 2.05527, 2.20653)
+
+[node name="drop_item_range" type="Node3D" parent="camera_mount"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.757902, -1.76318)
+
+[node name="attack" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="attack_range" type="CollisionShape3D" parent="attack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0049845, 0.726712, -0.552548)
+shape = SubResource("CylinderShape3D_v2qcl")
+disabled = true
+
+[node name="interaction_area" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+collision_layer = 4
+collision_mask = 4
+
+[node name="interaction_range" type="CollisionShape3D" parent="interaction_area"]
+shape = SubResource("SphereShape3D_4y2pm")
+
+[connection signal="animation_finished" from="visuals/character/AnimationTree" to="." method="_on_animation_tree_animation_finished"]
+[connection signal="area_shape_entered" from="attack" to="." method="_on_attack_area_shape_entered"]
+[connection signal="body_entered" from="attack" to="." method="_on_attack_body_entered"]
+[connection signal="body_entered" from="interaction_area" to="." method="_on_interaction_area_body_entered"]
+[connection signal="body_exited" from="interaction_area" to="." method="_on_interaction_area_body_exited"]
+
+[editable path="visuals/character"]
