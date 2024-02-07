@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://EndlessTerrain/EndlessTerrain.gd" id="1_r563f"]
 [ext_resource type="PackedScene" uid="uid://cg7hfmg0b6g8a" path="res://Debug/debug.tscn" id="4_j26vx"]
-[ext_resource type="PackedScene" uid="uid://4eyad0j15nfi" path="res://Player/Player.tscn" id="5_4ox3w"]
+[ext_resource type="PackedScene" uid="uid://4eyad0j15nfi" path="res://PlayerTest/PlayerTest.tscn" id="5_4ox3w"]
 [ext_resource type="Script" path="res://scripts/Cloud_spawner.gd" id="6_6oqbt"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_fvdy5"]
@@ -179,6 +179,7 @@ transform = Transform3D(-0.866024, -0.433016, 0.25, 0, 0.499998, 0.866027, -0.50
 shadow_enabled = true
 
 [node name="debug" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_j26vx")]
+visible = false
 player = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource("5_4ox3w")]
