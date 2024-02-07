@@ -13,6 +13,7 @@ const ROTATION_SPEED_LIMIT = 1.5
 
 var speed = 0.0
 var rotation_speed = 0.0
+var control_ship: bool = false
 
 func accelerate(speed, base_speed = BASE_SPEED, speed_limit = SPEED_LIMIT, acceleration = ACCELIRATION):
 	if speed < speed_limit: 
@@ -36,7 +37,7 @@ func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = Vector3(0, 0, -1)
-	if Globals.control_ship:
+	if control_ship:
 		var input_dir = Input.get_vector("left", "right", "forward", "backward")
 			#	(transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 		
@@ -63,7 +64,7 @@ func _physics_process(delta):
 func _on_control_area_body_entered(body):
 	if body.name == "player":
 		# The body is a player
-		Globals.control_ship = true
+		control_ship = true
 	else:
 		# The body is not a player
 		pass

@@ -16,6 +16,8 @@ extends CharacterBody3D
 @export var jump_velocity = 4.5
 @export var health = 5
 
+var control_ship: bool = false
+
 var attack_is_ready: bool = true
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -44,14 +46,14 @@ func _physics_process(delta):
 		animation_tree.set("parameters/in_air/transition_request", false)
 
 	# Handle Jump.
-	if !Globals.control_ship:
+	if !control_ship:
 		if Input.is_action_just_pressed("jump") and is_on_floor():
 			velocity.y = jump_velocity
 #			animation_tree.set("parameters/air movements/transition_request", "jump")
 
 	# Get the input direction and handle the movement/deceleration.
 	var direction = Vector3.ZERO
-	if !Globals.control_ship:
+	if !control_ship:
 		var input_dir = Input.get_vector("left", "right", "forward", "backward")
 		direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
@@ -66,7 +68,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 func _process(delta):
-	if !Globals.control_ship and is_on_floor():
+	if !control_ship and is_on_floor():
 		if Input.is_mouse_button_pressed(1) and attack_is_ready:
 			$attack/attack_range.disabled = false
 			$visuals/visual_attack_range.visible = true 
