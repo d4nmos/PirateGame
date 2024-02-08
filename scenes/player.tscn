@@ -100,11 +100,6 @@ shape = SubResource("CapsuleShape3D_7a6ce")
 
 [node name="visuals" type="Node3D" parent="."]
 
-[node name="visual_attack_range" type="CSGBox3D" parent="visuals"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.725382, -0.700209)
-visible = false
-size = Vector3(0.0395141, 0.0352789, 0.978614)
-
 [node name="character" parent="visuals" instance=ExtResource("2_uxk3n")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 

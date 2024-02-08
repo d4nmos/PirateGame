@@ -69,11 +69,9 @@ func _process(delta):
 	if !Globals.control_ship and is_on_floor():
 		if Input.is_mouse_button_pressed(1) and attack_is_ready:
 			$attack/attack_range.disabled = false
-			$visuals/visual_attack_range.visible = true 
 			animation_tree.set("parameters/movements/transition_request", "punch")
 		else:
 			$attack/attack_range.disabled = true
-			$visuals/visual_attack_range.visible = false
 #	else: 
 #		if Input.is_action_just_pressed("interact"):
 #			Globals.control_ship = false

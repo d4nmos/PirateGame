@@ -9,26 +9,27 @@ radius = 0.440631
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_edaft"]
 albedo_color = Color(0.92549, 0.247059, 0.305882, 1)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_0cpiw"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_swy5e"]
 viewport_path = NodePath("SubViewport")
 
 [node name="enemy" type="CharacterBody3D" groups=["Enemies"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000211656, 0.00267243, 0.000436664)
 collision_layer = 3
 collision_mask = 0
 script = ExtResource("1_fopre")
 
 [node name="hit_box" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01787, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.787051, 0)
 shape = SubResource("CapsuleShape3D_dhoqb")
 
 [node name="visuals" type="Node3D" parent="."]
 
 [node name="body" type="CSGBox3D" parent="visuals"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0013752, 0.996891, -0.000581026)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 size = Vector3(0.6, 1.4, 0.6)
 material = SubResource("StandardMaterial3D_edaft")
 
 [node name="health_bar_3D" parent="." instance=ExtResource("2_qb4ch")]
-transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 2.27468, 0)
-texture = SubResource("ViewportTexture_0cpiw")
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0.005, 2, -0.005)
+texture = SubResource("ViewportTexture_swy5e")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
