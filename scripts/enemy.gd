@@ -1,33 +1,12 @@
-extends CharacterBody3D
-
-var hp
-var speed = 2
-var accel = 1
-var target_node
+extends CharacterBodyAI
 
 @export var max_hp_value = 5
 
-@onready var navigation_agent_3d = $NavigationAgent3D
+var hp = null
 
-func _ready():
+func ready():
 	hp = max_hp_value
-	
-	var parent = get_parent_node_3d()
-	target_node = parent.get_node("target")
-	if not target_node:
-		print("TargetNode not found in the scene.")
-
-func _physics_process(delta):
-	var direction = Vector3()
-	
-	navigation_agent_3d.target_position = target_node.global_position
-	
-	direction = navigation_agent_3d.get_next_path_position() - global_position
-	direction.normalized()
-	
-	velocity = velocity.lerp(direction * speed, accel * delta)
-	
-	move_and_slide()
+	set_state('idle')
 	
 func take_damage(damage):
 	hp -= damage
@@ -37,3 +16,8 @@ func take_damage(damage):
 	
 	if hp <= 0:
 		queue_free()
+
+#States
+func idle(): pass
+
+func move(): pass
