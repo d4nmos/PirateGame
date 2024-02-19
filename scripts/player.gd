@@ -15,14 +15,19 @@ extends CharacterBody3D
 @export var speed = 3.0
 @export var jump_velocity = 4.5
 @export var health = 5
+@export var attack_cooldown = 2
+
+var _attack_cooldown
 
 var attack_is_ready: bool = true
-
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-
 #Signals
 signal toggle_inventory()
+
+func _ready():
+	global.player = self
+	_attack_cooldown = attack_cooldown
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -44,14 +49,14 @@ func _physics_process(delta):
 		animation_tree.set("parameters/in_air/transition_request", false)
 
 	# Handle Jump.
-	if !Globals.control_ship:
+	if !global.control_ship:
 		if Input.is_action_just_pressed("jump") and is_on_floor():
 			velocity.y = jump_velocity
 #			animation_tree.set("parameters/air movements/transition_request", "jump")
 
 	# Get the input direction and handle the movement/deceleration.
 	var direction = Vector3.ZERO
-	if !Globals.control_ship:
+	if !global.control_ship:
 		var input_dir = Input.get_vector("left", "right", "forward", "backward")
 		direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
@@ -66,10 +71,14 @@ func _physics_process(delta):
 	move_and_slide()
 
 func _process(delta):
-	if !Globals.control_ship and is_on_floor():
+	if _attack_cooldown > 0:
+		_attack_cooldown -= delta
+	
+	if !global.control_ship and is_on_floor():
 		if Input.is_mouse_button_pressed(1) and attack_is_ready:
 			$attack/attack_range.disabled = false
 			animation_tree.set("parameters/movements/transition_request", "punch")
+			_attack_cooldown = 2
 		else:
 			$attack/attack_range.disabled = true
 #	else: 
@@ -116,9 +125,6 @@ func _on_animation_tree_animation_finished(anim_name):
 		animation_tree.set("parameters/air movements/transition_request", "fall")
 
 func get_drop_position():
-#	var direction = -camera_mount.global_transform.basis.z
-#	var radius = interaction_range.shape.radius + 1
-#	var range = (camera_mount.global_position + direction) * radius
 	return drop_item_range.global_position
 
 

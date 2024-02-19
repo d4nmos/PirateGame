@@ -41,6 +41,15 @@ script = ExtResource("1_dtp0f")
 
 [node name="map" type="Node3D" parent="."]
 
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000661374, -1.45895, -19.0008)
+material_override = SubResource("StandardMaterial3D_s4d52")
+use_collision = true
+collision_mask = 0
+radius = 20.689
+height = 0.5
+sides = 16
+
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="map"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000330687, -0.1, 0.00104856)
 material_override = SubResource("StandardMaterial3D_s4d52")
@@ -57,6 +66,13 @@ use_collision = true
 collision_mask = 0
 size = Vector3(1, 2, 7.824)
 
+[node name="CSGBox3D4" type="CSGBox3D" parent="map"]
+transform = Transform3D(0.562783, -0.000116298, 0.826605, 0.000210086, 1, -2.32022e-06, -0.826605, 0.000174975, 0.562783, 9.48369, 1.08473, -6.79583)
+material_override = SubResource("StandardMaterial3D_fywn7")
+use_collision = true
+collision_mask = 0
+size = Vector3(1, 2, 7.824)
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0.121918, 0.30203, 0.94547, -0.484912, 0.849279, -0.208773, 0, 4.79416, 0)
 shadow_enabled = true
@@ -64,10 +80,15 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_hyx3i")
 
+[node name="enemy" parent="." instance=ExtResource("13_rmd5p")]
+transform = Transform3D(0.770936, 0, -0.636913, 0, 1, 0, 0.636913, 0, 0.770936, 6.211, 0.402321, -4.612)
+speed = 2
+
 [node name="player" parent="." instance=ExtResource("6_bbaiu")]
-transform = Transform3D(-0.741695, 0, 0.670737, 0, 1, 0, -0.670737, 0, -0.741695, 9.6415, 0, -9.06836)
+transform = Transform3D(-0.741695, 0, 0.670737, 0, 1, 0, -0.670737, 0, -0.741695, 9.6415, 0, -17.8212)
 inventory_data = ExtResource("7_pth7i")
 interaction_manager = ExtResource("8_5fy1a")
+speed = 5.0
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -102,9 +123,6 @@ self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
-
-[node name="enemy" parent="." instance=ExtResource("13_rmd5p")]
-transform = Transform3D(0.770936, 0, -0.636913, 0, 1, 0, 0.636913, 0, 0.770936, 6.211, 0, -4.612)
 
 [connection signal="drop_slot_data" from="UI/InventoryInterface" to="." method="_on_inventory_interface_drop_slot_data"]
 [connection signal="gui_input" from="UI/InventoryInterface" to="UI/InventoryInterface" method="_on_gui_input"]

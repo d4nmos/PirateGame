@@ -91,7 +91,6 @@ radius = 0.50087
 radius = 1.13903
 
 [node name="player" type="CharacterBody3D"]
-collision_layer = 0
 script = ExtResource("1_lvw8j")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
