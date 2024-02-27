@@ -36,7 +36,7 @@ func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = Vector3(0, 0, -1)
-	if Globals.control_ship:
+	if global.control_ship:
 		var input_dir = Input.get_vector("left", "right", "forward", "backward")
 			#	(transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 		
@@ -63,7 +63,7 @@ func _physics_process(delta):
 func _on_control_area_body_entered(body):
 	if body.name == "player":
 		# The body is a player
-		Globals.control_ship = true
+		global.control_ship = true
 	else:
 		# The body is not a player
 		pass

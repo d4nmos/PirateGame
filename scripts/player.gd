@@ -6,6 +6,7 @@ extends CharacterBody3D
 @onready var visuals = $visuals
 @onready var interface = $"../UI/OtherInterface"
 @onready var drop_item_range = $camera_mount/drop_item_range
+@onready var attack_range = $camera_mount/attack/attack_range
 
 @export var sens_horizontal = 0.5
 @export var sens_vertical = 0.5
@@ -76,11 +77,11 @@ func _process(delta):
 	
 	if !global.control_ship and is_on_floor():
 		if Input.is_mouse_button_pressed(1) and attack_is_ready:
-			$attack/attack_range.disabled = false
+			attack_range.disabled = false
 			animation_tree.set("parameters/movements/transition_request", "punch")
 			_attack_cooldown = 2
 		else:
-			$attack/attack_range.disabled = true
+			attack_range.disabled = true
 #	else: 
 #		if Input.is_action_just_pressed("interact"):
 #			Globals.control_ship = false
@@ -126,6 +127,14 @@ func _on_animation_tree_animation_finished(anim_name):
 
 func get_drop_position():
 	return drop_item_range.global_position
+
+func take_damage(damage):
+	health -= damage
+	print(health)
+	
+	if health <= 0:
+		print('dead')
+	
 
 
 

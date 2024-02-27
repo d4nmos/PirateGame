@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://duq5y7kindbmh"]
+[gd_scene load_steps=9 format=3 uid="uid://duq5y7kindbmh"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_fopre"]
 [ext_resource type="PackedScene" uid="uid://blyk4xqiubgh2" path="res://scenes/UI/health_bar_3D.tscn" id="2_qb4ch"]
@@ -16,8 +16,12 @@ albedo_color = Color(0.65098, 0.87451, 0.388235, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_etp6j"]
 albedo_color = Color(0.521569, 0.160784, 0.392157, 1)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_odql6"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_04nhd"]
 viewport_path = NodePath("SubViewport")
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_sdlmu"]
+height = 0.375589
+radius = 0.521056
 
 [node name="enemy" type="CharacterBody3D" groups=["Enemies"]]
 collision_layer = 3
@@ -47,9 +51,20 @@ material = SubResource("StandardMaterial3D_etp6j")
 
 [node name="health_bar_3D" parent="." instance=ExtResource("2_qb4ch")]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0.005, 2, -0.005)
-texture = SubResource("ViewportTexture_odql6")
+texture = SubResource("ViewportTexture_04nhd")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 transform = Transform3D(1, -2.70985e-09, -2.79021e-09, -3.87748e-09, -0.750999, -0.660303, -3.06118e-10, 0.660303, -0.750999, -0.0270051, 1.35015, 0.00278902)
 target_position = Vector3(0, -1, 2)
 collide_with_areas = true
+
+[node name="attack" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="attack_range" type="CollisionShape3D" parent="attack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.871176, -0.418609)
+shape = SubResource("CylinderShape3D_sdlmu")
+disabled = true
+
+[connection signal="body_entered" from="attack" to="." method="_on_attack_body_entered"]
