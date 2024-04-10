@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfmfkfnliqj4x"]
+
+[ext_resource type="Material" uid="uid://dln27dqstdflb" path="res://Shaders/Water.tres" id="1_j727g"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_ldwmu"]
+subdivide_width = 200
+subdivide_depth = 200
+orientation = 1
+
+[node name="WaterPlane" type="Node3D"]
+
+[node name="WaterPlane" type="MeshInstance3D" parent="."]
+mesh = SubResource("QuadMesh_ldwmu")
+surface_material_override/0 = ExtResource("1_j727g")
