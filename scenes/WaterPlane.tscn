@@ -10,5 +10,6 @@ orientation = 1
 [node name="WaterPlane" type="Node3D"]
 
 [node name="WaterPlane" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.021138, 0, 0)
 mesh = SubResource("QuadMesh_ldwmu")
 surface_material_override/0 = ExtResource("1_j727g")
