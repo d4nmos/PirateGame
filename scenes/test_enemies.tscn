@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://inventory/scripts/InventoryInterface.gd" id="9_se21a"]
 [ext_resource type="PackedScene" uid="uid://cuuy5suppc24a" path="res://inventory/scenes/inventory.tscn" id="10_aooqk"]
 [ext_resource type="PackedScene" uid="uid://n5dc7p2v18kr" path="res://inventory/scenes/slot.tscn" id="11_5ykba"]
-[ext_resource type="PackedScene" uid="uid://duq5y7kindbmh" path="res://scenes/enemies/enemy.tscn" id="13_rmd5p"]
+[ext_resource type="PackedScene" uid="uid://csohnlow7fck3" path="res://scenes/enemies/skeleton_minion.tscn" id="11_c3c5h"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s4d52"]
 albedo_texture = ExtResource("5_re1gj")
@@ -80,10 +80,6 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_hyx3i")
 
-[node name="enemy" parent="." instance=ExtResource("13_rmd5p")]
-transform = Transform3D(0.770936, 0, -0.636913, 0, 1, 0, 0.636913, 0, 0.770936, 6.211, 0.402321, -4.612)
-speed = 2
-
 [node name="player" parent="." instance=ExtResource("6_bbaiu")]
 transform = Transform3D(-0.741695, 0, 0.670737, 0, 1, 0, -0.670737, 0, -0.741695, 9.6415, 0, -17.8212)
 inventory_data = ExtResource("7_pth7i")
@@ -123,6 +119,9 @@ self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
+
+[node name="Skeleton_Minion" parent="." instance=ExtResource("11_c3c5h")]
+transform = Transform3D(-0.826315, 0, 0.563209, 0, 1, 0, -0.563209, 0, -0.826315, 3.15399, 0.28533, -12.7748)
 
 [connection signal="drop_slot_data" from="UI/InventoryInterface" to="." method="_on_inventory_interface_drop_slot_data"]
 [connection signal="gui_input" from="UI/InventoryInterface" to="UI/InventoryInterface" method="_on_gui_input"]

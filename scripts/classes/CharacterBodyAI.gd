@@ -50,7 +50,7 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 		move_and_slide()
-#	print(state)
+
 	call(state)
 	process()
 
@@ -59,6 +59,7 @@ func set_state(s, sub = ''):
 	if state != s:
 		_prev_state = state
 		state = s
+	print(s)
 
 	if sub:
 		set_sub_state(sub)
