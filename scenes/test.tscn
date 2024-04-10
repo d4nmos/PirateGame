@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://bs8p6bybn6dhd"]
+[gd_scene load_steps=34 format=3 uid="uid://bs8p6bybn6dhd"]
 
 [ext_resource type="Texture2D" uid="uid://b58xv1joypxo5" path="res://assets/textures/grids/Orange/texture_09.png" id="1_aaccn"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_hrbei"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" path="res://inventory/scripts/slot_data.gd" id="17_akhrw"]
 [ext_resource type="Resource" uid="uid://dhyko00qg7vfm" path="res://inventory/items/coin.tres" id="18_8bw0r"]
 [ext_resource type="PackedScene" uid="uid://c3khr7h6xdici" path="res://inventory/items/pick_up/pick_up.tscn" id="19_yyvib"]
+[ext_resource type="PackedScene" uid="uid://cfmfkfnliqj4x" path="res://scenes/WaterPlane.tscn" id="20_stywi"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d3g07"]
 albedo_texture = ExtResource("1_aaccn")
@@ -190,12 +191,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.23743, 0.377955, -0.997131
 slot_data = SubResource("Resource_441kw")
 
 [node name="Chest2" parent="." instance=ExtResource("13_ulm8m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.64112, -0.287782, 2.24821)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.04799, -1.42704, 2.24821)
 inventory_data = SubResource("Resource_cltdj")
 
 [node name="Chest" parent="." instance=ExtResource("13_ulm8m")]
-transform = Transform3D(-0.0977218, 0, -0.995214, 0, 1, 0, 0.995214, 0, -0.0977218, 4.00748, -0.276607, 1.19959)
+transform = Transform3D(-0.0977218, 0, -0.995214, 0, 1, 0, 0.995214, 0, -0.0977218, 4.1104, -0.294165, 1.15429)
 inventory_data = SubResource("Resource_ofebk")
+
+[node name="WaterPlane" parent="." instance=ExtResource("20_stywi")]
+transform = Transform3D(45.4256, 0, 0, 0, 1.79598, 0, 0, 0, 38.2726, 0.0899283, 0.604974, 0.00108624)
 
 [connection signal="drop_slot_data" from="UI/InventoryInterface" to="." method="_on_inventory_interface_drop_slot_data"]
 [connection signal="gui_input" from="UI/InventoryInterface" to="UI/InventoryInterface" method="_on_gui_input"]
