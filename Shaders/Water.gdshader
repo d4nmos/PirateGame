@@ -15,8 +15,8 @@ uniform float height_scale = 0.15;
 varying float height;
 varying vec3 world_pos;
 
-uniform sampler2D DEPTH_TEXTURE : hint_depth_texture, filter_linear_mipmap;
-uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
+uniform sampler2D DEPTH_TEXTURE : hint_depth_texture;
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture;
 uniform vec4 color_deep : source_color;
 uniform vec4 color_shallow : source_color;
 uniform float beers_law = 2.0;
