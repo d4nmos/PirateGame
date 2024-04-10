@@ -131,10 +131,14 @@ size = Vector3(1.96935, 0.491137, 4.00507)
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0.121918, 0.30203, 0.94547, -0.484912, 0.849279, -0.208773, 0, 4.79416, 0)
 shadow_enabled = true
 
+[node name="WaterPlane" parent="." instance=ExtResource("20_stywi")]
+transform = Transform3D(45.4256, 0, 0, 0, 1.79598, 0, 0, 0, 38.2726, 0.0899283, 0.604974, 0.00108624)
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_hyx3i")
 
 [node name="player" parent="." instance=ExtResource("5_te34d")]
+transform = Transform3D(0.822015, 0, 0, 0, 0.793279, 0, 0, 0, 1, 0, 0, 0)
 inventory_data = ExtResource("6_hnms0")
 interaction_manager = ExtResource("8_s4mwa")
 
@@ -197,9 +201,6 @@ inventory_data = SubResource("Resource_cltdj")
 [node name="Chest" parent="." instance=ExtResource("13_ulm8m")]
 transform = Transform3D(-0.0977218, 0, -0.995214, 0, 1, 0, 0.995214, 0, -0.0977218, 4.1104, -0.294165, 1.15429)
 inventory_data = SubResource("Resource_ofebk")
-
-[node name="WaterPlane" parent="." instance=ExtResource("20_stywi")]
-transform = Transform3D(45.4256, 0, 0, 0, 1.79598, 0, 0, 0, 38.2726, 0.0899283, 0.604974, 0.00108624)
 
 [connection signal="drop_slot_data" from="UI/InventoryInterface" to="." method="_on_inventory_interface_drop_slot_data"]
 [connection signal="gui_input" from="UI/InventoryInterface" to="UI/InventoryInterface" method="_on_gui_input"]
