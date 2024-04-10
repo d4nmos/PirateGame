@@ -1,7 +1,53 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dln27dqstdflb"]
+[gd_resource type="ShaderMaterial" load_steps=8 format=3 uid="uid://dln27dqstdflb"]
 
-[ext_resource type="Shader" path="res://Shaders/Water.gdshader" id="1_414i5"]
+[ext_resource type="Shader" path="res://Shaders/Water.gdshader" id="1_8d5yf"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_krcnj"]
+noise_type = 3
+fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dsi03"]
+seamless = true
+as_normal_map = true
+bump_strength = 29.6
+noise = SubResource("FastNoiseLite_krcnj")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_g3ucm"]
+noise_type = 3
+fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_si7ji"]
+seamless = true
+as_normal_map = true
+bump_strength = 25.6
+noise = SubResource("FastNoiseLite_g3ucm")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_bpgk4"]
+noise_type = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_avb70"]
+noise = SubResource("FastNoiseLite_bpgk4")
 
 [resource]
 render_priority = 0
-shader = ExtResource("1_414i5")
+shader = ExtResource("1_8d5yf")
+shader_parameter/albedo2 = Color(0.980392, 0.0470588, 0, 1)
+shader_parameter/albedo = Color(0.00392157, 0.243137, 0.921569, 1)
+shader_parameter/metallic = 0.0
+shader_parameter/roughness = 0.02
+shader_parameter/wave_direction = Vector2(2, 0)
+shader_parameter/wave_direction2 = Vector2(0, 1)
+shader_parameter/time_scale = 0.025
+shader_parameter/noise_scale = 10.0
+shader_parameter/height_scale = 0.15
+shader_parameter/color_deep = Color(0, 0, 0.780392, 1)
+shader_parameter/color_shallow = null
+shader_parameter/beers_law = 2.0
+shader_parameter/depth_offset = 1.5
+shader_parameter/edge_scale = 0.1
+shader_parameter/near = 1.0
+shader_parameter/far = 100.0
+shader_parameter/edge_color = Color(1, 1, 1, 1)
+shader_parameter/texture_normal = SubResource("NoiseTexture2D_dsi03")
+shader_parameter/texture_normal2 = SubResource("NoiseTexture2D_si7ji")
+shader_parameter/wave = SubResource("NoiseTexture2D_avb70")
