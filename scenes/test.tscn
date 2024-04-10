@@ -138,7 +138,7 @@ transform = Transform3D(45.4256, 0, 0, 0, 1.79598, 0, 0, 0, 38.2726, 0.0899283, 
 environment = SubResource("Environment_hyx3i")
 
 [node name="player" parent="." instance=ExtResource("5_te34d")]
-transform = Transform3D(0.822015, 0, 0, 0, 0.793279, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(0.726696, 0, 0, 0, 0.726696, 0, 0, 0, 0.726696, 0, 0, 0)
 inventory_data = ExtResource("6_hnms0")
 interaction_manager = ExtResource("8_s4mwa")
 
