@@ -4,7 +4,7 @@ extends Node3D
 @export var chunkSize = 100
 @export var terrain_height = 20
 @export var view_distance = 500
-@export var viewer :CharacterBody3D
+@export var viewer = preload("res://scenes/player.tscn")
 @export var chunk_mesh_scene = preload("res://EndlessTerrain/TerrainChunk.tscn")
 @export var render_debug := false
 var viewer_position = Vector2()
