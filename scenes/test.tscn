@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://bs8p6bybn6dhd"]
+[gd_scene load_steps=44 format=3 uid="uid://bs8p6bybn6dhd"]
 
 [ext_resource type="Texture2D" uid="uid://b58xv1joypxo5" path="res://assets/textures/grids/Orange/texture_09.png" id="1_aaccn"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_hrbei"]
@@ -20,6 +20,9 @@
 [ext_resource type="Resource" uid="uid://dhyko00qg7vfm" path="res://inventory/items/coin.tres" id="18_8bw0r"]
 [ext_resource type="PackedScene" uid="uid://c3khr7h6xdici" path="res://inventory/items/pick_up/pick_up.tscn" id="19_yyvib"]
 [ext_resource type="PackedScene" uid="uid://cfmfkfnliqj4x" path="res://scenes/WaterPlane.tscn" id="20_stywi"]
+[ext_resource type="Terrain3DStorage" uid="uid://77b6ow6wohbh" path="res://terrain/terrain_storage.res" id="21_bhpoo"]
+[ext_resource type="Terrain3DMaterial" uid="uid://cjye0v8fwfxfi" path="res://terrain/terrain_material.tres" id="22_h6cra"]
+[ext_resource type="Terrain3DTextureList" uid="uid://dmb610xstr85i" path="res://terrain/terrain_texture_list.tres" id="23_rwh31"]
 
 [sub_resource type="Shader" id="Shader_g2jhm"]
 code = "
@@ -332,6 +335,11 @@ inventory_data = SubResource("Resource_cltdj")
 [node name="Chest" parent="." instance=ExtResource("13_ulm8m")]
 transform = Transform3D(-0.0977218, 0, -0.995214, 0, 1, 0, 0.995214, 0, -0.0977218, 4.1104, -0.294165, 1.15429)
 inventory_data = SubResource("Resource_ofebk")
+
+[node name="Terrain3D" type="Terrain3D" parent="."]
+storage = ExtResource("21_bhpoo")
+material = ExtResource("22_h6cra")
+texture_list = ExtResource("23_rwh31")
 
 [connection signal="drop_slot_data" from="UI/InventoryInterface" to="." method="_on_inventory_interface_drop_slot_data"]
 [connection signal="gui_input" from="UI/InventoryInterface" to="UI/InventoryInterface" method="_on_gui_input"]
