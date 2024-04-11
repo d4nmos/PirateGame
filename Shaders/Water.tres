@@ -1,33 +1,47 @@
-[gd_resource type="ShaderMaterial" load_steps=8 format=3 uid="uid://dln27dqstdflb"]
+[gd_resource type="ShaderMaterial" load_steps=11 format=3 uid="uid://dln27dqstdflb"]
 
 [ext_resource type="Shader" path="res://Shaders/Water.gdshader" id="1_8d5yf"]
+
+[sub_resource type="Gradient" id="Gradient_7oc2y"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_krcnj"]
 noise_type = 3
 fractal_type = 2
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dsi03"]
+in_3d_space = true
 seamless = true
 as_normal_map = true
-bump_strength = 29.6
+bump_strength = 11.5
+color_ramp = SubResource("Gradient_7oc2y")
 noise = SubResource("FastNoiseLite_krcnj")
+
+[sub_resource type="Gradient" id="Gradient_tqprx"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_g3ucm"]
 noise_type = 3
 fractal_type = 2
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_si7ji"]
+in_3d_space = true
 seamless = true
 as_normal_map = true
-bump_strength = 25.6
+bump_strength = 16.2
+color_ramp = SubResource("Gradient_tqprx")
 noise = SubResource("FastNoiseLite_g3ucm")
+
+[sub_resource type="Gradient" id="Gradient_c73hr"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_bpgk4"]
 noise_type = 3
+frequency = 0.012
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_avb70"]
+in_3d_space = true
 seamless = true
 as_normal_map = true
+bump_strength = 20.3
+color_ramp = SubResource("Gradient_c73hr")
 noise = SubResource("FastNoiseLite_bpgk4")
 
 [resource]
@@ -35,18 +49,18 @@ render_priority = 0
 shader = ExtResource("1_8d5yf")
 shader_parameter/albedo2 = Color(0.980392, 0.0470588, 0, 1)
 shader_parameter/albedo = Color(0.00392157, 0.243137, 0.921569, 1)
-shader_parameter/metallic = 0.011
-shader_parameter/roughness = 0.087
+shader_parameter/metallic = 0.382
+shader_parameter/roughness = 0.222
 shader_parameter/wave_direction = Vector2(2, 0)
 shader_parameter/wave_direction2 = Vector2(0, 1)
-shader_parameter/time_scale = 0.025
-shader_parameter/noise_scale = 10.0
+shader_parameter/time_scale = 0.01
+shader_parameter/noise_scale = 15.0
 shader_parameter/height_scale = 0.6
-shader_parameter/color_deep = Color(0, 0, 0.780392, 1)
-shader_parameter/color_shallow = Color(0, 0.721569, 0.937255, 1)
-shader_parameter/beers_law = 10.0
+shader_parameter/color_deep = Color(0, 0.25098, 0.45098, 1)
+shader_parameter/color_shallow = Color(0.219608, 0.658824, 1, 1)
+shader_parameter/beers_law = 6.0
 shader_parameter/depth_offset = -0.75
-shader_parameter/edge_scale = 0.1
+shader_parameter/edge_scale = 0.15
 shader_parameter/near = 0.5
 shader_parameter/far = 60.0
 shader_parameter/edge_color = Color(1, 1, 1, 1)
