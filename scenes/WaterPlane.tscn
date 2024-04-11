@@ -3,8 +3,8 @@
 [ext_resource type="Material" uid="uid://dln27dqstdflb" path="res://Shaders/Water.tres" id="1_j727g"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_ldwmu"]
-subdivide_width = 200
-subdivide_depth = 200
+subdivide_width = 400
+subdivide_depth = 400
 orientation = 1
 
 [node name="WaterPlane" type="Node3D"]
