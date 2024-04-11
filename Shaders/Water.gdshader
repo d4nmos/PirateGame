@@ -8,7 +8,7 @@ uniform sampler2D texture_normal2;
 uniform sampler2D wave;
 uniform vec2 wave_direction = vec2(2.0,0.0);
 uniform vec2 wave_direction2 = vec2(0.0,1.0);
-uniform float time_scale : hint_range(0.0, 0.2, 0.005) = 0.025;
+uniform float time_scale : hint_range(0.0, 0.1, 0.005) = 0.015;
 uniform float noise_scale = 10.0;
 uniform float height_scale = 0.15;
 
