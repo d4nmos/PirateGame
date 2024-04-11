@@ -2,10 +2,10 @@ extends CharacterBody3D
 class_name CharacterBodyAI
 
 @export var detector_node : NodePath
-@export var animator_node : NodePath
+@export var animator_node : AnimationPlayer
+@export_multiline var sub_state_anim
 @export var speed = 1
 @export var speed_turn = 1
-@export var sub_state_anim: String = ''
 @export var random_timer_rotate_min = 0.5
 @export var random_timer_rotete_max = 3.0
 
@@ -16,7 +16,7 @@ var _prev_state = ''
 var _prev_sub_state = ''
 var _detected = null
 var _animations = {}
-var _animator_node = null
+var _animator = null
 var _dir = 0
 var _random_time_rotate = 0
 
@@ -28,14 +28,13 @@ func _ready():
 	if detector_node:
 		_detector = get_node(detector_node)
 	if animator_node:
-		_animator_node = animator_node
-	
+		_animator = animator_node
 	if sub_state_anim:
-		var all = sub_state_anim.split('\n')
-		for a in all:
-			var s = a.split(':')
-			_animations[s[0]] = s[1]
-	
+		var pairs = sub_state_anim.split('\n')
+		for pair in pairs:
+			var anim = pair.split(':')
+			_animations[anim[0]] = anim[1]
+			
 	ready() 
 
 func _physics_process(delta):
@@ -59,16 +58,16 @@ func set_state(s, sub = ''):
 	if state != s:
 		_prev_state = state
 		state = s
-	print(s)
-
+		
 	if sub:
 		set_sub_state(sub)
 
 func set_sub_state(sub):
 	if sub_state != sub:
 		_prev_sub_state = sub_state
-		if _animator_node:
-			_animator_node.play(_animator_node[sub], 0.2)
+		if _animator:
+			_animator.play(_animations[sub], 0.2)
+			
 	sub_state = sub
 	
 func move_ai():
@@ -77,7 +76,7 @@ func move_ai():
 		set_state('tmp_rotate')
 	
 func move_angle(add_speed = 0):
-	velocity = Vector3(0,velocity.y, -(speed + add_speed)).rotated(Vector3.UP, rotation.y)
+	velocity = Vector3(0,velocity.y, (speed + add_speed)).rotated(Vector3.UP, rotation.y)
 	move_and_slide()
 
 func rotate_to_node(n, add_speed = 0):
@@ -108,4 +107,19 @@ func tmp_rotate():
 func ready(): pass
 
 func process(): pass
+
+func update_colission_pos(skeleton_3d, bone_name, collision_object, accuracy = 0):
+	var bone = skeleton_3d.find_bone(bone_name)
+	var bone_transform = skeleton_3d.get_bone_global_pose(bone)
+	var bone_position = skeleton_3d.to_global(bone_transform.origin)
+	
+	bone_position.y += accuracy
+	collision_object.global_transform.origin = bone_position
+
+func get_accuracy(skeleton_3d, bone_name, collision_object):
+	var bone = skeleton_3d.find_bone(bone_name)
+	var bone_transform = skeleton_3d.get_bone_global_pose(bone)
+	var bone_position = skeleton_3d.to_global(bone_transform.origin)
+	var accuracy = collision_object.global_transform.origin.y - bone_position.y
+	return accuracy
 

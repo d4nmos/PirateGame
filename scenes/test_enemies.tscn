@@ -121,7 +121,7 @@ offset_right = 64.0
 offset_bottom = 64.0
 
 [node name="Skeleton_Minion" parent="." instance=ExtResource("11_c3c5h")]
-transform = Transform3D(-0.826315, 0, 0.563209, 0, 1, 0, -0.563209, 0, -0.826315, 3.15399, 0.28533, -12.7748)
+transform = Transform3D(-0.826315, 0, 0.563209, 0, 1, 0, -0.563209, 0, -0.826315, 3.15399, 0.610794, -12.7748)
 
 [connection signal="drop_slot_data" from="UI/InventoryInterface" to="." method="_on_inventory_interface_drop_slot_data"]
 [connection signal="gui_input" from="UI/InventoryInterface" to="UI/InventoryInterface" method="_on_gui_input"]
