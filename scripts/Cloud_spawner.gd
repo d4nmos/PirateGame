@@ -1,6 +1,6 @@
 extends CSGBox3D
 
-@export var clouds_to_spawn : int = 10
+@export var clouds_to_spawn : int = 100
 @export var _cloud = preload("res://scenes/Cloud.tscn")
 
 var rng = RandomNumberGenerator.new()
