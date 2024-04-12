@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://bs8p6bybn6dhd"]
+[gd_scene load_steps=45 format=3 uid="uid://bs8p6bybn6dhd"]
 
 [ext_resource type="Texture2D" uid="uid://b58xv1joypxo5" path="res://assets/textures/grids/Orange/texture_09.png" id="1_aaccn"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_hrbei"]
@@ -24,7 +24,6 @@
 [ext_resource type="Terrain3DStorage" uid="uid://lalq1xnmbjdl" path="res://demo/data/terrain_storage.res" id="21_30w6g"]
 [ext_resource type="Terrain3DMaterial" uid="uid://cooe0itq3htjw" path="res://terrain/Demo_material.tres" id="22_f7pgj"]
 [ext_resource type="Terrain3DTextureList" uid="uid://dal3jhw6241qg" path="res://demo/data/texture_list.tres" id="23_qt7o4"]
-[ext_resource type="Script" path="res://scripts/Cloud_spawner.gd" id="24_xkfxc"]
 
 [sub_resource type="Shader" id="Shader_g2jhm"]
 code = "
@@ -217,11 +216,6 @@ quantity = 1
 script = ExtResource("15_8x5kw")
 slot_data = Array[ExtResource("17_akhrw")]([null, SubResource("Resource_5xiqg"), null, null, null])
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_harkd"]
-transparency = 1
-shading_mode = 0
-albedo_color = Color(1, 1, 1, 0)
-
 [node name="world" type="Node3D"]
 script = ExtResource("1_hrbei")
 
@@ -275,14 +269,14 @@ size = Vector3(1.96935, 0.491137, 4.00507)
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0.121918, 0.30203, 0.94547, -0.484912, 0.849279, -0.208773, 0, 4.79416, 0)
 shadow_enabled = true
 
-[node name="CloudsPlane" parent="." instance=ExtResource("6_os51l")]
-transform = Transform3D(45.4256, 0, 0, 0, 1.79598, 0, 0, 0, 38.2726, 7.08993, 0.0851421, -29.5985)
-
 [node name="WaterPlane" parent="." instance=ExtResource("20_stywi")]
-transform = Transform3D(45.4256, 0, 0, 0, 1.79598, 0, 0, 0, 38.2726, 0.0899283, 0.604974, 0.00108624)
+transform = Transform3D(446.284, 0, 0, 0, 1.36446, 0, 0, 0, 265.951, -427.553, -38.4356, -600.756)
+
+[node name="CloudsPlane" parent="." instance=ExtResource("6_os51l")]
+transform = Transform3D(1188.52, 0, 0, 0, 1.79598, 0, 0, 0, 1000.38, 7.08993, -84.5665, -29.5985)
 
 [node name="player" parent="." instance=ExtResource("5_te34d")]
-transform = Transform3D(0.726696, 0, 0, 0, 0.726696, 0, 0, 0, 0.726696, 0, 0, 0)
+transform = Transform3D(0.726696, 0, 0, 0, 0.726696, 0, 0, 0, 0.726696, -480.992, -34.0081, -660.729)
 inventory_data = ExtResource("6_hnms0")
 interaction_manager = ExtResource("8_s4mwa")
 
@@ -350,13 +344,6 @@ inventory_data = SubResource("Resource_ofebk")
 storage = ExtResource("21_30w6g")
 material = ExtResource("22_f7pgj")
 texture_list = ExtResource("23_qt7o4")
-
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(11.9117, 0, 0, 0, 11.9117, 0, 0, 0, 11.9117, 0, 0, -21.7385)
-visible = false
-size = Vector3(1, 1, 1.41683)
-material = SubResource("StandardMaterial3D_harkd")
-script = ExtResource("24_xkfxc")
 
 [connection signal="drop_slot_data" from="UI/InventoryInterface" to="." method="_on_inventory_interface_drop_slot_data"]
 [connection signal="gui_input" from="UI/InventoryInterface" to="UI/InventoryInterface" method="_on_gui_input"]
