@@ -9,9 +9,14 @@ extends CharacterBodyAI
 @onready var leg_right_collision = $LegRight_Collision
 @onready var vision_area = $Vision_Area
 @onready var vision_raycast = $Vision_Raycast
-
+@onready var vision_timer = $VisionTimer
+@onready var agro_timer = $Agro_Timer
+@onready var agro_vision_timer = $Agro_Vision_Timer
+@onready var vision_collision = $Vision_Area/Vision_Collision
 
 var _head_accuracy
+var _target_position
+var _target_node
 
 func ready():
 	_head_accuracy = get_accuracy(skeleton_3d ,'head', head_collision)
@@ -23,29 +28,62 @@ func process():
 	update_colission_pos(skeleton_3d, 'foot.l', leg_left_collision)
 	update_colission_pos(skeleton_3d, 'foot.r', leg_right_collision)
 
+func update_vision_raycast():
+		_target_position = _target_node.global_transform.origin
+		_target_position.y = vision_raycast.global_transform.origin.y
+		vision_raycast.look_at(_target_position, Vector3.UP)
+		vision_raycast.force_raycast_update()
+
 func _on_vision_timer_timeout():
-	var overlaps = vision_area.get_overlapping_bodies()
-	if overlaps.size() > 0:
-		for overlap in overlaps:
-			if overlap.name == 'player':
-				var player_pos = overlap.global_transform.origin
-				vision_raycast.look_at(player_pos, Vector3.UP)
-				vision_raycast.force_raycast_update()
-				
-				if vision_raycast.is_colliding():
-					var collider = vision_raycast.get_collider()
-					
-					if collider.name == 'player':
-						vision_raycast.debug_shape_custom_color = Color(174, 0, 0)
-					else:
-						vision_raycast.debug_shape_custom_color = Color(0, 255, 0)
+	vision_raycast.enabled = true
+	update_vision_raycast()
+	if vision_raycast.get_collider().is_in_group('Player'):
+		vision_timer.stop()
+		set_state('taunt', 'taunt')
+		vision_raycast.debug_shape_custom_color = Color(133, 0, 0)
+	else:
+		vision_raycast.debug_shape_custom_color = Color(0, 255, 0)
+
+func _on_agro_vision_timer_timeout():
+	vision_raycast.enabled = true
+	vision_collision.disabled = true
+	update_vision_raycast()
+	if vision_raycast.get_collider().is_in_group('Player'):
+		vision_raycast.debug_shape_custom_color = Color(133, 0, 100)
+	else:
+		agro_vision_timer.stop()
+		agro_timer.start()
+		vision_raycast.debug_shape_custom_color = Color(0, 0, 255)
+
+func _on_agro_timer_timeout():
+	set_state('stop_agro','stop_agro')
+	vision_raycast.enabled = false
+	vision_collision.disabled = false
+
+func _on_vision_area_body_entered(body):
+	if body.is_in_group("Player"):
+		_target_node = body
+		vision_timer.start()
+	else:
+		pass
+		
+func _on_vision_area_body_exited(body):
+	if body.is_in_group("Player"):
+		vision_timer.stop()
+		vision_raycast.enabled = false
+	else:
+		pass
 
 func idle():
-#	if _timer > 3:
-#		set_state('move_idle', 'move_idle')
-#	else:
-#		pass
-	pass
+	if _timer > 3:
+		set_state('rotation_idle')
+	else:
+		pass
+
+func rotation_idle():
+	rotate_y(speed_turn * 1 * _delta)
+	if _timer > 0.3:
+		set_state('move_idle', 'move_idle')
 
 func move_idle():
 	move_ai()
@@ -53,6 +91,48 @@ func move_idle():
 		set_state('idle', 'idle')
 	else:
 		pass
+
+func taunt():
+	agro_vision_timer.start()
+	if !_animator.is_playing():
+		set_state('move_to_player','move_to_player')
+	else:
+		pass
+
+func move_to_player():
+	if distance_to_node(_target_node) < 4:
+		set_state('run_to_player', 'run_to_player')
+	else:
+		rotate_to_node(_target_node)
+		move_angle()
+
+func run_to_player():
+	rotate_to_node(global.player,2)
+	move_angle(2)
+
+func stop_agro():
+	if !_animator.is_playing():
+		set_state('idle', 'idle')
+	else:
+		pass
+
+func patrolling():
+	pass
 	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

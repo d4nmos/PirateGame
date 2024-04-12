@@ -76,7 +76,7 @@ func move_ai():
 		set_state('tmp_rotate')
 	
 func move_angle(add_speed = 0):
-	velocity = Vector3(0,velocity.y, (speed + add_speed)).rotated(Vector3.UP, rotation.y)
+	velocity = Vector3(0,velocity.y, -(speed + add_speed)).rotated(Vector3.UP, rotation.y)
 	move_and_slide()
 
 func rotate_to_node(n, add_speed = 0):
@@ -85,7 +85,7 @@ func rotate_to_node(n, add_speed = 0):
 	origin.y = a.origin.y
 	var b = a.looking_at(origin, Vector3.UP)
 	global_transform = global_transform.interpolate_with(b, (add_speed + speed_turn) * _delta)
-
+		
 func distance_to_node(n):
 	return global_transform.origin.distance_to(n.global_transform.origin)
 
