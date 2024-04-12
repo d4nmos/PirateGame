@@ -92,7 +92,7 @@ void fragment() {
     // Примешиваем облака к цвету поверхности с некоторым коэффициентом
     //ALBEDO = mix(ALBEDO, clouds_white, 0.5);
 	
-	ALBEDO = clamp(surface_color + depth_color_adj + clouds_white,vec3(0.0),vec3(100.0));
+	ALBEDO = clamp(surface_color + clouds_white,vec3(0.0),vec3(100.0));
 	METALLIC = metallic;
 	ROUGHNESS = roughness;
 	NORMAL_MAP = normal_blend;
