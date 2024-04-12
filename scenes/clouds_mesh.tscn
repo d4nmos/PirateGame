@@ -3,6 +3,7 @@
 [ext_resource type="Material" uid="uid://c8x3mxcof0k78" path="res://Shaders/clouds.tres" id="1_n27et"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_dvjwt"]
+uv2_padding = 4.0
 size = Vector2(2, 2)
 subdivide_width = 1000
 subdivide_depth = 1000
