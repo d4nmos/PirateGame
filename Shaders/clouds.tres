@@ -1,0 +1,98 @@
+[gd_resource type="ShaderMaterial" load_steps=17 format=3 uid="uid://c8x3mxcof0k78"]
+
+[ext_resource type="Shader" path="res://Shaders/clouds_mesh.gdshader" id="1_kfxjc"]
+
+[sub_resource type="Gradient" id="Gradient_jigt6"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_8ec2t"]
+noise_type = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_y5rdl"]
+seamless = true
+as_normal_map = true
+color_ramp = SubResource("Gradient_jigt6")
+noise = SubResource("FastNoiseLite_8ec2t")
+
+[sub_resource type="Gradient" id="Gradient_ra0a0"]
+colors = PackedColorArray(0, 0, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6t03t"]
+noise_type = 3
+frequency = 0.0233
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_e4ldn"]
+seamless = true
+bump_strength = 105.5
+color_ramp = SubResource("Gradient_ra0a0")
+noise = SubResource("FastNoiseLite_6t03t")
+
+[sub_resource type="Gradient" id="Gradient_lheuk"]
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_fxf3o"]
+noise_type = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0bjik"]
+seamless = true
+as_normal_map = true
+color_ramp = SubResource("Gradient_lheuk")
+noise = SubResource("FastNoiseLite_fxf3o")
+
+[sub_resource type="Gradient" id="Gradient_0efhe"]
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_x4gcc"]
+noise_type = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_v4bgk"]
+seamless = true
+as_normal_map = true
+color_ramp = SubResource("Gradient_0efhe")
+noise = SubResource("FastNoiseLite_x4gcc")
+
+[sub_resource type="Gradient" id="Gradient_x6lx0"]
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_rauwf"]
+noise_type = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_c0via"]
+seamless = true
+as_normal_map = true
+bump_strength = 9.0
+color_ramp = SubResource("Gradient_x6lx0")
+noise = SubResource("FastNoiseLite_rauwf")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_kfxjc")
+shader_parameter/albedo2 = Color(0.486275, 0.815686, 1, 1)
+shader_parameter/albedo = Color(0.360784, 0.368627, 1, 1)
+shader_parameter/metallic = 0.512
+shader_parameter/roughness = 0.261
+shader_parameter/wave_direction = Vector2(2, 0)
+shader_parameter/wave_direction2 = Vector2(0, 1)
+shader_parameter/time_scale = 0.015
+shader_parameter/noise_scale = 10.0
+shader_parameter/height_scale = 0.15
+shader_parameter/ground_curve = 0.02
+shader_parameter/cloud_direction = Vector2(-1, 1)
+shader_parameter/cloud_direction2 = Vector2(1, -1)
+shader_parameter/cloud_scale = Vector2(3, 3)
+shader_parameter/cloud_distance = null
+shader_parameter/cloud_speed = 0.01
+shader_parameter/cloud_speed2 = 0.01
+shader_parameter/color_deep = Color(0, 0, 1, 1)
+shader_parameter/color_shallow = Color(0, 0.568627, 1, 1)
+shader_parameter/beers_law = 2.0
+shader_parameter/depth_offset = -0.75
+shader_parameter/edge_scale = 0.1
+shader_parameter/near = 0.5
+shader_parameter/far = 100.0
+shader_parameter/edge_color = Color(1, 1, 1, 1)
+shader_parameter/texture_normal = SubResource("NoiseTexture2D_0bjik")
+shader_parameter/texture_normal2 = SubResource("NoiseTexture2D_v4bgk")
+shader_parameter/wave = SubResource("NoiseTexture2D_c0via")
+shader_parameter/cloud_texture = SubResource("NoiseTexture2D_y5rdl")
+shader_parameter/cloud_texture2 = SubResource("NoiseTexture2D_e4ldn")
