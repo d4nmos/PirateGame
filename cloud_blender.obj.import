@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cytlsr4jwrts2"
+path="res://.godot/imported/cloud_blender.obj-0d66f89567abe4350e2b61a783b6b163.mesh"
+
+[deps]
+
+files=["res://.godot/imported/cloud_blender.obj-0d66f89567abe4350e2b61a783b6b163.mesh"]
+
+source_file="res://cloud_blender.obj"
+dest_files=["res://.godot/imported/cloud_blender.obj-0d66f89567abe4350e2b61a783b6b163.mesh", "res://.godot/imported/cloud_blender.obj-0d66f89567abe4350e2b61a783b6b163.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
