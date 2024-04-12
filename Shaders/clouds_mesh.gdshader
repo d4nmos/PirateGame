@@ -9,9 +9,9 @@ uniform sampler2D wave;
 uniform vec2 wave_direction = vec2(2.0,0.0);
 uniform vec2 wave_direction2 = vec2(0.0,1.0);
 uniform float time_scale : hint_range(0.0, 0.1, 0.005) = 0.015;
-uniform float noise_scale = 10.0;
+uniform float noise_scale = 100.0;
 uniform float height_scale = 0.15;
-uniform float ground_curve : hint_range(0, 1) = 0.02;
+
 uniform sampler2D cloud_texture;
 uniform sampler2D cloud_texture2;
 uniform vec2 cloud_direction;
@@ -83,7 +83,7 @@ void fragment() {
     // Добавление обработки облаков
     vec2 sky_uv = world_pos.xz / 50.0; // Используйте world_pos или другие координаты для облаков
     vec3 clouds_color = texture(cloud_texture, sky_uv * cloud_scale + TIME * cloud_direction * cloud_speed).rgb - texture(cloud_texture2, sky_uv * cloud_scale + TIME * cloud_direction2 * cloud_speed2).rgb;
-    clouds_color = clouds_color - smoothstep(0.0, 10.0, cloud_distance); // Измените второй аргумент smoothstep на ваше значение
+    clouds_color = clouds_color - smoothstep(0.0, 100.0, cloud_distance); // Измените второй аргумент smoothstep на ваше значение
     clouds_color = clamp(clouds_color, 0.0, 1.0);
 
     // Оставляем облака белыми
