@@ -48,7 +48,7 @@ func _on_agro_vision_timer_timeout():
 	vision_raycast.enabled = true
 	vision_collision.disabled = true
 	update_vision_raycast()
-	if vision_raycast.get_collider().is_in_group('Player'):
+	if vision_raycast.is_colliding() and vision_raycast.get_collider().is_in_group('Player'):
 		vision_raycast.debug_shape_custom_color = Color(133, 0, 100)
 	else:
 		agro_vision_timer.stop()

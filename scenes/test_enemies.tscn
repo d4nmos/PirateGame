@@ -1,15 +1,16 @@
-[gd_scene load_steps=16 format=3 uid="uid://dl5qpr4ysod88"]
+[gd_scene load_steps=17 format=3 uid="uid://dl5qpr4ysod88"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_dtp0f"]
 [ext_resource type="Texture2D" uid="uid://cm5m7nr7dugjd" path="res://assets/textures/grids/Purple/texture_09.png" id="3_iaqv6"]
+[ext_resource type="PackedScene" uid="uid://brveh4lppbjvk" path="res://scenes/test/simple_plase.tscn" id="4_vyq6a"]
 [ext_resource type="Texture2D" uid="uid://c8arnlq67qi7" path="res://assets/textures/grids/Dark/texture_05.png" id="5_re1gj"]
 [ext_resource type="PackedScene" uid="uid://d1a4px4hdm364" path="res://scenes/player.tscn" id="6_bbaiu"]
 [ext_resource type="Resource" uid="uid://bafm4ninl8gno" path="res://inventory/test_inventory.tres" id="7_pth7i"]
 [ext_resource type="Resource" uid="uid://c7m61twqm3v4p" path="res://resources/test_interaction_manager.tres" id="8_5fy1a"]
 [ext_resource type="Script" path="res://inventory/scripts/InventoryInterface.gd" id="9_se21a"]
 [ext_resource type="PackedScene" uid="uid://cuuy5suppc24a" path="res://inventory/scenes/inventory.tscn" id="10_aooqk"]
+[ext_resource type="PackedScene" uid="uid://bh8nxm2fp0xtr" path="res://scenes/grid_generator.tscn" id="10_vu0bo"]
 [ext_resource type="PackedScene" uid="uid://n5dc7p2v18kr" path="res://inventory/scenes/slot.tscn" id="11_5ykba"]
-[ext_resource type="PackedScene" uid="uid://csohnlow7fck3" path="res://scenes/enemies/skeleton_minion.tscn" id="11_c3c5h"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s4d52"]
 albedo_texture = ExtResource("5_re1gj")
@@ -37,6 +38,7 @@ fog_light_color = Color(0.635294, 0.709804, 0.745098, 1)
 fog_density = 0.005
 
 [node name="world" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.355946, -0.00920868, -0.00837374)
 script = ExtResource("1_dtp0f")
 
 [node name="map" type="Node3D" parent="."]
@@ -59,8 +61,57 @@ radius = 20.689
 height = 0.5
 sides = 16
 
+[node name="CSGBox3D5" type="CSGBox3D" parent="map"]
+transform = Transform3D(0.995337, -0.000418609, 0.0964557, 0.000420039, 0.999999, 5.50609e-06, -0.0964558, 3.50756e-05, 0.995338, -4.99077, 1.23319, 4.16207)
+material_override = SubResource("StandardMaterial3D_fywn7")
+use_collision = true
+collision_mask = 0
+size = Vector3(1, 2, 7.824)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="map"]
+transform = Transform3D(0.0964557, -3.50756e-05, -0.995338, 0.000420039, 0.999999, 5.5061e-06, 0.995337, -0.000418609, 0.0964557, -7.96738, 1.23319, 8.90029)
+material_override = SubResource("StandardMaterial3D_fywn7")
+use_collision = true
+collision_mask = 0
+size = Vector3(1, 2, 7.824)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="map"]
+transform = Transform3D(0.0964557, -3.50756e-05, -0.995338, 0.000420039, 0.999999, 5.5061e-06, 0.995337, -0.000418609, 0.0964557, -3.90242, 1.23319, 2.56251)
+material_override = SubResource("StandardMaterial3D_fywn7")
+use_collision = true
+collision_mask = 0
+size = Vector3(1, 2, 7.824)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="map"]
+transform = Transform3D(0.840757, -0.000350193, -0.541413, 0.000420039, 0.999999, 5.50609e-06, 0.541413, -0.00023201, 0.840757, -3.90242, 1.23319, -1.74913)
+material_override = SubResource("StandardMaterial3D_fywn7")
+use_collision = true
+collision_mask = 0
+size = Vector3(1, 2, 7.824)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="map"]
+transform = Transform3D(0.0840176, -3.50773e-05, -2.3198, 0.000365874, 1.00005, 1.28329e-05, 0.866987, -0.000418628, 0.224806, -3.81679, 1.23319, 11.9608)
+material_override = SubResource("StandardMaterial3D_fywn7")
+use_collision = true
+collision_mask = 0
+size = Vector3(1, 2, 7.824)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="map"]
+transform = Transform3D(-0.999918, 0.000420075, -0.0127948, 0.000420039, 0.999999, 5.50609e-06, 0.0127948, 9.02692e-08, -0.999919, -12.3488, 1.23319, 8.90029)
+material_override = SubResource("StandardMaterial3D_fywn7")
+use_collision = true
+collision_mask = 0
+size = Vector3(1, 2, 7.824)
+
 [node name="CSGBox3D3" type="CSGBox3D" parent="map"]
-transform = Transform3D(0.998834, -0.000209728, 0.0482842, 0.000210086, 1, -2.32022e-06, -0.0482842, 1.24818e-05, 0.998834, 6.18, 1.1, 2.059)
+transform = Transform3D(0.998834, -0.000209728, 0.0482842, 0.000210086, 1, -2.32022e-06, -0.0482842, 1.24818e-05, 0.998834, -1.92642, 1.32255, 4.04695)
+material_override = SubResource("StandardMaterial3D_fywn7")
+use_collision = true
+collision_mask = 0
+size = Vector3(1, 2, 7.824)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="map"]
+transform = Transform3D(0.998834, -0.000209728, 0.0482842, 0.000210086, 1, -2.32022e-06, -0.0482842, 1.24818e-05, 0.998834, -0.900439, 1.32255, 2.38454)
 material_override = SubResource("StandardMaterial3D_fywn7")
 use_collision = true
 collision_mask = 0
@@ -73,6 +124,9 @@ use_collision = true
 collision_mask = 0
 size = Vector3(1, 2, 7.824)
 
+[node name="SimplePlase" parent="map" instance=ExtResource("4_vyq6a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.8949, -0.172309, 0)
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0.121918, 0.30203, 0.94547, -0.484912, 0.849279, -0.208773, 0, 4.79416, 0)
 shadow_enabled = true
@@ -81,7 +135,7 @@ shadow_enabled = true
 environment = SubResource("Environment_hyx3i")
 
 [node name="player" parent="." instance=ExtResource("6_bbaiu")]
-transform = Transform3D(-0.741695, 0, 0.670737, 0, 1, 0, -0.670737, 0, -0.741695, 9.6415, 0, -10.8054)
+transform = Transform3D(0.999978, 0, 0.00652781, 0, 1, 0, -0.00652781, 0, 0.999978, 25.6102, 0, 2.94117)
 inventory_data = ExtResource("7_pth7i")
 interaction_manager = ExtResource("8_5fy1a")
 speed = 5.0
@@ -120,8 +174,8 @@ layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 
-[node name="Skeleton_Minion" parent="." instance=ExtResource("11_c3c5h")]
-transform = Transform3D(0.896332, 0, -0.443384, 0, 1, 0, 0.443384, 0, 0.896332, 2.95553, 0.344918, -4.07069)
+[node name="Grid_generator" parent="." instance=ExtResource("10_vu0bo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.3572, -0.118286, -0.195535)
 
 [connection signal="drop_slot_data" from="UI/InventoryInterface" to="." method="_on_inventory_interface_drop_slot_data"]
 [connection signal="gui_input" from="UI/InventoryInterface" to="UI/InventoryInterface" method="_on_gui_input"]
