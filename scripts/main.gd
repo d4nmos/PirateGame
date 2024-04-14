@@ -11,6 +11,7 @@ const PickUp = preload("res://inventory/items/pick_up/pick_up.tscn")
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	SimpleGrass.set_interactive(true)
 	#player.toggle_inventory.connect(toggle_iventory_interface)
 	#inventory_interface.set_player_inventory_data(player.inventory_data)
 	
