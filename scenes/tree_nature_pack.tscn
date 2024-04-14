@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cgomaavkmh85t"]
+
+[node name="tree_nature_pack"]
+
+[node name="coconut1" parent="." index="10"]
+transform = Transform3D(0.762109, 0, -0.800789, 0, 1.10547, 0, 0.800789, 0, 0.762109, 27.5585, -0.0120694, -9.79691)
+
+[node name="banana2" parent="." index="11"]
+transform = Transform3D(0.862542, 0, 0, 0, 0.862542, 0, 0, 0, 0.862542, 2.72603, -0.909945, 8.40957)
