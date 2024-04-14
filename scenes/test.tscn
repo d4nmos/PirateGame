@@ -387,10 +387,11 @@ texture_list = ExtResource("23_qt7o4")
 [node name="tree_nature_pack" parent="." instance=ExtResource("25_kr3e5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -547.309, -10.1359, -451.627)
 
+[node name="player" parent="." instance=ExtResource("23_ahq5k")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -599.214, -4.53806, -438.483)
+
 [node name="island" type="Node3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -519.579, 41.1226, -596.41)
-
-[node name="player" parent="island" instance=ExtResource("23_ahq5k")]
 
 [node name="Island" type="MeshInstance3D" parent="island"]
 transform = Transform3D(21.227, 0, 0, 0, 20.6965, 0, 0, 0, 23.4385, -2.45462, -2.26218, 0.323486)
