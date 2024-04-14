@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bi8xabi5dfovr"]
+
+[ext_resource type="ArrayMesh" uid="uid://cf5tuq8fjf6vc" path="res://tree/banana2.res" id="1_vdcrg"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Banana2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.26, 0, 0, 0, 0.2, -0.247255, 0, -0.304296)
+mesh = ExtResource("1_vdcrg")
