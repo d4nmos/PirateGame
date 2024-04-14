@@ -59,7 +59,7 @@ animation = &"Jab Punch"
 animation = &"happy walk"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_is7s2"]
-graph_offset = Vector2(-554.014, 125.78)
+graph_offset = Vector2(-809.099, -68.3098)
 nodes/TimeSeek/node = SubResource("AnimationNodeTimeSeek_bs1rq")
 nodes/TimeSeek/position = Vector2(-128, 448)
 "nodes/air movements/node" = SubResource("AnimationNodeTransition_h2h40")
