@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bkklemfaebgpt"]
+
+[ext_resource type="ArrayMesh" uid="uid://0wm24sy7cgsk" path="res://tree/cactus1.res" id="1_huxlb"]
+
+[node name="Node3D" type="Node3D"]
+transform = Transform3D(0.275106, 0, 0, 0, 0.275665, 0, 0, 0, 0.275665, 0, 0, 0)
+
+[node name="Cactus1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.122196, 1.19209e-07, -0.138397)
+mesh = ExtResource("1_huxlb")
