@@ -604,40 +604,40 @@ surface_material_override/0 = SubResource("StandardMaterial3D_gatk0")
 visible = false
 shape = SubResource("ConcavePolygonShape3D_ae4a1")
 
-[node name="ProtonScatter" type="Node3D" parent="Island 1"]
+[node name="BananaTree" type="Node3D" parent="Island 1"]
 transform = Transform3D(-0.496921, 0, 0, 0, 0.233127, -0.0235546, 0, -0.0107902, -0.508911, 0.290598, 0.0382404, -0.702442)
 script = ExtResource("27_kq71s")
 modifier_stack = SubResource("Resource_hcvow")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
-[node name="ScatterItem" type="Node3D" parent="Island 1/ProtonScatter"]
+[node name="ScatterItem" type="Node3D" parent="Island 1/BananaTree"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 1.86265e-09, 1, 0, 0, 0)
 script = ExtResource("33_p6f0x")
 proportion = 20
 source_scale_multiplier = 0.115
 path = "res://assets/tree/banana2.tscn"
 
-[node name="ScatterShape" type="Node3D" parent="Island 1/ProtonScatter"]
+[node name="ScatterShape" type="Node3D" parent="Island 1/BananaTree"]
 transform = Transform3D(0.999999, 0, -2.98023e-08, -6.66134e-16, 1, 0, 2.98023e-08, 0, 1, -0.465475, -0.30125, -0.590725)
 visible = false
 script = ExtResource("34_uswi6")
 shape = SubResource("Resource_g8bsm")
 
-[node name="ProtonScatter2" type="Node3D" parent="Island 1"]
+[node name="Cactus" type="Node3D" parent="Island 1"]
 transform = Transform3D(0.64, 0, 0, 0, 0.9, 0, 0, 0, 0.5, 0.423188, -0.0824141, 0.222528)
 script = ExtResource("27_kq71s")
 modifier_stack = SubResource("Resource_8todm")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
-[node name="ScatterItem" type="Node3D" parent="Island 1/ProtonScatter2"]
+[node name="ScatterItem" type="Node3D" parent="Island 1/Cactus"]
 transform = Transform3D(0.485, 0, 0, 0, 0.485, 0, 0, 0, 0.485, 0, 0, 0)
 script = ExtResource("33_p6f0x")
 source_scale_multiplier = 0.08
 path = "res://assets/tree/cactus1.tscn"
 
-[node name="ScatterShape" type="Node3D" parent="Island 1/ProtonScatter2"]
+[node name="ScatterShape" type="Node3D" parent="Island 1/Cactus"]
 transform = Transform3D(1, 0, -2.98023e-08, 0, 0.338702, 0, 2.98023e-08, 0, 1, 0.136206, -0.0697698, -0.222729)
 visible = false
 script = ExtResource("34_uswi6")
@@ -664,27 +664,27 @@ transform = Transform3D(53.0046, -1.5535, 28.9679, 0.168466, 60.3526, 2.92836, -
 mesh = ExtResource("23_kx1ig")
 surface_material_override/0 = SubResource("StandardMaterial3D_rau6k")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
+[node name="Clouds" type="CSGBox3D" parent="."]
 transform = Transform3D(723.404, 0, 0, 0, 78.0285, 0, 0, 0, 831.705, -576.914, 35.9709, -620.384)
 flip_faces = true
 size = Vector3(1.57679, 1, 1.51234)
 material = SubResource("StandardMaterial3D_xjkt4")
 
-[node name="ProtonScatter" type="Node3D" parent="CSGBox3D"]
+[node name="ProtonScatter" type="Node3D" parent="Clouds"]
 transform = Transform3D(1, 0, 0, 0, 8.4051, 0, 0, 0, 0.999999, 0, 0, 0)
 script = ExtResource("27_kq71s")
 modifier_stack = SubResource("Resource_a0p6i")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
-[node name="ScatterItem" type="Node3D" parent="CSGBox3D/ProtonScatter"]
+[node name="ScatterItem" type="Node3D" parent="Clouds/ProtonScatter"]
 transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.54, 0, 0, 0)
 script = ExtResource("33_p6f0x")
 proportion = 10
 source_scale_multiplier = 0.01
 path = "res://terrain/clouds.tscn"
 
-[node name="ScatterShape" type="Node3D" parent="CSGBox3D/ProtonScatter"]
+[node name="ScatterShape" type="Node3D" parent="Clouds/ProtonScatter"]
 transform = Transform3D(0.24, 0, -7.15255e-09, 0, 0.8, 0, 7.15255e-09, 0, 0.24, 0, 0, 0)
 script = ExtResource("34_uswi6")
 shape = SubResource("Resource_em20m")
