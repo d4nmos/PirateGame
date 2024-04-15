@@ -16,9 +16,9 @@ func _physics_process(delta):
 	if grabbed_slot.visible:
 		grabbed_slot.global_position = get_global_mouse_position() + Vector2(10, 10)
 
-func set_player_inventory_data(inventory_data: InventoryData):
-	inventory_data.inventory_interact.connect(on_inventory_interact)
-	player_inventory.set_inventory_data(inventory_data)
+#func set_player_inventory_data(inventory_data: InventoryData):
+#	inventory_data.inventory_interact.connect(on_inventory_interact)
+#	player_inventory.set_inventory_data(inventory_data)
 	
 func set_external_inventory(_external_inventory_owner):
 	external_inventory_owner = _external_inventory_owner

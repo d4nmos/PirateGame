@@ -35,6 +35,7 @@ func _input(event):
 		camera_mount.rotate_x(deg_to_rad(-event.relative.y * sens_vertical))
 
 func _physics_process(delta):
+	SimpleGrass.set_player_position(global_position)
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
