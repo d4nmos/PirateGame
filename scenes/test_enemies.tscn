@@ -85,7 +85,7 @@ offset_bottom = 64.0
 
 [node name="Grid_generator" parent="." instance=ExtResource("10_vu0bo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.4525, -0.0435637, -0.195535)
-matrix_size = 5
+matrix_size = 53
 
 [connection signal="drop_slot_data" from="UI/InventoryInterface" to="." method="_on_inventory_interface_drop_slot_data"]
 [connection signal="gui_input" from="UI/InventoryInterface" to="UI/InventoryInterface" method="_on_gui_input"]
