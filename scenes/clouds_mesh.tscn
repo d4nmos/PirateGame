@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bxeg3hyqnee1e"]
+[gd_scene load_steps=4 format=3 uid="uid://bxeg3hyqnee1e"]
 
 [ext_resource type="Material" uid="uid://c8x3mxcof0k78" path="res://Shaders/clouds.tres" id="1_n27et"]
+[ext_resource type="Texture2D" uid="uid://n6ob1movemeh" path="res://icon.svg" id="2_g1kc4"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_dvjwt"]
 uv2_padding = 4.0
@@ -14,3 +15,10 @@ orientation = 1
 [node name="CloudsPlane" type="MeshInstance3D" parent="."]
 mesh = SubResource("QuadMesh_dvjwt")
 surface_material_override/0 = ExtResource("1_n27et")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(2.05589, 0, 0, 0, 1.60868, 0, 0, 0, 1.96941, -0.0962489, 0.56213, 0.150958)
+layers = 524288
+modulate = Color(0.2, 0.219608, 1, 1)
+axis = 1
+texture = ExtResource("2_g1kc4")
