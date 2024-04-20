@@ -7,6 +7,7 @@ points = PackedVector3Array(-0.5, -1, 0, -0.497651, -1, -0.0490407, -0.497651, -
 
 [node name="SimplePlase" type="StaticBody3D"]
 collision_layer = 9
+collision_mask = 0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(10, 0, 0, 0, 0.1, 0, 0, 0, 10, 0, 0, 0)

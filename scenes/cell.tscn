@@ -22,6 +22,3 @@ mesh = SubResource("BoxMesh_0assb")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cell_Area"]
 transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_q20sj")
-
-[node name="RayCast3D" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, -0.05, 0)
