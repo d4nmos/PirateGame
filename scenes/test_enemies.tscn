@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://inventory/scripts/InventoryInterface.gd" id="9_se21a"]
 [ext_resource type="PackedScene" uid="uid://cuuy5suppc24a" path="res://inventory/scenes/inventory.tscn" id="10_aooqk"]
 [ext_resource type="PackedScene" uid="uid://da2fmxyufxqll" path="res://scenes/test/simple_wall.tscn" id="10_f2udp"]
-[ext_resource type="PackedScene" uid="uid://bh8nxm2fp0xtr" path="res://scenes/grid_generator.tscn" id="10_vu0bo"]
+[ext_resource type="PackedScene" uid="uid://bnr3fksfwmejk" path="res://scenes/enemy_area.tscn" id="10_rhinp"]
 [ext_resource type="PackedScene" uid="uid://n5dc7p2v18kr" path="res://inventory/scenes/slot.tscn" id="11_5ykba"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_txvjt"]
@@ -87,9 +87,8 @@ layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 
-[node name="Grid_generator" parent="." instance=ExtResource("10_vu0bo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.4161, -0.0445428, 1.46022)
-matrix_size = 17
+[node name="enemy_area" parent="." instance=ExtResource("10_rhinp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.0212, 0.00040865, 4.34381)
 
 [connection signal="drop_slot_data" from="UI/InventoryInterface" to="." method="_on_inventory_interface_drop_slot_data"]
 [connection signal="gui_input" from="UI/InventoryInterface" to="UI/InventoryInterface" method="_on_gui_input"]

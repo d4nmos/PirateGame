@@ -7,38 +7,27 @@ extends Node3D
 
 var col
 var row
-var count = 0
-var is_passability = true
+var count
+var is_passability
 var previous
 
 var _grid_generator
+var _delta
 
 func _ready():
+	count = 0
+	is_passability = true
 	_grid_generator = get_parent()
-	
-	
 
 func _physics_process(delta):
 	if cell_area.has_overlapping_bodies():
 		self.global_transform.origin.y += 0.1
 		count += 0.1 
-		if count > 1:
-			_grid_generator.grid_matrix[row][col].is_passability = false
+		if count > 0.3:
+			_grid_generator.grid_matrix[row][col] = null
 			queue_free()
-
-func set_as_start():
-	var start = start_marker.instantiate()
-	add_child(start)
-	start.global_transform.origin.y += 0.2
-
-func set_as_finish():
-	var finish = finish_marker.instantiate()
-	add_child(finish)
-	finish.global_transform.origin.y += 0.2
 
 func set_as_path():
 	var path = path_market.instantiate()
 	add_child(path)
 	path.global_transform.origin.y += 1
-	
-	
