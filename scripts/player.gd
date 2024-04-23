@@ -12,8 +12,8 @@ extends CharacterBody3D
 @export var damage = 1.0
 @export var inventory_data: InventoryData
 @export var interaction_manager: InteractionManager
-@export var speed = 3.0
-@export var jump_velocity = 4.5
+@export var speed = 13.0
+@export var jump_velocity = 5.5
 @export var health = 5
 
 var control_ship: bool = false
