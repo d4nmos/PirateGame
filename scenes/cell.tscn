@@ -8,6 +8,7 @@
 data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
 
 [node name="Cell" type="Node3D"]
+transform = Transform3D(2, 0, 0, 0, 0.1, 0, 0, 0, 2, 0, 0, 0)
 script = ExtResource("1_lq433")
 
 [node name="Cell_Area" type="Area3D" parent="."]
@@ -15,10 +16,21 @@ collision_layer = 0
 collision_mask = 8
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Cell_Area"]
-transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 0, 0)
 visible = false
 mesh = SubResource("BoxMesh_0assb")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cell_Area"]
-transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_q20sj")
+
+[node name="Detect_Area" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Detect_Area"]
+visible = false
+mesh = SubResource("BoxMesh_0assb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Detect_Area"]
+shape = SubResource("ConcavePolygonShape3D_q20sj")
+
+[connection signal="body_entered" from="Detect_Area" to="." method="_on_detect_area_body_entered"]

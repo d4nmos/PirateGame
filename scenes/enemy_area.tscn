@@ -1,18 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://bnr3fksfwmejk"]
+[gd_scene load_steps=3 format=3 uid="uid://bnr3fksfwmejk"]
 
-[ext_resource type="PackedScene" uid="uid://bh8nxm2fp0xtr" path="res://scenes/grid_generator.tscn" id="1_8eqfk"]
 [ext_resource type="Script" path="res://scripts/enemy_area.gd" id="1_psa8l"]
-[ext_resource type="PackedScene" uid="uid://de1revu48cge" path="res://scenes/path_finder.tscn" id="3_3s8l0"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_q0h5p"]
+[sub_resource type="BoxMesh" id="BoxMesh_lcjfc"]
 
 [node name="enemy_area" type="Node3D"]
+transform = Transform3D(2, 0, 0, 0, 0.1, 0, 0, 0, 2, 0, 0, 0)
 script = ExtResource("1_psa8l")
 
-[node name="Grid_generator" parent="." instance=ExtResource("1_8eqfk")]
-
-[node name="path_finder" parent="." instance=ExtResource("3_3s8l0")]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0.952339, 0)
-mesh = SubResource("CapsuleMesh_q0h5p")
+[node name="empty_box" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("BoxMesh_lcjfc")

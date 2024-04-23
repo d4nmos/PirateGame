@@ -17,8 +17,13 @@ extends CharacterBodyAI
 var _head_accuracy
 var _target_position
 var _target_node
+var _enemy_area
+
+var current_cell
+var path
 
 func ready():
+	_enemy_area = get_parent()
 	_head_accuracy = get_accuracy(skeleton_3d ,'head', head_collision)
 	set_state('idle', 'idle')
 	
@@ -76,7 +81,10 @@ func _on_vision_area_body_exited(body):
 
 func idle():
 	if _timer > 3:
-		set_state('rotation_idle')
+		path = _enemy_area.find_path(current_cell, Vector2(19, 19))
+#		set_state('rotation_idle')
+		set_state('patrolling', 'move_idle')
+		
 	else:
 		pass
 
@@ -117,6 +125,12 @@ func stop_agro():
 		pass
 
 func patrolling():
+	var target = path.pop_back()
+	var target_pos = target.global_transform.origin
+	
+	
+	
+func afk():
 	pass
 	
 
