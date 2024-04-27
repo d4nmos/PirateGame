@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://c3n2maxbaeyyp"]
+[gd_scene load_steps=41 format=3 uid="uid://c3n2maxbaeyyp"]
 
 [ext_resource type="PackedScene" uid="uid://d1a4px4hdm364" path="res://scenes/player.tscn" id="1_30mib"]
 [ext_resource type="PackedScene" uid="uid://cfna3wpfbfwal" path="res://scenes/minimap.tscn" id="2_6nvc4"]
@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://bkre7tbkwedeg" path="res://scenes/models/skull_island.tscn" id="13_pyv4e"]
 [ext_resource type="PackedScene" uid="uid://dvmp6tuygcmqi" path="res://scenes/models/island_with_light_tower.tscn" id="14_yigs2"]
 
-[sub_resource type="Shader" id="Shader_nmwgm"]
+[sub_resource type="Shader" id="Shader_8ip6v"]
 code = "
 // NOTE: Shader automatically converted from Godot Engine 4.1.3.stable's ProceduralSkyMaterial.
 
@@ -122,7 +122,7 @@ void sky() {
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_mfocx"]
 noise_type = 3
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_f7mrx"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_71vdl"]
 width = 1024
 height = 1024
 seamless = true
@@ -134,7 +134,7 @@ noise = SubResource("FastNoiseLite_mfocx")
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_s5h52"]
 noise_type = 0
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_sx6ko"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2v2ep"]
 width = 1024
 height = 1024
 seamless = true
@@ -142,7 +142,7 @@ color_ramp = SubResource("Gradient_bdpve")
 noise = SubResource("FastNoiseLite_s5h52")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eg3e5"]
-shader = SubResource("Shader_nmwgm")
+shader = SubResource("Shader_8ip6v")
 shader_parameter/sky_top_color = Color(0.282353, 0.309804, 0.482353, 1)
 shader_parameter/sky_horizon_color = Color(0.337255, 0.337255, 0.462745, 1)
 shader_parameter/sky_curve = 0.063
@@ -160,15 +160,15 @@ shader_parameter/cloud_scale = Vector2(0.08, 0.08)
 shader_parameter/cloud_distance = 0.035
 shader_parameter/cloud_speed = 0.004
 shader_parameter/cloud_speed2 = 0.004
-shader_parameter/cloud_texture = SubResource("NoiseTexture2D_f7mrx")
-shader_parameter/cloud_texture2 = SubResource("NoiseTexture2D_sx6ko")
+shader_parameter/cloud_texture = SubResource("NoiseTexture2D_71vdl")
+shader_parameter/cloud_texture2 = SubResource("NoiseTexture2D_2v2ep")
 
-[sub_resource type="Sky" id="Sky_4kdv2"]
+[sub_resource type="Sky" id="Sky_w10m8"]
 sky_material = SubResource("ShaderMaterial_eg3e5")
 
 [sub_resource type="Environment" id="Environment_tya1c"]
 background_mode = 2
-sky = SubResource("Sky_4kdv2")
+sky = SubResource("Sky_w10m8")
 glow_enabled = true
 glow_normalized = true
 glow_intensity = 2.01
@@ -189,7 +189,7 @@ adjustment_saturation = 0.57
 transparency = 1
 albedo_color = Color(1, 1, 1, 0)
 
-[sub_resource type="Resource" id="Resource_0qajl"]
+[sub_resource type="Resource" id="Resource_i12r7"]
 script = ExtResource("4_aoem7")
 amount = 70
 enabled = true
@@ -198,7 +198,7 @@ custom_seed = 5
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_3o1rk"]
+[sub_resource type="Resource" id="Resource_u5r15"]
 script = ExtResource("5_pal78")
 position = Vector3(0.5, 15, 0.25)
 rotation = Vector3(20, 360, 20)
@@ -209,7 +209,7 @@ custom_seed = 6
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_egem5"]
+[sub_resource type="Resource" id="Resource_f0unx"]
 script = ExtResource("6_a1kvu")
 iterations = 3
 offset_step = 0.2
@@ -221,7 +221,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_woxyg"]
+[sub_resource type="Resource" id="Resource_fnwci"]
 script = ExtResource("7_k7fw6")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 5.0
@@ -237,9 +237,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_shjfy"]
+[sub_resource type="Resource" id="Resource_sf57y"]
 script = ExtResource("3_fqlw5")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_0qajl"), SubResource("Resource_3o1rk"), SubResource("Resource_egem5"), SubResource("Resource_woxyg")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_i12r7"), SubResource("Resource_u5r15"), SubResource("Resource_f0unx"), SubResource("Resource_fnwci")])
 
 [sub_resource type="Resource" id="Resource_g1dwl"]
 script = ExtResource("10_ofxrb")
@@ -267,6 +267,13 @@ material = SubResource("StandardMaterial3D_g65yj")
 transparency = 1
 albedo_color = Color(1, 0.2, 1, 1)
 
+[sub_resource type="QuadMesh" id="QuadMesh_8yrdh"]
+orientation = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_38mbr"]
+transparency = 1
+albedo_color = Color(0.419608, 0.694118, 0.960784, 1)
+
 [node name="Node3D" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -288,7 +295,7 @@ material = SubResource("StandardMaterial3D_etsao")
 [node name="ProtonScatter" type="Node3D" parent="many clouds"]
 transform = Transform3D(0.0833525, 0, 0, 0, 1, 0, 0, 0, 7.71975, -5.09222, 0, 0)
 script = ExtResource("2_bt85l")
-modifier_stack = SubResource("Resource_shjfy")
+modifier_stack = SubResource("Resource_sf57y")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
@@ -382,10 +389,16 @@ transform = Transform3D(-6.3753, 0, -7.20673, 0, 9.62191, 0, 7.20673, 0, -6.3753
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1681.14, 118.465, 67.2212)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="player"]
-transform = Transform3D(0.6, 0, 0, 0, 1, 0, 0, 0, 0.6, 0, 0.0329437, 0)
+transform = Transform3D(2.64, 0, 0, 0, 4.4, 0, 0, 0, 2.64, 0, -11.6615, 0)
 layers = 524288
 mesh = SubResource("PlaneMesh_4i3uc")
 surface_material_override/0 = SubResource("StandardMaterial3D_ho7o7")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="player"]
+transform = Transform3D(374.084, 0, 0, 0, 374.084, 0, 0, 0, 374.084, 0, -197.582, 0)
+layers = 524288
+mesh = SubResource("QuadMesh_8yrdh")
+surface_material_override/0 = SubResource("StandardMaterial3D_38mbr")
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 
