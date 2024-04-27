@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://d1a4px4hdm364"]
+[gd_scene load_steps=18 format=3 uid="uid://d1a4px4hdm364"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_lvw8j"]
 [ext_resource type="PackedScene" uid="uid://d0dh7cs6k8iye" path="res://assets/models/character.glb" id="2_uxk3n"]
+[ext_resource type="PackedScene" uid="uid://b8i2hhke47pex" path="res://scenes/player1.tscn" id="3_2ihm8"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7a6ce"]
 
@@ -91,6 +92,7 @@ radius = 0.50087
 radius = 1.13903
 
 [node name="player" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0728436, 0, 0)
 collision_layer = 0
 script = ExtResource("1_lvw8j")
 
@@ -107,6 +109,7 @@ size = Vector3(0.0395141, 0.0352789, 0.978614)
 
 [node name="character" parent="visuals" instance=ExtResource("2_uxk3n")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+visible = false
 
 [node name="Skeleton3D" parent="visuals/character/character armature" index="0"]
 bones/0/position = Vector3(0.000701226, 0.2658, -0.0122176)
@@ -220,6 +223,8 @@ parameters/in_air/current_index = 0
 parameters/movements/current_state = "idle"
 parameters/movements/transition_request = ""
 parameters/movements/current_index = 0
+
+[node name="player" parent="visuals" instance=ExtResource("3_2ihm8")]
 
 [node name="camera_mount" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.847358, 0)
