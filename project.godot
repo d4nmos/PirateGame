@@ -76,6 +76,10 @@ prev_interact_object={
 ]
 }
 
+[rendering]
+
+environment/defaults/default_clear_color=Color(0.788235, 0.788235, 0.788235, 1)
+
 [shader_globals]
 
 sgt_player_position={
