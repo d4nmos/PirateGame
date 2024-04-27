@@ -143,14 +143,14 @@ noise = SubResource("FastNoiseLite_s5h52")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eg3e5"]
 shader = SubResource("Shader_nmwgm")
-shader_parameter/sky_top_color = Color(0.278431, 0.345098, 0.458824, 1)
-shader_parameter/sky_horizon_color = Color(0.290196, 0.32549, 0.490196, 1)
+shader_parameter/sky_top_color = Color(0.282353, 0.309804, 0.482353, 1)
+shader_parameter/sky_horizon_color = Color(0.337255, 0.337255, 0.462745, 1)
 shader_parameter/sky_curve = 0.063
 shader_parameter/sky_energy = 2.0
 shader_parameter/sky_cover_modulate = Color(1, 1, 1, 1)
 shader_parameter/ground_bottom_color = Color(0.419608, 0.521569, 0.721569, 1)
-shader_parameter/ground_horizon_color = Color(0.333333, 0.34902, 0.6, 0)
-shader_parameter/ground_curve = 0.02
+shader_parameter/ground_horizon_color = Color(0.482353, 0.482353, 0.627451, 1)
+shader_parameter/ground_curve = 1.0
 shader_parameter/ground_energy = 1.0
 shader_parameter/sun_angle_max = 0.523599
 shader_parameter/sun_curve = 0.565
@@ -174,12 +174,22 @@ glow_normalized = true
 glow_intensity = 2.01
 glow_strength = 1.34
 glow_blend_mode = 1
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0113
+volumetric_fog_emission = Color(0.792157, 0.792157, 0.792157, 1)
+volumetric_fog_emission_energy = 0.5
+volumetric_fog_detail_spread = 6.0
+volumetric_fog_ambient_inject = 1.75
+adjustment_enabled = true
+adjustment_brightness = 1.28
+adjustment_contrast = 0.88
+adjustment_saturation = 0.57
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_etsao"]
 transparency = 1
 albedo_color = Color(1, 1, 1, 0)
 
-[sub_resource type="Resource" id="Resource_jnmwd"]
+[sub_resource type="Resource" id="Resource_0qajl"]
 script = ExtResource("4_aoem7")
 amount = 70
 enabled = true
@@ -188,7 +198,7 @@ custom_seed = 5
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_faese"]
+[sub_resource type="Resource" id="Resource_3o1rk"]
 script = ExtResource("5_pal78")
 position = Vector3(0.5, 15, 0.25)
 rotation = Vector3(20, 360, 20)
@@ -199,7 +209,7 @@ custom_seed = 6
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_tm6ys"]
+[sub_resource type="Resource" id="Resource_egem5"]
 script = ExtResource("6_a1kvu")
 iterations = 3
 offset_step = 0.2
@@ -211,7 +221,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_5s87k"]
+[sub_resource type="Resource" id="Resource_woxyg"]
 script = ExtResource("7_k7fw6")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 5.0
@@ -227,9 +237,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_oc5l4"]
+[sub_resource type="Resource" id="Resource_shjfy"]
 script = ExtResource("3_fqlw5")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_jnmwd"), SubResource("Resource_faese"), SubResource("Resource_tm6ys"), SubResource("Resource_5s87k")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_0qajl"), SubResource("Resource_3o1rk"), SubResource("Resource_egem5"), SubResource("Resource_woxyg")])
 
 [sub_resource type="Resource" id="Resource_g1dwl"]
 script = ExtResource("10_ofxrb")
@@ -278,7 +288,7 @@ material = SubResource("StandardMaterial3D_etsao")
 [node name="ProtonScatter" type="Node3D" parent="many clouds"]
 transform = Transform3D(0.0833525, 0, 0, 0, 1, 0, 0, 0, 7.71975, -5.09222, 0, 0)
 script = ExtResource("2_bt85l")
-modifier_stack = SubResource("Resource_oc5l4")
+modifier_stack = SubResource("Resource_shjfy")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
@@ -355,8 +365,18 @@ transform = Transform3D(2.59865, 0, 0, 0, 2.59865, 0, 0, 0, 2.59865, -110.837, 5
 [node name="island_with_light_tower" parent="." instance=ExtResource("14_yigs2")]
 transform = Transform3D(1.44095, 0, 1.73902, 0, 2.18247, 0, -2.06794, 0, 1.21176, 1902.56, 2.49902, 233.81)
 
+[node name="свет маяка" type="OmniLight3D" parent="island_with_light_tower"]
+transform = Transform3D(0.226825, 0, -0.325521, 0, 0.458196, 0, 0.38709, 0, 0.269726, 8.84875, 62.0729, -132.574)
+light_color = Color(0.737255, 0.721569, 0, 1)
+light_energy = 16.0
+light_indirect_energy = 16.0
+light_volumetric_fog_energy = 16.0
+light_size = 0.271
+light_specular = 16.0
+omni_range = 29.0
+
 [node name="island2" parent="." instance=ExtResource("13_b8pi6")]
-transform = Transform3D(-6.3753, 0, -7.20673, 0, 9.62191, 0, 7.20673, 0, -6.3753, 2324.81, 5.19814, 44.8107)
+transform = Transform3D(-6.3753, 0, -7.20673, 0, 9.62191, 0, 7.20673, 0, -6.3753, 2325.56, 5.19812, 45.4613)
 
 [node name="player" parent="." instance=ExtResource("1_30mib")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1681.14, 118.465, 67.2212)
