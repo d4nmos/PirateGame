@@ -54,11 +54,11 @@ func _physics_process(delta):
 	process()
 
 func set_state(s, sub = ''):
+	print(s)
 	_timer = 0
 	if state != s:
 		_prev_state = state
 		state = s
-		
 	if sub:
 		set_sub_state(sub)
 

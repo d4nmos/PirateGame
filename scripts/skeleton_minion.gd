@@ -21,6 +21,8 @@ var _enemy_area
 
 var current_cell
 var path
+var target_cell
+var patrol_cell
 
 func ready():
 	_enemy_area = get_parent()
@@ -81,10 +83,10 @@ func _on_vision_area_body_exited(body):
 
 func idle():
 	if _timer > 3:
-		path = _enemy_area.find_path(current_cell, Vector2(19, 19))
-#		set_state('rotation_idle')
+		patrol_cell = _enemy_area.get_random_cell()
+		path = _enemy_area.find_path(current_cell, patrol_cell)
+		target_cell = path.pop_back()
 		set_state('patrolling', 'move_idle')
-		
 	else:
 		pass
 
@@ -125,9 +127,16 @@ func stop_agro():
 		pass
 
 func patrolling():
-	var target = path.pop_back()
-	var target_pos = target.global_transform.origin
-	
+	if path.is_empty():
+		set_state('idle', 'idle')
+		
+	if distance_to_node(target_cell) < 1.0:
+		target_cell = path.pop_back()
+	else:
+		rotate_to_node(target_cell)
+		move_angle()
+
+		
 	
 	
 func afk():

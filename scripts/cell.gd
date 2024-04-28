@@ -4,6 +4,7 @@ extends Node3D
 @onready var start_marker = preload("res://scenes/test/simple_start_marker.tscn")
 @onready var finish_marker = preload("res://scenes/test/simple_finish_marker.tscn")
 @onready var path_marker = preload("res://scenes/test/path_marker.tscn")
+@onready var detect_area = $Detect_Area
 
 var col
 var row
@@ -24,6 +25,7 @@ func _physics_process(delta):
 		count += 0.1 
 		if count > 0.3:
 			is_passability = false
+#			detect_area.disabled = true
 
 func set_as_path():
 	var path = path_marker.instantiate()

@@ -67,11 +67,11 @@ func spawn_enemy(enemy_tscn):
 	enemy.global_transform.origin.x = pos.x
 	enemy.global_transform.origin.z = pos.z
 
-func get_random_pos():
+func get_random_cell():
 	var row = randi_range(0, matrix_size - 1)
 	var col = randi_range(0, matrix_size - 1)
-	
-	return path_matrix[row][col].global_transform.origin
+
+	return Vector2(row, col)
 
 func find_path(start, finish):
 	var reachable = [start]
@@ -123,10 +123,14 @@ func build_path(finish_cell):
 	var to_node = finish_cell
 	
 	while to_node != null:
+		var next_node
 		to_node = get_cell_node_from_path_matrix(to_node)
 		path.append(to_node)
-		to_node = to_node.previous
-		
+		to_node.set_as_path()
+		next_node = to_node.previous
+		to_node.previous = null
+		to_node = next_node
+
 	return path
 
 func get_adjacent_nodes(node, explored):
@@ -150,5 +154,21 @@ func get_adjacent_nodes(node, explored):
 		if path_matrix[row + 1][col].is_passability and Vector2(row + 1, col) not in explored:
 			adjacent.append(Vector2(row + 1, col))
 	
+	if row - 1 >= 0 and col - 1 >= 0:
+		if path_matrix[row - 1][col - 1].is_passability and Vector2(row - 1, col - 1) not in explored:
+			adjacent.append(Vector2(row - 1, col - 1))
+
+	if row + 1 < matrix_size and col + 1 < matrix_size:
+		if path_matrix[row + 1][col + 1].is_passability and Vector2(row + 1, col + 1) not in explored:
+			adjacent.append(Vector2(row + 1, col + 1))
+
+	if row - 1 >= 0 and col + 1 < matrix_size:
+		if path_matrix[row - 1][col + 1].is_passability and Vector2(row - 1, col + 1) not in explored:
+			adjacent.append(Vector2(row - 1, col + 1))
+
+	if row + 1 < matrix_size and col - 1 >= 0:
+		if path_matrix[row + 1][col - 1].is_passability and Vector2(row + 1, col - 1) not in explored:
+			adjacent.append(Vector2(row + 1, col - 1))
+
 	return adjacent
 
