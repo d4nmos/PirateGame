@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://c3n2maxbaeyyp"]
+[gd_scene load_steps=36 format=3 uid="uid://c3n2maxbaeyyp"]
 
 [ext_resource type="PackedScene" uid="uid://d1a4px4hdm364" path="res://scenes/player.tscn" id="1_30mib"]
 [ext_resource type="PackedScene" uid="uid://cfna3wpfbfwal" path="res://scenes/minimap.tscn" id="2_6nvc4"]
@@ -189,7 +189,7 @@ adjustment_saturation = 0.57
 transparency = 1
 albedo_color = Color(1, 1, 1, 0)
 
-[sub_resource type="Resource" id="Resource_i12r7"]
+[sub_resource type="Resource" id="Resource_to8ic"]
 script = ExtResource("4_aoem7")
 amount = 70
 enabled = true
@@ -198,7 +198,7 @@ custom_seed = 5
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_u5r15"]
+[sub_resource type="Resource" id="Resource_exy4y"]
 script = ExtResource("5_pal78")
 position = Vector3(0.5, 15, 0.25)
 rotation = Vector3(20, 360, 20)
@@ -209,7 +209,7 @@ custom_seed = 6
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_f0unx"]
+[sub_resource type="Resource" id="Resource_bpcu4"]
 script = ExtResource("6_a1kvu")
 iterations = 3
 offset_step = 0.2
@@ -221,7 +221,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_fnwci"]
+[sub_resource type="Resource" id="Resource_r1j1f"]
 script = ExtResource("7_k7fw6")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 5.0
@@ -237,9 +237,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_sf57y"]
+[sub_resource type="Resource" id="Resource_vhq7b"]
 script = ExtResource("3_fqlw5")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_i12r7"), SubResource("Resource_u5r15"), SubResource("Resource_f0unx"), SubResource("Resource_fnwci")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_to8ic"), SubResource("Resource_exy4y"), SubResource("Resource_bpcu4"), SubResource("Resource_r1j1f")])
 
 [sub_resource type="Resource" id="Resource_g1dwl"]
 script = ExtResource("10_ofxrb")
@@ -256,23 +256,6 @@ orientation = 0
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_bii00"]
 data = PackedVector3Array(0, -50, -50, 0, -50, 50, 0, 50, -50, 0, -50, 50, 0, 50, 50, 0, 50, -50)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g65yj"]
-albedo_color = Color(1, 0.329412, 0.247059, 1)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_4i3uc"]
-material = SubResource("StandardMaterial3D_g65yj")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ho7o7"]
-transparency = 1
-albedo_color = Color(1, 0.2, 1, 1)
-
-[sub_resource type="QuadMesh" id="QuadMesh_8yrdh"]
-orientation = 1
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_38mbr"]
-transparency = 1
-albedo_color = Color(0.419608, 0.694118, 0.960784, 1)
 
 [node name="Node3D" type="Node3D"]
 
@@ -295,7 +278,7 @@ material = SubResource("StandardMaterial3D_etsao")
 [node name="ProtonScatter" type="Node3D" parent="many clouds"]
 transform = Transform3D(0.0833525, 0, 0, 0, 1, 0, 0, 0, 7.71975, -5.09222, 0, 0)
 script = ExtResource("2_bt85l")
-modifier_stack = SubResource("Resource_sf57y")
+modifier_stack = SubResource("Resource_vhq7b")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
@@ -373,7 +356,7 @@ transform = Transform3D(2.59865, 0, 0, 0, 2.59865, 0, 0, 0, 2.59865, -110.837, 5
 transform = Transform3D(1.44095, 0, 1.73902, 0, 2.18247, 0, -2.06794, 0, 1.21176, 1902.56, 2.49902, 233.81)
 
 [node name="свет маяка" type="OmniLight3D" parent="island_with_light_tower"]
-transform = Transform3D(0.226825, 0, -0.325521, 0, 0.458196, 0, 0.38709, 0, 0.269726, 8.84875, 62.0729, -132.574)
+transform = Transform3D(0.505571, 0, -0.862785, 0, 1, 0, 0.862785, 0, 0.505571, 8.84875, 62.0729, -132.574)
 light_color = Color(0.737255, 0.721569, 0, 1)
 light_energy = 16.0
 light_indirect_energy = 16.0
@@ -386,19 +369,7 @@ omni_range = 29.0
 transform = Transform3D(-6.3753, 0, -7.20673, 0, 9.62191, 0, 7.20673, 0, -6.3753, 2325.56, 5.19812, 45.4613)
 
 [node name="player" parent="." instance=ExtResource("1_30mib")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1681.14, 118.465, 67.2212)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="player"]
-transform = Transform3D(2.64, 0, 0, 0, 4.4, 0, 0, 0, 2.64, 0, -11.6615, 0)
-layers = 524288
-mesh = SubResource("PlaneMesh_4i3uc")
-surface_material_override/0 = SubResource("StandardMaterial3D_ho7o7")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="player"]
-transform = Transform3D(374.084, 0, 0, 0, 374.084, 0, 0, 0, 374.084, 0, -197.582, 0)
-layers = 524288
-mesh = SubResource("QuadMesh_8yrdh")
-surface_material_override/0 = SubResource("StandardMaterial3D_38mbr")
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1647.14, 12.465, 84.2212)
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 
