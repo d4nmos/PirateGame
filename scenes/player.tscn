@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://d1a4px4hdm364"]
+[gd_scene load_steps=23 format=3 uid="uid://d1a4px4hdm364"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_lvw8j"]
 [ext_resource type="PackedScene" uid="uid://d0dh7cs6k8iye" path="res://assets/models/character.glb" id="2_uxk3n"]
@@ -90,6 +90,23 @@ radius = 0.50087
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_4y2pm"]
 radius = 1.13903
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g65yj"]
+albedo_color = Color(1, 0.329412, 0.247059, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_cdbjb"]
+material = SubResource("StandardMaterial3D_g65yj")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_egofp"]
+transparency = 1
+albedo_color = Color(1, 0.2, 1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_rkyle"]
+orientation = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dbmjc"]
+transparency = 1
+albedo_color = Color(0.419608, 0.694118, 0.960784, 1)
 
 [node name="player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0728436, 0, 0)
@@ -252,6 +269,18 @@ collision_mask = 4
 
 [node name="interaction_range" type="CollisionShape3D" parent="interaction_area"]
 shape = SubResource("SphereShape3D_4y2pm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.64, 0, 0, 0, 4.4, 0, 0, 0, 2.64, 0, 0.0493777, 0)
+layers = 524288
+mesh = SubResource("PlaneMesh_cdbjb")
+surface_material_override/0 = SubResource("StandardMaterial3D_egofp")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(374.084, 0, 0, 0, 374.084, 0, 0, 0, 374.084, 0, -197.582, 0)
+layers = 524288
+mesh = SubResource("QuadMesh_rkyle")
+surface_material_override/0 = SubResource("StandardMaterial3D_dbmjc")
 
 [connection signal="animation_finished" from="visuals/character/AnimationTree" to="." method="_on_animation_tree_animation_finished"]
 [connection signal="area_shape_entered" from="attack" to="." method="_on_attack_area_shape_entered"]
