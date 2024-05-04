@@ -75,6 +75,15 @@ theme_override_font_sizes/font_size = 24
 text = "НАЧАТЬ"
 
 [node name="End_Button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(120, 32)
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_v2rwy")
+theme_override_font_sizes/font_size = 24
+text = "НАСТРОЙКИ
+"
+
+[node name="End_Button2" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(120, 32)
 layout_mode = 2
 theme_override_fonts/font = SubResource("SystemFont_v2rwy")
