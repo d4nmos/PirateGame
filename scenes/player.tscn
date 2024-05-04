@@ -247,7 +247,7 @@ parameters/movements/current_index = 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.847358, 0)
 
 [node name="Camera3D" type="Camera3D" parent="camera_mount"]
-transform = Transform3D(1, 0, 0, 0, 0.86523, 0.501375, 0, -0.501375, 0.86523, 0, 2.05527, 2.20653)
+transform = Transform3D(1, 0, 0, 0, 0.86523, 0.501375, 0, -0.501375, 0.86523, 0, 3, 5)
 cull_mask = 524287
 
 [node name="drop_item_range" type="Node3D" parent="camera_mount"]
@@ -271,7 +271,7 @@ collision_mask = 4
 shape = SubResource("SphereShape3D_4y2pm")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(2.64, 0, 0, 0, 4.4, 0, 0, 0, 2.64, 0, 0.0493777, 0)
+transform = Transform3D(2.64, 0, 0, 0, 4.4, 0, 0, 0, 2.64, 0, 0.528663, 0)
 layers = 524288
 mesh = SubResource("PlaneMesh_cdbjb")
 surface_material_override/0 = SubResource("StandardMaterial3D_egofp")
