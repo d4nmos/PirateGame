@@ -26,6 +26,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 #Signals
 signal toggle_inventory()
 
+
 func _input(event):
 	if event is InputEventMouseMotion:
 #		if !Globals.control_ship:
