@@ -171,10 +171,10 @@ environment = SubResource("Environment_ahqhu")
 transform = Transform3D(2.73684, 0, 0, 0, 2.73684, 0, 0, 0, 2.73684, 0, 0, 0)
 
 [node name="player" parent="." instance=ExtResource("2_7cgc4")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -86.2646, 78.8308, 71.0502)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -86.2646, 75.0945, 71.0502)
 
 [node name="enemy" parent="." instance=ExtResource("6_qghup")]
-transform = Transform3D(2.29353, 0, -1.89482, 0, 2.975, 0, 1.89482, 0, 2.29353, 4.31682, 0, -5.26285)
+transform = Transform3D(2.29353, 0, -1.89482, 0, 2.975, 0, 1.89482, 0, 2.29353, -72.4933, 74.7771, 88.0227)
 
 [node name="skull_island" parent="." instance=ExtResource("4_fc6qe")]
 transform = Transform3D(2.59865, 0, 0, 0, 2.59865, 0, 0, 0, 2.59865, -110.837, 52.7705, 20.2767)
