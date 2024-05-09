@@ -19,10 +19,11 @@ config/icon="res://icon.png"
 
 Globals="*res://scripts/globals.gd"
 SimpleGrass="*res://addons/simplegrasstextured/singleton.tscn"
+QuestManager="*res://addons/quest_manager/QuestManager.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/proton_scatter/plugin.cfg", "res://addons/simplegrasstextured/plugin.cfg", "res://addons/terrain_3d/plugin.cfg")
+enabled=PackedStringArray("res://addons/proton_scatter/plugin.cfg", "res://addons/quest_manager/plugin.cfg", "res://addons/simplegrasstextured/plugin.cfg", "res://addons/terrain_3d/plugin.cfg")
 
 [filesystem]
 
