@@ -1,0 +1,15 @@
+[remap]
+
+importer="quest_importer"
+type="Resource"
+uid="uid://mfiuk0xb4r7k"
+path="res://.godot/imported/quest_first.quest-810900f8387e66eb862dced6e70e9588.tres"
+
+[deps]
+
+source_file="res://scripts/quest_first.quest"
+dest_files=["res://.godot/imported/quest_first.quest-810900f8387e66eb862dced6e70e9588.tres"]
+
+[params]
+
+defaults=true
