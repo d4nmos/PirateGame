@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://dk3t6c3cy2dto"]
+
+[ext_resource type="PackedScene" uid="uid://clb0uefhwv43s" path="res://assets/models/dungeon/sword_shield_gold.gltf.glb" id="1_ixxvl"]
+[ext_resource type="Script" path="res://NPCs/quest1.gd" id="2_0pasf"]
+[ext_resource type="PackedScene" uid="uid://b00l0vexluim2" path="res://systems/Interactable.tscn" id="2_tghp0"]
+[ext_resource type="Resource" uid="uid://ci8v0gboqcmxi" path="res://NPCs/Pirate/Dialogues/0.tres" id="3_x8gus"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6odng"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ni7ui"]
+
+[node name="quest1" instance=ExtResource("1_ixxvl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.92322, 0)
+script = ExtResource("2_0pasf")
+dialogue = ExtResource("3_x8gus")
+
+[node name="sword_shield_gold" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.98809, 1.7979)
+
+[node name="Interactable" parent="." index="1" instance=ExtResource("2_tghp0")]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, -0.28537, -3.96, 0.704193)
+
+[node name="CollisionShape3D" parent="Interactable" index="0"]
+transform = Transform3D(4.2, 0, 0, 0, 4.4, 0, 0, 0, 2.5, 0, 0, 0.909091)
+shape = SubResource("BoxShape3D_6odng")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.98809, 1.7979)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(2.69345, 0, 0, 0, 2.69345, 0, 0, 0, 2.69345, 0, 0, 0)
+shape = SubResource("BoxShape3D_ni7ui")
+
+[connection signal="focused" from="Interactable" to="." method="_on_interactable_focused"]
+[connection signal="interacted" from="Interactable" to="." method="_on_interactable_interacted"]
+[connection signal="unfocused" from="Interactable" to="." method="_on_interactable_unfocused"]
+
+[editable path="Interactable"]
