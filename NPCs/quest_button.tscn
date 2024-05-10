@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://jj171p1k5eo1"]
+
+[ext_resource type="Script" path="res://NPCs/quest_button.gd" id="1_jxrg2"]
+
+[node name="QuestButton" type="Button"]
+offset_right = 35.0
+offset_bottom = 35.0
+script = ExtResource("1_jxrg2")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
