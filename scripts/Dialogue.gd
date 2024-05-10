@@ -10,3 +10,5 @@ class_name Dialogue
 @export var path_option : String
 @export var options : Array[Dialogue]
 
+@export_category("Quest")
+@export var quest : Quest
