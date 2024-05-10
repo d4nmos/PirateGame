@@ -21,6 +21,7 @@ config/icon="res://icon.png"
 
 Globals="*res://scripts/globals.gd"
 SimpleGrass="*res://addons/simplegrasstextured/singleton.tscn"
+DialogueManager="*res://scenes/dialogue_manager.tscn"
 
 [editor_plugins]
 
@@ -77,6 +78,15 @@ prev_interact_object={
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":16,"position":Vector2(227, 3),"global_position":Vector2(232, 55),"factor":1.0,"button_index":5,"canceled":false,"pressed":true,"double_click":false,"script":null)
 ]
 }
+quit={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194305,"key_label":0,"unicode":0,"echo":false,"script":null)
+]
+}
+
+[layer_names]
+
+3d_physics/layer_5="interactable"
 
 [rendering]
 
