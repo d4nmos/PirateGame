@@ -1,10 +1,10 @@
 extends CharacterBody3D
 
 @onready var camera_mount = $camera_mount
-@onready var animation_player = $visuals/character/AnimationPlayer
-@onready var animation_tree = $visuals/character/AnimationTree
+@onready var animation_player = $visuals/AnimationPlayer
+@onready var animation_tree = $visuals/AnimationTree
 @onready var visuals = $visuals
-@onready var interface = $"../UI/OtherInterface"
+#@onready var interface = $"../UI/OtherInterface"
 @onready var drop_item_range = $camera_mount/drop_item_range
 
 @export var sens_horizontal = 0.5
@@ -26,6 +26,9 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 #Signals
 signal toggle_inventory()
 
+func _unhandled_input(event):
+	if Input.is_action_just_pressed("quit"):
+		get_tree().quit()
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -43,7 +46,7 @@ func _physics_process(delta):
 		animation_tree.set("parameters/in_air/transition_request", true)
 #		print(velocity.y)
 		if velocity.y <= -20:
-			animation_tree.set("parameters/air movements/transition_request", "fall forward")
+			animation_tree.set("parameters/air movements/transition_request", "fall")
 	else:
 		animation_tree.set("parameters/in_air/transition_request", false)
 
@@ -91,8 +94,8 @@ func _process(delta):
 	if Input.is_action_just_pressed("prev_interact_object"):
 		interaction_manager.down_pointer()
 	
-	if Input.is_action_just_pressed("interact") and interaction_manager.current_object != null:
-		interaction_manager.current_object.player_interact()
+	#if Input.is_action_just_pressed("interact") and interaction_manager.current_object != null:
+	#	interaction_manager.current_object.player_interact()
 
 #Нанесение урона противнику		
 func _on_attack_body_entered(body):
@@ -119,7 +122,7 @@ func _on_animation_tree_animation_finished(anim_name):
 	if is_on_floor(): 
 		animation_tree.set("parameters/movements/transition_request", "idle")
 	else:
-		animation_tree.set("parameters/air movements/transition_request", "fall")
+		animation_tree.set("parameters/air movements/transition_request", "fall forward")
 
 func get_drop_position():
 #	var direction = -camera_mount.global_transform.basis.z
