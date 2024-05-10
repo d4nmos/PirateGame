@@ -1,6 +1,5 @@
 [gd_scene load_steps=43 format=3 uid="uid://c3n2maxbaeyyp"]
 
-[ext_resource type="PackedScene" uid="uid://d1a4px4hdm364" path="res://scenes/player_old.tscn" id="1_30mib"]
 [ext_resource type="PackedScene" uid="uid://cfna3wpfbfwal" path="res://scenes/minimap.tscn" id="2_6nvc4"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/scatter.gd" id="2_bt85l"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="3_fqlw5"]
@@ -16,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://bkre7tbkwedeg" path="res://scenes/models/skull_island.tscn" id="13_pyv4e"]
 [ext_resource type="PackedScene" uid="uid://dvmp6tuygcmqi" path="res://scenes/models/island_with_light_tower.tscn" id="14_yigs2"]
 [ext_resource type="PackedScene" uid="uid://30lvdj4fk15t" path="res://scenes/models/trunk_large_b_gltf.tscn" id="15_3nfuu"]
+[ext_resource type="PackedScene" uid="uid://fsl10uhparpb" path="res://scenes/player.tscn" id="16_dcwy7"]
 
 [sub_resource type="Shader" id="Shader_8ip6v"]
 code = "
@@ -190,7 +190,7 @@ adjustment_saturation = 0.57
 transparency = 1
 albedo_color = Color(1, 1, 1, 0)
 
-[sub_resource type="Resource" id="Resource_kcc8s"]
+[sub_resource type="Resource" id="Resource_x6sjb"]
 script = ExtResource("4_aoem7")
 amount = 70
 enabled = true
@@ -199,7 +199,7 @@ custom_seed = 5
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_63lbo"]
+[sub_resource type="Resource" id="Resource_238wq"]
 script = ExtResource("5_pal78")
 position = Vector3(0.5, 15, 0.25)
 rotation = Vector3(20, 360, 20)
@@ -210,7 +210,7 @@ custom_seed = 6
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_b2cjg"]
+[sub_resource type="Resource" id="Resource_7k5ag"]
 script = ExtResource("6_a1kvu")
 iterations = 3
 offset_step = 0.2
@@ -222,7 +222,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_glx1d"]
+[sub_resource type="Resource" id="Resource_t5olv"]
 script = ExtResource("7_k7fw6")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 5.0
@@ -238,9 +238,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_hcf5n"]
+[sub_resource type="Resource" id="Resource_s5x5g"]
 script = ExtResource("3_fqlw5")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_kcc8s"), SubResource("Resource_63lbo"), SubResource("Resource_b2cjg"), SubResource("Resource_glx1d")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_x6sjb"), SubResource("Resource_238wq"), SubResource("Resource_7k5ag"), SubResource("Resource_t5olv")])
 
 [sub_resource type="Resource" id="Resource_g1dwl"]
 script = ExtResource("10_ofxrb")
@@ -258,7 +258,7 @@ orientation = 0
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_bii00"]
 data = PackedVector3Array(0, -50, -50, 0, -50, 50, 0, 50, -50, 0, -50, 50, 0, 50, 50, 0, 50, -50)
 
-[sub_resource type="Resource" id="Resource_wtqd2"]
+[sub_resource type="Resource" id="Resource_4fuco"]
 script = ExtResource("4_aoem7")
 amount = 25
 enabled = true
@@ -267,7 +267,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_oqupl"]
+[sub_resource type="Resource" id="Resource_44umi"]
 script = ExtResource("5_pal78")
 position = Vector3(0.15, 0.15, 0.15)
 rotation = Vector3(20, 360, 20)
@@ -278,7 +278,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_yhkug"]
+[sub_resource type="Resource" id="Resource_7xq3i"]
 script = ExtResource("6_a1kvu")
 iterations = 3
 offset_step = 0.2
@@ -290,7 +290,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_wtd3v"]
+[sub_resource type="Resource" id="Resource_co1ah"]
 script = ExtResource("7_k7fw6")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 5.0
@@ -306,9 +306,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_k8phw"]
+[sub_resource type="Resource" id="Resource_h1fjh"]
 script = ExtResource("3_fqlw5")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_wtqd2"), SubResource("Resource_oqupl"), SubResource("Resource_yhkug"), SubResource("Resource_wtd3v")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_4fuco"), SubResource("Resource_44umi"), SubResource("Resource_7xq3i"), SubResource("Resource_co1ah")])
 
 [sub_resource type="Resource" id="Resource_g8bsm"]
 script = ExtResource("10_ofxrb")
@@ -335,7 +335,7 @@ material = SubResource("StandardMaterial3D_etsao")
 [node name="ProtonScatter2" type="Node3D" parent="many clouds"]
 transform = Transform3D(0.0833525, 0, 0, 0, 1, 0, 0, 0, 7.71975, -5.09222, 0, 0)
 script = ExtResource("2_bt85l")
-modifier_stack = SubResource("Resource_hcf5n")
+modifier_stack = SubResource("Resource_s5x5g")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
@@ -398,7 +398,6 @@ offset_left = -231.0
 offset_top = 35.0
 offset_right = -31.0
 offset_bottom = 235.0
-target = NodePath("../../player")
 
 [node name="island1" parent="." instance=ExtResource("13_b8pi6")]
 transform = Transform3D(-1.21903, 0, -3.50019, 0, 3.70639, 0, 3.50019, 0, -1.21903, 64.4243, 60.6938, 111.019)
@@ -429,8 +428,8 @@ visible = false
 [node name="island2" parent="." instance=ExtResource("13_b8pi6")]
 transform = Transform3D(-6.3753, 0, -7.20673, 0, 9.62191, 0, 7.20673, 0, -6.3753, 2325.56, 5.19812, 45.4613)
 
-[node name="player" parent="." instance=ExtResource("1_30mib")]
-transform = Transform3D(2, 0, 4.76837e-07, 0, 2, 0, -4.76837e-07, 0, 2, 1676.94, 116.667, 65.3114)
+[node name="player" parent="." instance=ExtResource("16_dcwy7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1661.6, 10.9236, 112.184)
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 
@@ -439,7 +438,6 @@ offset_left = -231.0
 offset_top = 35.0
 offset_right = -31.0
 offset_bottom = 235.0
-target = NodePath("../../player")
 camera_distance = 100.0
 
 [node name="many islands" type="CSGBox3D" parent="."]
@@ -451,7 +449,7 @@ material = SubResource("StandardMaterial3D_etsao")
 [node name="ProtonScatter" type="Node3D" parent="many islands"]
 transform = Transform3D(-0.17, 0, 0, 0, 1, 0, 0, 0, 21.114, 0, 0, 0)
 script = ExtResource("2_bt85l")
-modifier_stack = SubResource("Resource_k8phw")
+modifier_stack = SubResource("Resource_h1fjh")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
