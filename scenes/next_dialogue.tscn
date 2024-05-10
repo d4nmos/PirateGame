@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://byaepkr64p8v0"]
+
+[ext_resource type="Script" path="res://scripts/NextDialogue.gd" id="1_cef1q"]
+
+[node name="NextDialogue" type="Button"]
+offset_right = 8.0
+offset_bottom = 8.0
+theme_override_font_sizes/font_size = 24
+script = ExtResource("1_cef1q")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
