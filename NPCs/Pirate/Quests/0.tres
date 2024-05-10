@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=2 format=3 uid="uid://dkgdn35s3kx7u"]
+
+[ext_resource type="Script" path="res://NPCs/Quest.gd" id="1_ffw58"]
+
+[resource]
+script = ExtResource("1_ffw58")
+title = "Food"
+description = "Bring me food"
+objective = ""
+object = "Rocks"
+status = ""
