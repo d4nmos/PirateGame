@@ -1,0 +1,71 @@
+[gd_scene load_steps=12 format=3 uid="uid://dk3t6c3cy2dto"]
+
+[ext_resource type="PackedScene" uid="uid://clb0uefhwv43s" path="res://assets/models/dungeon/sword_shield_gold.gltf.glb" id="1_i7bu5"]
+[ext_resource type="Script" path="res://NPCs/test_quest.gd" id="2_axa7i"]
+[ext_resource type="Resource" uid="uid://ci8v0gboqcmxi" path="res://NPCs/Pirate/Dialogues/0.tres" id="3_dq23f"]
+[ext_resource type="Texture2D" uid="uid://cm4s3c4382sad" path="res://assets/textures/dungeon_texture.png" id="4_g4jpy"]
+[ext_resource type="PackedScene" uid="uid://b00l0vexluim2" path="res://systems/Interactable.tscn" id="5_k66r4"]
+[ext_resource type="Texture2D" uid="uid://coikjq62kylgo" path="res://assets/textures/quest.png" id="6_kxgtn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kmp0d"]
+albedo_color = Color(0.976471, 0.509804, 0.505882, 1)
+albedo_texture = ExtResource("4_g4jpy")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6odng"]
+size = Vector3(0.97754, 1, 0.414654)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ni7ui"]
+size = Vector3(0.734957, 1, 0.371263)
+
+[sub_resource type="QuadMesh" id="QuadMesh_s8e6c"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ap6yl"]
+transparency = 1
+albedo_color = Color(1, 0.403922, 0.282353, 1)
+albedo_texture = ExtResource("6_kxgtn")
+backlight_enabled = true
+backlight = Color(0.686275, 0.196078, 0.956863, 1)
+disable_receive_shadows = true
+
+[node name="test_quest" instance=ExtResource("1_i7bu5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.92322, 0)
+script = ExtResource("2_axa7i")
+dialogue = ExtResource("3_dq23f")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.09743, 2.14048)
+light_energy = 2.323
+
+[node name="sword_shield_gold" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.98809, 1.7979)
+surface_material_override/0 = SubResource("StandardMaterial3D_kmp0d")
+
+[node name="Interactable" parent="." index="2" instance=ExtResource("5_k66r4")]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, -0.28537, -3.96, 0.704193)
+
+[node name="CollisionShape3D" parent="Interactable" index="0"]
+transform = Transform3D(1.87244, 0, 0, 0, 1.87244, 0, 0, 0, 1.87244, 0.215037, 0.837512, 1.02561)
+shape = SubResource("BoxShape3D_6odng")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.98809, 1.7979)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(2.69345, 0, 0, 0, 2.69345, 0, 0, 0, 2.69345, 0, 0, 0)
+shape = SubResource("BoxShape3D_ni7ui")
+
+[node name="Quest_sign" type="MeshInstance3D" parent="." index="4"]
+transform = Transform3D(2.75913, 0, 0, 0, 2.75913, 0, 0, 0, 2.75913, 0.0323067, 0.226235, 2.04786)
+mesh = SubResource("QuadMesh_s8e6c")
+surface_material_override/0 = SubResource("StandardMaterial3D_ap6yl")
+
+[node name="Quest_sign2" type="MeshInstance3D" parent="." index="5"]
+transform = Transform3D(-2.74302, 0, 0.297697, 0, 2.75913, 0, -0.297697, 0, -2.74302, 0.0323067, 0.226235, 2.04786)
+mesh = SubResource("QuadMesh_s8e6c")
+surface_material_override/0 = SubResource("StandardMaterial3D_ap6yl")
+
+[connection signal="focused" from="Interactable" to="." method="_on_interactable_focused"]
+[connection signal="interacted" from="Interactable" to="." method="_on_interactable_interacted"]
+[connection signal="unfocused" from="Interactable" to="." method="_on_interactable_unfocused"]
+
+[editable path="Interactable"]
