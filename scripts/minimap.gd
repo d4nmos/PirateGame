@@ -1,10 +1,10 @@
 extends ColorRect
 
 @export var target : NodePath
-@export var camera_distance := 20.0
+@export var camera_distance := 200.0
 
 @onready var player := get_node(target)
-@onready var camera := $SubViewportContainer/SubViewport/Camera3D
+@onready var camera := $SubViewportContainer/SubViewport/Camera3D1
 
 func _process(delta):
 	if target:
