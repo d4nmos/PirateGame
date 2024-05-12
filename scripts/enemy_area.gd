@@ -10,6 +10,7 @@ var _cell_x_scale
 var _cell_z_scale
 
 var path_matrix = []
+var player_current_cell = null
 
 func _ready():
 	create_matrix()
@@ -38,6 +39,8 @@ func create_neighbors(start_pos):
 			path_matrix[i][j] = new_cell
 			
 			new_cell.global_transform.origin = pos
+			if i == 0 or j == 0 or i == matrix_size - 1 or j == matrix_size - 1:
+				new_cell.is_passability = false
 			pos.x += _cell_x_scale
 			
 		pos.x = start_pos.x
@@ -63,7 +66,7 @@ func get_cell_scale():
 func spawn_enemy(enemy_tscn):
 	var enemy = enemy_tscn.instantiate()
 	add_child(enemy)
-	var pos = path_matrix[0][0].global_transform.origin
+	var pos = path_matrix[1][1].global_transform.origin
 	enemy.global_transform.origin.x = pos.x
 	enemy.global_transform.origin.z = pos.z
 

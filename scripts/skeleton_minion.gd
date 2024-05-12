@@ -13,6 +13,7 @@ extends CharacterBodyAI
 @onready var agro_timer = $Agro_Timer
 @onready var agro_vision_timer = $Agro_Vision_Timer
 @onready var vision_collision = $Vision_Area/Vision_Collision
+@onready var path_find_timer = $Path_Find_Timer
 
 var _head_accuracy
 var _target_position
@@ -22,7 +23,8 @@ var _enemy_area
 var current_cell
 var path
 var target_cell
-var patrol_cell
+var finish_cell
+var current_player_cell
 
 func ready():
 	_enemy_area = get_parent()
@@ -30,10 +32,11 @@ func ready():
 	set_state('idle', 'idle')
 	
 func process():
+#	print(current_cell)
 	update_colission_pos(skeleton_3d, 'head', head_collision, _head_accuracy)
 	update_colission_pos(skeleton_3d, 'chest', torso_collision)
-	update_colission_pos(skeleton_3d, 'foot.l', leg_left_collision)
-	update_colission_pos(skeleton_3d, 'foot.r', leg_right_collision)
+#	update_colission_pos(skeleton_3d, 'foot.l', leg_left_collision)
+#	update_colission_pos(skeleton_3d, 'foot.r', leg_right_collision)
 
 func update_vision_raycast():
 		_target_position = _target_node.global_transform.origin
@@ -67,6 +70,13 @@ func _on_agro_timer_timeout():
 	vision_raycast.enabled = false
 	vision_collision.disabled = false
 
+func _on_path_find_timer_timeout():
+	if finish_cell != _enemy_area.player_current_cell:
+		finish_cell = _enemy_area.player_current_cell
+		path = _enemy_area.find_path(current_cell, finish_cell)
+		target_cell = path.pop_back()
+		target_cell = path.pop_back()
+		
 func _on_vision_area_body_entered(body):
 	if body.is_in_group("Player"):
 		_target_node = body
@@ -83,8 +93,8 @@ func _on_vision_area_body_exited(body):
 
 func idle():
 	if _timer > 3:
-		patrol_cell = _enemy_area.get_random_cell()
-		path = _enemy_area.find_path(current_cell, patrol_cell)
+		finish_cell = Vector2(19, 19)
+		path = _enemy_area.find_path(current_cell, finish_cell)
 		target_cell = path.pop_back()
 		set_state('patrolling', 'move_idle')
 	else:
@@ -105,20 +115,26 @@ func move_idle():
 func taunt():
 	agro_vision_timer.start()
 	if !_animator.is_playing():
-		set_state('move_to_player','move_to_player')
+		if _enemy_area.player_current_cell:
+			finish_cell = _enemy_area.player_current_cell
+			path = _enemy_area.find_path(current_cell, finish_cell)
+			target_cell = path.pop_back()
+			target_cell = path.pop_back()
+	
+			path_find_timer.start()
+			set_state('run_to_player','run_to_player')
+		else:
+			set_state('taunt', 'taunt')
 	else:
 		pass
 
-func move_to_player():
-	if distance_to_node(_target_node) < 4:
-		set_state('run_to_player', 'run_to_player')
-	else:
-		rotate_to_node(_target_node)
-		move_angle()
-
 func run_to_player():
-	rotate_to_node(global.player,2)
-	move_angle(2)
+	if !path.is_empty():
+		if distance_to_node(target_cell) < 1:
+			target_cell = path.pop_back()
+		else:
+			rotate_to_node(target_cell, 2)
+			move_angle(2)
 
 func stop_agro():
 	if !_animator.is_playing():
@@ -136,26 +152,6 @@ func patrolling():
 		rotate_to_node(target_cell)
 		move_angle()
 
-		
-	
-	
 func afk():
 	pass
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

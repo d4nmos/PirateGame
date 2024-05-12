@@ -13,19 +13,21 @@ var is_passability = true
 var previous
 
 var enemy_area
-var _delta
 
 func _ready():
 	count = 0
 	enemy_area = get_parent()
 
 func _physics_process(delta):
-	if cell_area.has_overlapping_bodies() and is_passability == true:
+	if cell_area.has_overlapping_bodies() and is_passability:
 		self.global_transform.origin.y += 0.1
 		count += 0.1 
 		if count > 0.3:
 			is_passability = false
-#			detect_area.disabled = true
+	
+#	if !is_passability:
+#		set_as_finish()
+
 
 func set_as_path():
 	var path = path_marker.instantiate()
@@ -42,9 +44,13 @@ func set_as_finish():
 	add_child(finish)
 	finish.global_transform.origin.y += 1
 
-
-
-
 func _on_detect_area_body_entered(body):
 	if body.is_in_group('Enemies'):
 		body.current_cell = Vector2(row, col)
+	
+	if body.is_in_group('Player'):
+		if is_passability:
+			get_parent().player_current_cell = Vector2(row, col)
+		else:
+			get_parent().player_current_cell = null
+

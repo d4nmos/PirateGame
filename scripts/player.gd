@@ -19,7 +19,6 @@ extends CharacterBody3D
 @export var attack_cooldown = 2
 
 var _attack_cooldown
-var current_cell
 
 var attack_is_ready: bool = true
 # Get the gravity from the project settings to be synced with RigidBody nodes.
