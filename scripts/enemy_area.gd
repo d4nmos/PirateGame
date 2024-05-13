@@ -9,6 +9,7 @@ extends Node3D
 var _cell_x_scale
 var _cell_z_scale
 
+var available_cells = []
 var path_matrix = []
 var player_current_cell = null
 
@@ -41,6 +42,8 @@ func create_neighbors(start_pos):
 			new_cell.global_transform.origin = pos
 			if i == 0 or j == 0 or i == matrix_size - 1 or j == matrix_size - 1:
 				new_cell.is_passability = false
+			else:
+				available_cells.append(new_cell)
 			pos.x += _cell_x_scale
 			
 		pos.x = start_pos.x
@@ -71,10 +74,13 @@ func spawn_enemy(enemy_tscn):
 	enemy.global_transform.origin.z = pos.z
 
 func get_random_cell():
-	var row = randi_range(0, matrix_size - 1)
-	var col = randi_range(0, matrix_size - 1)
-
-	return Vector2(row, col)
+	if available_cells.size() > 0:
+		var random_cell = available_cells[randi_range(0, available_cells.size() - 1)]
+		var row = random_cell.row
+		var col = random_cell.col
+		return Vector2(row, col)
+	else:
+		return Vector2(1, 1)
 
 func find_path(start, finish):
 	var reachable = [start]

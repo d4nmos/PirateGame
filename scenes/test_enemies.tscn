@@ -35,7 +35,7 @@ script = ExtResource("1_dtp0f")
 [node name="map" type="Node3D" parent="."]
 
 [node name="simple_wall" parent="map" instance=ExtResource("10_f2udp")]
-transform = Transform3D(9.76216, 0, 0, 0, 1, 0, 0, 0, 1, 31.5579, 0.399744, 0)
+transform = Transform3D(9.76216, 0, 0, 0, 3.63741, 0, 0, 0, 1, 29.7568, 1.37957, 0)
 
 [node name="simple_wall2" parent="map" instance=ExtResource("10_f2udp")]
 transform = Transform3D(-4.26718e-07, 0, -1, 0, 1, 0, 9.76216, 0, -4.37114e-08, 31.5579, 0.399744, 2.95124)

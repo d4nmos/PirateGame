@@ -19,6 +19,8 @@ var _head_accuracy
 var _target_position
 var _target_node
 var _enemy_area
+var _is_can_see = true
+var _return_cell_position = Vector2(1, 1)
 
 var current_cell
 var path
@@ -32,7 +34,7 @@ func ready():
 	set_state('idle', 'idle')
 	
 func process():
-#	print(current_cell)
+	print(_is_can_see)
 	update_colission_pos(skeleton_3d, 'head', head_collision, _head_accuracy)
 	update_colission_pos(skeleton_3d, 'chest', torso_collision)
 #	update_colission_pos(skeleton_3d, 'foot.l', leg_left_collision)
@@ -47,7 +49,7 @@ func update_vision_raycast():
 func _on_vision_timer_timeout():
 	vision_raycast.enabled = true
 	update_vision_raycast()
-	if vision_raycast.get_collider().is_in_group('Player'):
+	if vision_raycast.get_collider().is_in_group('Player') and _is_can_see:
 		vision_timer.stop()
 		set_state('taunt', 'taunt')
 		vision_raycast.debug_shape_custom_color = Color(133, 0, 0)
@@ -58,11 +60,11 @@ func _on_agro_vision_timer_timeout():
 	vision_raycast.enabled = true
 	vision_collision.disabled = true
 	update_vision_raycast()
-	if vision_raycast.is_colliding() and vision_raycast.get_collider().is_in_group('Player'):
+	if vision_raycast.is_colliding() and vision_raycast.get_collider().is_in_group('Player') and _is_can_see:
 		vision_raycast.debug_shape_custom_color = Color(133, 0, 100)
 	else:
 		agro_vision_timer.stop()
-		agro_timer.start()
+#		agro_timer.start()
 		vision_raycast.debug_shape_custom_color = Color(0, 0, 255)
 
 func _on_agro_timer_timeout():
@@ -71,6 +73,10 @@ func _on_agro_timer_timeout():
 	vision_collision.disabled = false
 
 func _on_path_find_timer_timeout():
+	if _enemy_area.player_current_cell == null:
+		set_state('lost_player', 'stop_agro')
+		return
+		
 	if finish_cell != _enemy_area.player_current_cell:
 		finish_cell = _enemy_area.player_current_cell
 		path = _enemy_area.find_path(current_cell, finish_cell)
@@ -93,7 +99,8 @@ func _on_vision_area_body_exited(body):
 
 func idle():
 	if _timer > 3:
-		finish_cell = Vector2(19, 19)
+		finish_cell = _enemy_area.get_random_cell()
+		_return_cell_position = current_cell
 		path = _enemy_area.find_path(current_cell, finish_cell)
 		target_cell = path.pop_back()
 		set_state('patrolling', 'move_idle')
@@ -124,9 +131,7 @@ func taunt():
 			path_find_timer.start()
 			set_state('run_to_player','run_to_player')
 		else:
-			set_state('taunt', 'taunt')
-	else:
-		pass
+			set_state('lost_player', 'stop_agro')
 
 func run_to_player():
 	if !path.is_empty():
@@ -144,13 +149,37 @@ func stop_agro():
 
 func patrolling():
 	if path.is_empty():
-		set_state('idle', 'idle')
+		finish_cell = _enemy_area.get_random_cell()
+		_return_cell_position = current_cell
+		path = _enemy_area.find_path(current_cell, finish_cell)
+		target_cell = path.pop_back()
 		
 	if distance_to_node(target_cell) < 1.0:
 		target_cell = path.pop_back()
 	else:
 		rotate_to_node(target_cell)
 		move_angle()
+
+func lost_player():
+	if !_animator.is_playing():
+		_is_can_see = false
+		path_find_timer.stop()
+		path = _enemy_area.find_path(current_cell, _return_cell_position)
+		target_cell = path.pop_back()
+		set_state('return_to_previous_position', 'move_idle')
+
+func return_to_previous_position():
+	if path.is_empty():
+		_is_can_see = true
+		vision_raycast.enabled = false
+		vision_collision.disabled = false
+		set_state('idle', 'idle')
+	else:
+		if distance_to_node(target_cell) < 1.0:
+			target_cell = path.pop_back()
+		else: 
+			rotate_to_node(target_cell)
+			move_angle()
 
 func afk():
 	pass

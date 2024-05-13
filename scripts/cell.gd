@@ -24,6 +24,7 @@ func _physics_process(delta):
 		count += 0.1 
 		if count > 0.3:
 			is_passability = false
+			get_parent().available_cells.erase(self)
 	
 #	if !is_passability:
 #		set_as_finish()
