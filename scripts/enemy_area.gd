@@ -3,6 +3,7 @@ extends Node3D
 @onready var skteleton_minion = preload("res://scenes/enemies/skeleton_minion.tscn")
 @onready var cell_scn = preload("res://scenes/cell.tscn")
 @onready var empty_box = $empty_box
+@onready var border_area = $Border_Area
 
 @export var matrix_size = 21
 
@@ -16,7 +17,15 @@ var player_current_cell = null
 func _ready():
 	create_matrix()
 	create_grid()
+	expansion_of_territory()
 	spawn_enemy(skteleton_minion)
+
+func expansion_of_territory():
+	var new_size_x = matrix_size * _cell_x_scale
+	var new_size_z = matrix_size * _cell_z_scale
+	
+	border_area.scale.x = new_size_x
+	border_area.scale.z = new_size_z
 
 func create_grid():
 	var start_pos = empty_box.global_transform.origin
@@ -40,10 +49,10 @@ func create_neighbors(start_pos):
 			path_matrix[i][j] = new_cell
 			
 			new_cell.global_transform.origin = pos
-			if i == 0 or j == 0 or i == matrix_size - 1 or j == matrix_size - 1:
-				new_cell.is_passability = false
-			else:
-				available_cells.append(new_cell)
+#			if i == 0 or j == 0 or i == matrix_size - 1 or j == matrix_size - 1:
+#				new_cell.is_passability = false
+#			else:
+			available_cells.append(new_cell)
 			pos.x += _cell_x_scale
 			
 		pos.x = start_pos.x
@@ -69,7 +78,7 @@ func get_cell_scale():
 func spawn_enemy(enemy_tscn):
 	var enemy = enemy_tscn.instantiate()
 	add_child(enemy)
-	var pos = path_matrix[1][1].global_transform.origin
+	var pos = path_matrix[18][18].global_transform.origin
 	enemy.global_transform.origin.x = pos.x
 	enemy.global_transform.origin.z = pos.z
 
@@ -181,3 +190,8 @@ func get_adjacent_nodes(node, explored):
 
 	return adjacent
 
+func _on_border_area_body_exited(body):
+	body.return_in_area_timer.start()
+	body.floor_middle_raycast.enabled = false 
+	body.floor_bot_raycast.enabled = false
+	body.floor_top_raycast.enabled = false

@@ -10,7 +10,7 @@ material = SubResource("StandardMaterial3D_1yloa")
 points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
 
 [node name="simple_wall" type="StaticBody3D"]
-collision_layer = 9
+collision_layer = 41
 collision_mask = 0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

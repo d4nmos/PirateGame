@@ -46,10 +46,10 @@ func set_as_finish():
 	finish.global_transform.origin.y += 1
 
 func _on_detect_area_body_entered(body):
-	if body.is_in_group('Enemies'):
+	if body.is_in_group('Enemies') and is_passability:
 		body.current_cell = Vector2(row, col)
 	
-	if body.is_in_group('Player'):
+	if body.is_in_group('Player') and is_passability:
 		if is_passability:
 			get_parent().player_current_cell = Vector2(row, col)
 		else:

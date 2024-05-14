@@ -1,8 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://bnr3fksfwmejk"]
+[gd_scene load_steps=4 format=3 uid="uid://bnr3fksfwmejk"]
 
 [ext_resource type="Script" path="res://scripts/enemy_area.gd" id="1_psa8l"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_lcjfc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dg6dn"]
 
 [node name="enemy_area" type="Node3D"]
 transform = Transform3D(2, 0, 0, 0, 0.1, 0, 0, 0, 2, 0, 0, 0)
@@ -11,3 +13,13 @@ script = ExtResource("1_psa8l")
 [node name="empty_box" type="MeshInstance3D" parent="."]
 visible = false
 mesh = SubResource("BoxMesh_lcjfc")
+
+[node name="Border_Area" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 10, 0, 0, 0, 1, 0, 0, 0)
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Border_Area"]
+shape = SubResource("BoxShape3D_dg6dn")
+
+[connection signal="body_exited" from="Border_Area" to="." method="_on_border_area_body_exited"]

@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://d0dh7cs6k8iye" path="res://assets/models/character.glb" id="2_uxk3n"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7a6ce"]
+radius = 0.265956
 
 [sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_bs1rq"]
 
@@ -95,7 +96,7 @@ collision_layer = 19
 script = ExtResource("1_lvw8j")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.951552, 0)
 shape = SubResource("CapsuleShape3D_7a6ce")
 
 [node name="visuals" type="Node3D" parent="."]
