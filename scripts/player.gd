@@ -41,6 +41,7 @@ func _input(event):
 
 func _physics_process(delta):
 	# Add the gravity.
+		
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 		animation_tree.set("parameters/in_air/transition_request", true)
@@ -110,8 +111,6 @@ func _on_attack_body_entered(body):
 func _on_interaction_area_body_entered(body):
 	if body.is_in_group("Interactable"):
 		interaction_manager.add_interactable_object(body)
-	else:
-		pass
 		
 #Удаление объекта из списока взаимодействия, когда он выходит из радиуса взаимодействия		
 func _on_interaction_area_body_exited(body):
