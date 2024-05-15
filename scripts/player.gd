@@ -6,7 +6,8 @@ extends CharacterBody3D
 @onready var visuals = $visuals
 @onready var interface = $"../UI/OtherInterface"
 @onready var drop_item_range = $camera_mount/drop_item_range
-@onready var attack_range = $camera_mount/attack/attack_range
+@onready var attack_range = $attack/attack_range
+
 
 @export var sens_horizontal = 0.5
 @export var sens_vertical = 0.5
@@ -15,7 +16,7 @@ extends CharacterBody3D
 @export var interaction_manager: InteractionManager
 @export var speed = 3.0
 @export var jump_velocity = 4.5
-@export var health = 5
+@export var health = 10
 @export var attack_cooldown = 2
 
 var _attack_cooldown
@@ -132,8 +133,6 @@ func take_damage(damage):
 	health -= damage
 	print(health)
 	
-	if health <= 0:
-		print('dead')
 	
 
 

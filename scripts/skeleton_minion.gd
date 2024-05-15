@@ -15,6 +15,11 @@ extends CharacterBodyAI
 @onready var floor_bot_raycast = $Floor_Bot_Raycast
 @onready var floor_top_raycast = $Floor_Top_Raycast
 @onready var return_in_area_timer = $Return_In_Area_Timer
+@onready var attack_collision = $Attack_Area/Attack_Collision
+
+#Export
+@export var damage = 2
+@export var attack_cooldown = 1
 
 #Private variables
 var _head_accuracy
@@ -22,6 +27,7 @@ var _target_node = global.player
 var _enemy_area
 var _is_can_see = true
 var _return_cell_position = Vector2(1, 1)
+var _attack_is_ready = true
 
 #Variables
 var current_cell
@@ -37,6 +43,7 @@ func ready():
 	_enemy_area = get_parent()
 	_head_accuracy = get_accuracy(skeleton_3d ,'head', head_collision)
 	set_state('idle', 'idle')
+#	set_state('attack','attack')
 	
 func process():
 	update_colission_pos(skeleton_3d, 'head', head_collision, _head_accuracy)
@@ -76,6 +83,11 @@ func _on_vision_timer_timeout():
 func _on_return_in_area_timer_timeout():
 	set_state('return_area_sad', 'stop_agro')
 
+func _on_attack_area_body_entered(body):
+	if body.is_in_group('Player'):
+		_attack_is_ready = false
+		body.take_damage(damage)
+
 #States
 func idle():
 	if _timer > 3:
@@ -105,6 +117,9 @@ func taunt():
 		set_state('run_to_player', 'run_to_player')
 
 func run_to_player():
+	if distance_to_node(global.player) < 1.5:
+		set_state('attack', 'attack')
+		
 	rotate_to_node(global.player)
 	move_angle(2)
 	
@@ -163,12 +178,26 @@ func return_to_prev_pos():
 			rotate_to_node(target_cell)
 			move_angle()
 
-func atack():
-	pass
+func attack():
+	if _attack_is_ready:
+		attack_collision.disabled = false
+	else:
+		attack_collision.disabled = true
+	
+	if !_animator.is_playing():
+		set_state('rest_after_attack', 'idle')
+
+func rest_after_attack():
+	rotate_to_node(global.player)
+	
+	attack_collision.disabled = true
+	_attack_is_ready = true
+	
+	if _timer > attack_cooldown:
+		if distance_to_node(global.player) < 1.5:
+			set_state('attack', 'attack')
+		else:
+			set_state('run_to_player', 'run_to_player')
 
 func afk():
 	pass
-
-
-
-

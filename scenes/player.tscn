@@ -217,6 +217,15 @@ parameters/movements/current_state = "idle"
 parameters/movements/transition_request = ""
 parameters/movements/current_index = 0
 
+[node name="attack" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="attack_range" type="CollisionShape3D" parent="attack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0049845, 0.726712, -0.552548)
+shape = SubResource("CylinderShape3D_v2qcl")
+disabled = true
+
 [node name="camera_mount" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.847358, 0)
 
@@ -225,16 +234,6 @@ transform = Transform3D(1, 0, 0, 0, 0.86523, 0.501375, 0, -0.501375, 0.86523, 0,
 
 [node name="drop_item_range" type="Node3D" parent="camera_mount"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.757902, -1.76318)
-
-[node name="attack" type="Area3D" parent="camera_mount"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.847358, 0)
-collision_layer = 0
-collision_mask = 2
-
-[node name="attack_range" type="CollisionShape3D" parent="camera_mount/attack"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0049845, 0.726712, -0.552548)
-shape = SubResource("CylinderShape3D_v2qcl")
-disabled = true
 
 [node name="interaction_area" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
@@ -245,8 +244,8 @@ collision_mask = 4
 shape = SubResource("SphereShape3D_4y2pm")
 
 [connection signal="animation_finished" from="visuals/character/AnimationTree" to="." method="_on_animation_tree_animation_finished"]
-[connection signal="area_shape_entered" from="camera_mount/attack" to="." method="_on_attack_area_shape_entered"]
-[connection signal="body_entered" from="camera_mount/attack" to="." method="_on_attack_body_entered"]
+[connection signal="area_shape_entered" from="attack" to="." method="_on_attack_area_shape_entered"]
+[connection signal="body_entered" from="attack" to="." method="_on_attack_body_entered"]
 [connection signal="body_entered" from="interaction_area" to="." method="_on_interaction_area_body_entered"]
 [connection signal="body_exited" from="interaction_area" to="." method="_on_interaction_area_body_exited"]
 
