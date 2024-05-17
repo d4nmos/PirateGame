@@ -1,7 +1,16 @@
-[gd_scene load_steps=12 format=3 uid="uid://bmta2vfylskcr"]
+[gd_scene load_steps=28 format=3 uid="uid://bmta2vfylskcr"]
 
 [ext_resource type="Texture2D" uid="uid://bcuxqa3j2dnpt" path="res://assets/textures/island1_Color2.png" id="1_0w7i2"]
 [ext_resource type="Texture2D" uid="uid://t5l1bhif0xmv" path="res://assets/textures/island1_Color2_1.png" id="2_xohgi"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter.gd" id="3_spm4i"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="4_ndsl6"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="5_god5g"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/randomize_transforms.gd" id="6_cvoo4"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/relax.gd" id="7_emeb5"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/project_on_geometry.gd" id="8_1ecm8"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_item.gd" id="9_kn7ti"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_shape.gd" id="10_a8gns"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/shapes/sphere_shape.gd" id="11_n1i2f"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sxfwp"]
 resource_name = "Material.004"
@@ -44,9 +53,6 @@ shadow_mesh = SubResource("ArrayMesh_pvscp")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_436mu"]
 albedo_color = Color(0.329412, 0.52549, 0, 1)
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_6mx6o"]
-data = PackedVector3Array(1.1692, -1, 0.2093, 1, 1, 0.7131, 1.2437, 1, 0.2202, 1.1692, -1, 0.2093, 1, -1, 0.7511, 1, 1, 0.7131, 1, 1, 0.7131, 0.3531, 0.3672, 0.7022, 0.7321, -0.3079, 0.5142, 0.3531, 0.3672, 0.7022, 0.6617, 0.6036, 0.9264, 0.096, 0.957, 0.8209, 0.3531, 0.3672, 0.7022, 1, 1, 0.7131, 0.6617, 0.6036, 0.9264, 0.359, -1, 0.7244, 1.1692, -1, 0.2093, 0.5192, -1, 0.5945, 0.359, -1, 0.7244, 1, -1, 0.7511, 1.1692, -1, 0.2093, 0.6542, -0.653, 0.9437, 0.096, 0.957, 0.8209, 0.6617, 0.6036, 0.9264, 0.6542, -0.653, 0.9437, 0.0131, -1, 0.8005, 0.096, 0.957, 0.8209, 0.8831, -1, -0.2929, 1.2437, 1, 0.2202, 1.0039, 0.6857, -0.3392, 0.8831, -1, -0.2929, 1.1692, -1, 0.2093, 1.2437, 1, 0.2202, 1.2437, 1, 0.2202, 1, 1, 0.7131, 0.7321, -0.3079, 0.5142, 0.0131, -1, 0.8005, 1, -1, 0.7511, 0.359, -1, 0.7244, 0.0131, -1, 0.8005, 0.6542, -0.653, 0.9437, 1, -1, 0.7511, 1, -1, 0.7511, 0.6617, 0.6036, 0.9264, 1, 1, 0.7131, 1, -1, 0.7511, 0.6542, -0.653, 0.9437, 0.6617, 0.6036, 0.9264, 0.7971, -1, -0.7559, 0.3075, 1, -1, 0.3013, -1, -1, 0.7971, -1, -0.7559, 0.9056, 1, -0.7055, 0.3075, 1, -1, 0.8831, -1, -0.2929, 0.9056, 1, -0.7055, 0.7971, -1, -0.7559, 0.8831, -1, -0.2929, 1.0039, 0.6857, -0.3392, 0.9056, 1, -0.7055, -0.168, -1, -1, 0.3075, 1, -1, -0.2393, 1, -1, -0.168, -1, -1, 0.3013, -1, -1, 0.3075, 1, -1, -0.9944, 0.6016, -0.5818, -0.7279, -1.3542, -0.8098, -0.857, 0.6202, -0.7747, -0.9944, 0.6016, -0.5818, -0.985, -1.2375, -0.4599, -0.7279, -1.3542, -0.8098, -1.1418, -0.9735, 0.2707, -0.9754, 0.8479, -0.0809, -1.1805, 0.5292, 0.2869, -1.1418, -0.9735, 0.2707, -0.9724, -0.8058, -0.0661, -0.9754, 0.8479, -0.0809, -0.168, -1, -1, -0.857, 0.6202, -0.7747, -0.7279, -1.3542, -0.8098, -0.168, -1, -1, -0.2393, 1, -1, -0.857, 0.6202, -0.7747, -0.9724, -0.8058, -0.0661, -0.9944, 0.6016, -0.5818, -0.9754, 0.8479, -0.0809, -0.9724, -0.8058, -0.0661, -0.985, -1.2375, -0.4599, -0.9944, 0.6016, -0.5818, -1.0764, 0.5832, 0.5675, -1.1418, -0.9735, 0.2707, -1.1805, 0.5292, 0.2869, -1.0764, 0.5832, 0.5675, -1.0449, -0.9473, 0.53, -1.1418, -0.9735, 0.2707, -0.5765, -0.6929, 0.9539, -0.5321, 0.9945, 0.9773, -0.5255, -0.698, 0.9641, -0.5765, -0.6929, 0.9539, -0.6786, 0.9493, 0.9474, -0.5321, 0.9945, 0.9773, -0.7279, -1.3542, -0.8098, 0.3013, -1, -1, -0.168, -1, -1, 0.3013, -1, -1, 0.8831, -1, -0.2929, 0.7971, -1, -0.7559, 0.8831, -1, -0.2929, 0.5192, -1, 0.5945, 1.1692, -1, 0.2093, 0.5192, -1, 0.5945, 0.0131, -1, 0.8005, 0.359, -1, 0.7244, 0.0131, -1, 0.8005, -0.5765, -0.6929, 0.9539, -0.5255, -0.698, 0.9641, -0.5765, -0.6929, 0.9539, -1.1418, -0.9735, 0.2707, -1.0449, -0.9473, 0.53, -0.9724, -0.8058, -0.0661, -0.7279, -1.3542, -0.8098, -0.985, -1.2375, -0.4599, -0.5765, -0.6929, 0.9539, -0.9724, -0.8058, -0.0661, -1.1418, -0.9735, 0.2707, 0.5192, -1, 0.5945, -0.5765, -0.6929, 0.9539, 0.0131, -1, 0.8005, 0.3013, -1, -1, 0.5192, -1, 0.5945, 0.8831, -1, -0.2929, -0.9724, -0.8058, -0.0661, 0.3013, -1, -1, -0.7279, -1.3542, -0.8098, 0.5192, -1, 0.5945, -0.9724, -0.8058, -0.0661, -0.5765, -0.6929, 0.9539, 0.3013, -1, -1, -0.9724, -0.8058, -0.0661, 0.5192, -1, 0.5945, -1.0449, -0.9473, 0.53, -0.6786, 0.9493, 0.9474, -0.5765, -0.6929, 0.9539, -1.0449, -0.9473, 0.53, -1.0764, 0.5832, 0.5675, -0.6786, 0.9493, 0.9474, 0.0131, -1, 0.8005, -0.5321, 0.9945, 0.9773, 0.096, 0.957, 0.8209, 0.0131, -1, 0.8005, -0.5255, -0.698, 0.9641, -0.5321, 0.9945, 0.9773, 0.9056, 1, -0.7055, -0.2393, 1, -1, 0.3075, 1, -1, -0.2393, 1, -1, -0.9944, 0.6016, -0.5818, -0.857, 0.6202, -0.7747, -0.9754, 0.8479, -0.0809, -1.0764, 0.5832, 0.5675, -1.1805, 0.5292, 0.2869, -0.2393, 1, -1, -0.9754, 0.8479, -0.0809, -0.9944, 0.6016, -0.5818, 1.0039, 0.6857, -0.3392, -0.2393, 1, -1, 0.9056, 1, -0.7055, 0.7321, -0.3079, 0.5142, 1.0039, 0.6857, -0.3392, 1.2437, 1, 0.2202, 0.096, 0.957, 0.8209, 0.7321, -0.3079, 0.5142, 0.3531, 0.3672, 0.7022, -0.6786, 0.9493, 0.9474, 0.096, 0.957, 0.8209, -0.5321, 0.9945, 0.9773, -0.9754, 0.8479, -0.0809, -0.6786, 0.9493, 0.9474, -1.0764, 0.5832, 0.5675, 1.0039, 0.6857, -0.3392, -0.9754, 0.8479, -0.0809, -0.2393, 1, -1, 0.096, 0.957, 0.8209, 1.0039, 0.6857, -0.3392, 0.7321, -0.3079, 0.5142, -0.9754, 0.8479, -0.0809, 0.096, 0.957, 0.8209, -0.6786, 0.9493, 0.9474, -0.9754, 0.8479, -0.0809, 1.0039, 0.6857, -0.3392, 0.096, 0.957, 0.8209)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s3jei"]
 resource_name = "Material.005"
@@ -138,6 +144,68 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_p41gc")
 
+[sub_resource type="Resource" id="Resource_t6d1j"]
+script = ExtResource("5_god5g")
+amount = 30
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = true
+reference_frame = 1
+
+[sub_resource type="Resource" id="Resource_dsr7i"]
+script = ExtResource("6_cvoo4")
+position = Vector3(0.15, 0.15, 0.15)
+rotation = Vector3(20, 360, 20)
+scale = Vector3(0.01, 0.01, 0.01)
+enabled = true
+override_global_seed = true
+custom_seed = 0
+restrict_height = false
+reference_frame = 2
+
+[sub_resource type="Resource" id="Resource_khidi"]
+script = ExtResource("7_emeb5")
+iterations = 3
+offset_step = 0.2
+consecutive_step_multiplier = 0.75
+use_computeshader = true
+enabled = false
+override_global_seed = false
+custom_seed = 0
+restrict_height = true
+reference_frame = 0
+
+[sub_resource type="Resource" id="Resource_c364b"]
+script = ExtResource("8_1ecm8")
+ray_direction = Vector3(0, -1, 0)
+ray_length = 5.0
+ray_offset = 5.0
+remove_points_on_miss = false
+align_with_collision_normal = false
+max_slope = 90.0
+collision_mask = 1
+exclude_mask = 0
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 0
+
+[sub_resource type="Resource" id="Resource_6mjip"]
+script = ExtResource("4_ndsl6")
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_t6d1j"), SubResource("Resource_dsr7i"), SubResource("Resource_khidi"), SubResource("Resource_c364b")])
+
+[sub_resource type="Resource" id="Resource_g8bsm"]
+script = ExtResource("11_n1i2f")
+radius = 2.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_7t3s6"]
+orientation = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sdcsq"]
+albedo_color = Color(0.419608, 0.972549, 0, 1)
+
 [node name="Node3D" type="Node3D"]
 
 [node name="Cube" type="MeshInstance3D" parent="."]
@@ -147,13 +215,31 @@ mesh = SubResource("ArrayMesh_mc38v")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_436mu")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Cube"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_6mx6o")
-
 [node name="rocks" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.471176, 0, 0, 0, 0.471176, 0, 0, 0, 0.471176, -1.12665, -2.9532, -1.32394)
-visible = false
 mesh = SubResource("ArrayMesh_no77t")
 skeleton = NodePath("")
+
+[node name="ProtonScatter" type="Node3D" parent="."]
+transform = Transform3D(2.04957, 0, 0, 0, 1.77006, 0, 0, 0, 2.40656, 0.489827, 0, 0.657871)
+script = ExtResource("3_spm4i")
+modifier_stack = SubResource("Resource_6mjip")
+Performance/use_chunks = true
+Performance/chunk_dimensions = Vector3(15, 15, 15)
+
+[node name="ScatterItem" type="Node3D" parent="ProtonScatter"]
+transform = Transform3D(0.256652, 0, 0, 0, 0.196803, 0, 0, 0, 0.196803, 0, 0, 0)
+script = ExtResource("9_kn7ti")
+proportion = 10
+source_scale_multiplier = 0.1
+path = "res://scenes/models/pine3.tscn"
+
+[node name="ScatterShape" type="Node3D" parent="ProtonScatter"]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 0, 0)
+script = ExtResource("10_a8gns")
+shape = SubResource("Resource_g8bsm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(8.9964, 0, 0, 0, 8.09676, 0, 0, 0, 8.9964, 1, 0, 0)
+mesh = SubResource("QuadMesh_7t3s6")
+surface_material_override/0 = SubResource("StandardMaterial3D_sdcsq")
