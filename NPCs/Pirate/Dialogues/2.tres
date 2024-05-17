@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Dialogue" load_steps=5 format=3 uid="uid://owsclprub05u"]
 
 [ext_resource type="Resource" uid="uid://dc5iotyynx0no" path="res://NPCs/Pirate/Dialogues/Ok.tres" id="1_0vfb0"]
-[ext_resource type="Script" path="res://scripts/Dialogue.gd" id="1_vs4fp"]
+[ext_resource type="Script" path="res://NPCs/Dialogue.gd" id="1_vs4fp"]
 [ext_resource type="Resource" uid="uid://dkgdn35s3kx7u" path="res://NPCs/Pirate/Quests/0.tres" id="1_x7bc5"]
 [ext_resource type="Texture2D" uid="uid://sqd5orde5eor" path="res://icon.png" id="2_kk06g"]
 
@@ -9,7 +9,8 @@
 script = ExtResource("1_vs4fp")
 texture = ExtResource("2_kk06g")
 name = "Pirate"
-dialogue = "I want rocks!"
-path_option = "What do you want?"
+dialogue = "Ладно, я расскажу тебе про это место, но сначала принеси мне чего-нибудь выпить, горло смочить."
+ends = true
+path_option = "Продолжить"
 options = Array[ExtResource("1_vs4fp")]([ExtResource("1_0vfb0")])
 quest = ExtResource("1_x7bc5")
