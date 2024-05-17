@@ -12,3 +12,4 @@ func unchose_this_object():
 
 func player_interact():
 	toggle_inventory.emit(self)
+
