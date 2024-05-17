@@ -6,6 +6,7 @@ signal inventory_interact(inventory_data: InventoryData, index: int, button: int
 
 @export var slot_data: Array[SlotData]
 
+
 func grab_slot_data(index: int) -> SlotData:
 	var grabbed_slot_data = slot_data[index]
 	
@@ -15,7 +16,7 @@ func grab_slot_data(index: int) -> SlotData:
 		return grabbed_slot_data
 	else:
 		return null
-		
+	
 func drop_slot_data(grabbed_slot_data: SlotData,index: int) -> SlotData:
 	var one_slot_data = slot_data[index]
 	var return_slot_data: SlotData
@@ -57,6 +58,7 @@ func pick_up_slot_data(one_slot_data: SlotData):
 			inventory_update.emit(self)
 			return true
 	return false
-	
+
 func on_slot_clicked(index: int, button: int):
 	inventory_interact.emit(self, index, button)
+
