@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Dialogue" load_steps=3 format=3 uid="uid://c7wsv0w3ohmjs"]
+
+[ext_resource type="Script" path="res://NPCs/Dialogue.gd" id="1_i2hwo"]
+[ext_resource type="Texture2D" uid="uid://sqd5orde5eor" path="res://icon.png" id="2_53jh4"]
+
+[resource]
+script = ExtResource("1_i2hwo")
+texture = ExtResource("2_53jh4")
+name = "Pirate"
+dialogue = "Нет? Хорошо, я подожду."
+path_option = "Нет"
+options = Array[ExtResource("1_i2hwo")]([])
