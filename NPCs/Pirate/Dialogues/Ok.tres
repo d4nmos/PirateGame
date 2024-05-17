@@ -1,10 +1,11 @@
 [gd_resource type="Resource" script_class="Dialogue" load_steps=2 format=3 uid="uid://dc5iotyynx0no"]
 
-[ext_resource type="Script" path="res://scripts/Dialogue.gd" id="1_45y7t"]
+[ext_resource type="Script" path="res://NPCs/Dialogue.gd" id="1_45y7t"]
 
 [resource]
 script = ExtResource("1_45y7t")
 name = "Pirate"
 dialogue = ""
-path_option = "Ok"
+ends = true
+path_option = "Принято"
 options = Array[ExtResource("1_45y7t")]([])
