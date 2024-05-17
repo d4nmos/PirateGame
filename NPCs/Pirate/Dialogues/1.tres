@@ -1,13 +1,14 @@
 [gd_resource type="Resource" script_class="Dialogue" load_steps=4 format=3 uid="uid://bonop6nh0d5w"]
 
 [ext_resource type="Resource" uid="uid://owsclprub05u" path="res://NPCs/Pirate/Dialogues/2.tres" id="1_vd6bg"]
-[ext_resource type="Script" path="res://scripts/Dialogue.gd" id="1_yem33"]
+[ext_resource type="Script" path="res://NPCs/Dialogue.gd" id="1_yem33"]
 [ext_resource type="Texture2D" uid="uid://dd0sp78uj4eff" path="res://assets/textures/Arrow.png" id="2_rg4h1"]
 
 [resource]
 script = ExtResource("1_yem33")
 texture = ExtResource("2_rg4h1")
-name = "Here"
-dialogue = "Look at me!"
-path_option = "Can you see me?"
+name = "Player"
+dialogue = "О, знал бы ты как близок ты к истине. Я действительно упал с неба. Так что, расскажешь мне про это место?"
+ends = false
+path_option = "Продолжить"
 options = Array[ExtResource("1_yem33")]([ExtResource("1_vd6bg")])
