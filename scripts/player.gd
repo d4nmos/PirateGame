@@ -11,10 +11,11 @@ extends CharacterBody3D
 @export var sens_vertical = 0.5
 @export var damage = 1.0
 @export var inventory_data: InventoryData
-@export var interaction_manager: InteractionManager
+#@export var interaction_manager: InteractionManager
 @export var speed = 13.0
 @export var jump_velocity = 5.5
 @export var health = 5
+#@onready var interact_ray: RayCast3D = $camera_mount/Camera3D/InteractRay
 
 var control_ship: bool = false
 
@@ -32,11 +33,11 @@ func _unhandled_input(event):
 
 func _input(event):
 	if event is InputEventMouseMotion:
-#		if !Globals.control_ship:
-		var hRotation = deg_to_rad(-event.relative.x * sens_horizontal)
-		rotate_y(hRotation)
-		visuals.rotate_y(-hRotation)
-		camera_mount.rotate_x(deg_to_rad(-event.relative.y * sens_vertical))
+		if !Input.is_action_pressed("alt"):
+			var hRotation = deg_to_rad(-event.relative.x * sens_horizontal)
+			rotate_y(hRotation)
+			visuals.rotate_y(-hRotation)
+			camera_mount.rotate_x(deg_to_rad(-event.relative.y * sens_vertical))
 
 func _physics_process(delta):
 	SimpleGrass.set_player_position(global_position)
@@ -84,16 +85,21 @@ func _process(delta):
 #	else: 
 #		if Input.is_action_just_pressed("interact"):
 #			Globals.control_ship = false
-	
+
 	if Input.is_action_just_pressed("inventory"):
 		toggle_inventory.emit()
 	
-	if Input.is_action_just_pressed("next_interact_object"):
-		interaction_manager.up_pointer()
+	#if Input.is_action_just_pressed("next_interact_object"):
+	#	interaction_manager.up_pointer()
 	
-	if Input.is_action_just_pressed("prev_interact_object"):
-		interaction_manager.down_pointer()
-	
+	#if Input.is_action_just_pressed("prev_interact_object"):
+	#	interaction_manager.down_pointer()
+		
+	if Input.is_action_pressed("alt"):
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	else:
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		
 	#if Input.is_action_just_pressed("interact") and interaction_manager.current_object != null:
 	#	interaction_manager.current_object.player_interact()
 
@@ -105,18 +111,18 @@ func _on_attack_body_entered(body):
 		pass
 		
 #Добавление объекта в список взаимодействия, когда он входит в радиус взаимодействия		
-func _on_interaction_area_body_entered(body):
-	if body.is_in_group("Interactable"):
-		interaction_manager.add_interactable_object(body)
-	else:
-		pass
+#func _on_interaction_area_body_entered(body):
+#	if body.is_in_group("Interactable"):
+#		interaction_manager.add_interactable_object(body)
+#	else:
+#		pass
 		
 #Удаление объекта из списока взаимодействия, когда он выходит из радиуса взаимодействия		
-func _on_interaction_area_body_exited(body):
-	if body in interaction_manager.interactable_objects:
-		interaction_manager.remove_interactable_object(body)
-	else:
-		pass 
+#func _on_interaction_area_body_exited(body):
+##	if body in interaction_manager.interactable_objects:
+#		interaction_manager.remove_interactable_object(body)
+#	else:
+#		pass 
 
 func _on_animation_tree_animation_finished(anim_name):
 	if is_on_floor(): 
@@ -125,9 +131,9 @@ func _on_animation_tree_animation_finished(anim_name):
 		animation_tree.set("parameters/air movements/transition_request", "fall forward")
 
 func get_drop_position():
-#	var direction = -camera_mount.global_transform.basis.z
-#	var radius = interaction_range.shape.radius + 1
-#	var range = (camera_mount.global_position + direction) * radius
+	var direction = -camera_mount.global_transform.basis.z
+	#var radius = interaction_range.shape.radius + 1
+	#var range = (camera_mount.global_position + direction) * radius
 	return drop_item_range.global_position
 
 
