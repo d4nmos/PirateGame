@@ -1,6 +1,6 @@
 [gd_scene load_steps=43 format=3 uid="uid://c3n2maxbaeyyp"]
 
-[ext_resource type="PackedScene" uid="uid://cfna3wpfbfwal" path="res://scenes/minimap.tscn" id="2_6nvc4"]
+[ext_resource type="PackedScene" uid="uid://cfna3wpfbfwal" path="res://systems/minimap.tscn" id="2_6nvc4"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/scatter.gd" id="2_bt85l"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="3_fqlw5"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="4_aoem7"]
