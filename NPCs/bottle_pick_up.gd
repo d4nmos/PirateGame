@@ -1,7 +1,7 @@
 extends Node3D
 @export var slot_data: SlotData
 @onready var sprite_3d: Sprite3D = $Sprite3D
- 
+
 func _ready():
 	var tween: Tween = get_tree().create_tween()
 	tween.tween_property($OmniLight3D, 'light_energy', 0, 0)
@@ -22,11 +22,14 @@ func remove_highlight() -> void:
 
 # Open the chest if unopened
 func _on_interactable_interacted(_interactor: Interactor) -> void:
-	slot_data.item_data.find = true
-	
 	if _interactor.controller.inventory_data.pick_up_slot_data(slot_data):
+		slot_data.item_data.find = true
+		
+		QuestManager.change_quest_color()
+
 		remove_highlight()
 		queue_free()
+
 
 # Add white outline
 func _on_interactable_focused(_interactor: Interactor) -> void:
