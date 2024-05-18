@@ -46,7 +46,8 @@ func _on_interactable_interacted(_interactor: Interactor) -> void:
 		if QuestManager.quest.number == "1" and pick_up.slot_data.item_data.find:
 			QuestManager.next_quest()
 			pick_up.slot_data.item_data.find = false
-			
+	if pick_up.slot_data.item_data.find:
+		QuestManager.change_quest_color()		
 	DialogueManager.dialogue = dialogue
 	DialogueManager.current_speaker = self
 	DialogueManager.show_dialogue()
