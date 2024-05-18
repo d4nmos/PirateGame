@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bexj4r1gg6272"]
+[gd_scene load_steps=6 format=3 uid="uid://bexj4r1gg6272"]
 
 [ext_resource type="Script" path="res://systems/menu/main_menu.gd" id="1_6wjab"]
 [ext_resource type="Texture2D" uid="uid://bq1csy5xctxef" path="res://assets/textures/background_menu.png" id="2_4jyu3"]
+[ext_resource type="PackedScene" uid="uid://c1y34wps60rti" path="res://systems/menu/options menu/options_menu.tscn" id="3_80d8g"]
 
 [sub_resource type="SystemFont" id="SystemFont_fqnpc"]
 font_names = PackedStringArray("Impact")
@@ -89,3 +90,7 @@ theme_override_fonts/font = SubResource("SystemFont_v2rwy")
 theme_override_font_sizes/font_size = 24
 text = "ВЫХОД
 "
+
+[node name="Options_Menu" parent="." instance=ExtResource("3_80d8g")]
+visible = false
+layout_mode = 1
