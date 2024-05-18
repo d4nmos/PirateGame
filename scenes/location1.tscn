@@ -1,8 +1,20 @@
-[gd_scene load_steps=14 format=3 uid="uid://en1qhb41kmo1"]
+[gd_scene load_steps=28 format=3 uid="uid://en1qhb41kmo1"]
 
+[ext_resource type="Script" path="res://scripts/location1.gd" id="1_1gogc"]
 [ext_resource type="PackedScene" uid="uid://bcosk50bvd44s" path="res://scenes/models/island_1.tscn" id="1_5l11e"]
-[ext_resource type="PackedScene" uid="uid://d1a4px4hdm364" path="res://scenes/player.tscn" id="2_7cgc4"]
+[ext_resource type="PackedScene" uid="uid://fsl10uhparpb" path="res://scenes/player.tscn" id="2_7cgc4"]
+[ext_resource type="PackedScene" uid="uid://bkre7tbkwedeg" path="res://scenes/models/skull_island.tscn" id="4_fc6qe"]
+[ext_resource type="PackedScene" uid="uid://cfna3wpfbfwal" path="res://systems/minimap.tscn" id="6_c4p8m"]
 [ext_resource type="PackedScene" uid="uid://duq5y7kindbmh" path="res://scenes/enemies/enemy.tscn" id="6_qghup"]
+[ext_resource type="PackedScene" uid="uid://dk3t6c3cy2dto" path="res://NPCs/test_quest.tscn" id="7_m7511"]
+[ext_resource type="PackedScene" uid="uid://cuuy5suppc24a" path="res://inventory/scenes/inventory.tscn" id="9_xjedj"]
+[ext_resource type="Script" path="res://inventory/scripts/InventoryInterface.gd" id="10_qjkdp"]
+[ext_resource type="PackedScene" uid="uid://cmhjr0iop0nnq" path="res://scenes/interactable/chest.tscn" id="12_8kcna"]
+[ext_resource type="PackedScene" uid="uid://n5dc7p2v18kr" path="res://inventory/scenes/slot.tscn" id="12_xf5r7"]
+[ext_resource type="Script" path="res://inventory/scripts/inventory_data.gd" id="13_6ceek"]
+[ext_resource type="Resource" uid="uid://dhyko00qg7vfm" path="res://inventory/items/coin.tres" id="14_dmiqb"]
+[ext_resource type="PackedScene" uid="uid://bcvdw5tyl651j" path="res://NPCs/bottle_pick_up.tscn" id="15_d04j7"]
+[ext_resource type="Script" path="res://inventory/scripts/slot_data.gd" id="15_ofk2n"]
 
 [sub_resource type="Shader" id="Shader_ens0n"]
 code = "
@@ -154,16 +166,89 @@ sky_material = SubResource("ShaderMaterial_agedd")
 background_mode = 2
 sky = SubResource("Sky_xpbqy")
 
+[sub_resource type="Resource" id="Resource_eji77"]
+script = ExtResource("15_ofk2n")
+item_data = ExtResource("14_dmiqb")
+quantity = 10
+
+[sub_resource type="Resource" id="Resource_f37af"]
+script = ExtResource("13_6ceek")
+slot_data = Array[ExtResource("15_ofk2n")]([SubResource("Resource_eji77"), null, null, null, null])
+
 [node name="location1" type="Node3D"]
+script = ExtResource("1_1gogc")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433017, 0.25, 0.121918, 0.30203, 0.94547, -0.484912, 0.849279, -0.208772, 0, 4.79416, 0)
+layers = 1048575
+light_energy = 0.88
+shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ahqhu")
 
 [node name="island1" parent="." instance=ExtResource("1_5l11e")]
-transform = Transform3D(2.73684, 0, 0, 0, 2.73684, 0, 0, 0, 2.73684, 0, 0, 0)
-
-[node name="player" parent="." instance=ExtResource("2_7cgc4")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.828191, 0)
+transform = Transform3D(5.75188, 0, 0, 0, 5.75188, 0, 0, 0, 5.75188, 0, 45.707, 75.7984)
 
 [node name="enemy" parent="." instance=ExtResource("6_qghup")]
-transform = Transform3D(2.29353, 0, -1.89482, 0, 2.975, 0, 1.89482, 0, 2.29353, 4.31682, 0, -5.26285)
+transform = Transform3D(2.29353, 0, -1.89482, 0, 2.975, 0, 1.89482, 0, 2.29353, -72.4933, 74.7771, 88.0227)
+visible = false
+
+[node name="skull_island" parent="." instance=ExtResource("4_fc6qe")]
+transform = Transform3D(2.59865, 0, 0, 0, 2.59865, 0, 0, 0, 2.59865, -110.837, 52.7705, 20.2767)
+
+[node name="player" parent="." instance=ExtResource("2_7cgc4")]
+transform = Transform3D(-0.488286, 0, -0.872684, 0, 1, 0, 0.872684, 0, -0.488286, -86.0506, 74.36, 75.9943)
+
+[node name="Minimap" type="CanvasLayer" parent="."]
+
+[node name="Minimap" parent="Minimap" instance=ExtResource("6_c4p8m")]
+target = NodePath("../../player")
+
+[node name="test_quest" parent="." instance=ExtResource("7_m7511")]
+transform = Transform3D(-2.01505, 0, -0.53993, 0, 2.08613, 0, 0.53993, 0, -2.01505, -77, 87.1137, 99)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="InventoryInterface" type="Control" parent="UI"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("10_qjkdp")
+
+[node name="PlayerInventory" parent="UI/InventoryInterface" instance=ExtResource("9_xjedj")]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 50.0
+offset_bottom = 50.0
+
+[node name="GrabbedSlot" parent="UI/InventoryInterface" instance=ExtResource("12_xf5r7")]
+visible = false
+modulate = Color(1, 1, 1, 0.501961)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+
+[node name="ExternalInventory" parent="UI/InventoryInterface" instance=ExtResource("9_xjedj")]
+visible = false
+layout_mode = 0
+offset_left = 694.0
+offset_top = 323.0
+offset_right = 734.0
+offset_bottom = 363.0
+
+[node name="Chest" parent="." instance=ExtResource("12_8kcna")]
+transform = Transform3D(-2.1688, 0, -4.19856, 0, 4.72563, 0, 4.19856, 0, -2.1688, -63.9181, 74.1889, 90.8819)
+inventory_data = SubResource("Resource_f37af")
+
+[node name="bottle_pick_up" parent="." instance=ExtResource("15_d04j7")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -101, 77, 106)
+
+[connection signal="drop_slot_data" from="UI/InventoryInterface" to="." method="_on_inventory_interface_drop_slot_data"]
+[connection signal="gui_input" from="UI/InventoryInterface" to="UI/InventoryInterface" method="_on_gui_input"]

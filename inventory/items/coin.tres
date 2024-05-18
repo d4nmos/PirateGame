@@ -13,3 +13,4 @@ name = "Coin"
 description = "Buy something useful"
 stackable = true
 texture = SubResource("AtlasTexture_ovqev")
+find = false

@@ -1,0 +1,51 @@
+[gd_scene load_steps=10 format=3 uid="uid://bcvdw5tyl651j"]
+
+[ext_resource type="PackedScene" uid="uid://4q432ulvjocp" path="res://assets/models/dungeon/bottle_C_green.gltf.glb" id="1_2ykgu"]
+[ext_resource type="Script" path="res://NPCs/bottle_pick_up.gd" id="2_d7r6n"]
+[ext_resource type="Resource" uid="uid://cb4tag2ejexc7" path="res://inventory/items/bottle.tres" id="3_vacn8"]
+[ext_resource type="Script" path="res://inventory/scripts/slot_data.gd" id="4_soqtq"]
+[ext_resource type="Texture2D" uid="uid://ohmo55kggtkx" path="res://inventory/textures/items_atlas.tres" id="5_0w374"]
+[ext_resource type="PackedScene" uid="uid://b00l0vexluim2" path="res://systems/Interactable.tscn" id="6_adxkv"]
+
+[sub_resource type="Resource" id="Resource_cdkh8"]
+script = ExtResource("4_soqtq")
+item_data = ExtResource("3_vacn8")
+quantity = 1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_717a0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1dq3p"]
+
+[node name="pick_up" instance=ExtResource("1_2ykgu")]
+script = ExtResource("2_d7r6n")
+slot_data = SubResource("Resource_cdkh8")
+
+[node name="Sprite3D" type="Sprite3D" parent="." index="0"]
+transform = Transform3D(-2.68743, 0, 0.0268518, 0, 2.67802, 0, -0.0174484, 0, -4.13575, -0.00020963, 1.49857, 0.034142)
+texture_filter = 0
+texture = ExtResource("5_0w374")
+
+[node name="bottle_C_green" parent="." index="1"]
+visible = false
+
+[node name="StaticBody3D" type="StaticBody3D" parent="bottle_C_green" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="bottle_C_green/StaticBody3D" index="0"]
+transform = Transform3D(1.86766, 0, 0, 0, 1.86766, 0, 0, 0, 1.86766, 0, 0.491453, 0)
+shape = SubResource("BoxShape3D_717a0")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6099, 0.0129826)
+light_energy = 9.556
+
+[node name="Interactable" parent="." index="3" instance=ExtResource("6_adxkv")]
+
+[node name="CollisionShape3D" parent="Interactable" index="0"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0.488456, 0)
+shape = SubResource("BoxShape3D_1dq3p")
+
+[connection signal="focused" from="Interactable" to="." method="_on_interactable_focused"]
+[connection signal="interacted" from="Interactable" to="." method="_on_interactable_interacted"]
+[connection signal="unfocused" from="Interactable" to="." method="_on_interactable_unfocused"]
+
+[editable path="Interactable"]

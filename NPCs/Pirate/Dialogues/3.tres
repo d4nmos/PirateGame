@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Dialogue" load_steps=5 format=3 uid="uid://8tuqtxhvp3n4"]
+
+[ext_resource type="Resource" uid="uid://di1cydtdh8u66" path="res://NPCs/Pirate/Dialogues/yes_eat.tres" id="1_fuomu"]
+[ext_resource type="Script" path="res://NPCs/Dialogue.gd" id="1_n4on6"]
+[ext_resource type="Resource" uid="uid://c7wsv0w3ohmjs" path="res://NPCs/Pirate/Dialogues/no.tres" id="2_s5845"]
+[ext_resource type="Texture2D" uid="uid://sqd5orde5eor" path="res://icon.png" id="4_7v712"]
+
+[resource]
+script = ExtResource("1_n4on6")
+texture = ExtResource("4_7v712")
+name = "Pirate"
+dialogue = "Нашел?"
+ends = false
+path_option = ""
+options = Array[ExtResource("1_n4on6")]([ExtResource("1_fuomu"), ExtResource("2_s5845")])

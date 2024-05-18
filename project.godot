@@ -8,10 +8,12 @@
 
 config_version=5
 
+recent_projects=["res://scripts/quest_first.quest", "res://addons/quest_manager/Examples/All Nodes.quest", "res://addons/quest_manager/Examples/ExampleQuests.quest", "res://my_first.quest"]
+
 [application]
 
 config/name="Pirate Game"
-run/main_scene="res://scenes/test.tscn"
+run/main_scene="res://systems/menu/main_menu.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.png"
 
@@ -19,10 +21,12 @@ config/icon="res://icon.png"
 
 Globals="*res://scripts/globals.gd"
 SimpleGrass="*res://addons/simplegrasstextured/singleton.tscn"
+DialogueManager="*res://NPCs/dialogue_manager.tscn"
+QuestManager="*res://NPCs/quest_manager.tscn"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/proton_scatter/plugin.cfg", "res://addons/simplegrasstextured/plugin.cfg", "res://addons/terrain_3d/plugin.cfg")
+enabled=PackedStringArray("res://addons/proton_scatter/plugin.cfg", "res://addons/simplegrasstextured/plugin.cfg")
 
 [filesystem]
 
@@ -62,7 +66,7 @@ jump={
 }
 inventory={
 "deadzone": 0.5,
-"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":73,"key_label":0,"unicode":105,"echo":false,"script":null)
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":73,"physical_keycode":73,"key_label":73,"unicode":105,"echo":false,"script":null)
 ]
 }
 next_interact_object={
@@ -75,6 +79,24 @@ prev_interact_object={
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":16,"position":Vector2(227, 3),"global_position":Vector2(232, 55),"factor":1.0,"button_index":5,"canceled":false,"pressed":true,"double_click":false,"script":null)
 ]
 }
+quit={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194305,"key_label":0,"unicode":0,"echo":false,"script":null)
+]
+}
+alt={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194328,"key_label":0,"unicode":0,"echo":false,"script":null)
+]
+}
+
+[layer_names]
+
+3d_physics/layer_5="interactable"
+
+[rendering]
+
+environment/defaults/default_clear_color=Color(0.788235, 0.788235, 0.788235, 1)
 
 [rendering]
 

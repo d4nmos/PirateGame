@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=3 format=3 uid="uid://dkgdn35s3kx7u"]
+
+[ext_resource type="Resource" uid="uid://8tuqtxhvp3n4" path="res://NPCs/Pirate/Dialogues/3.tres" id="1_btmyr"]
+[ext_resource type="Script" path="res://NPCs/Quest.gd" id="1_ffw58"]
+
+[resource]
+script = ExtResource("1_ffw58")
+title = "Бутылка"
+description = "Найти бутылку"
+number = "1"
+find = false
+objective = "Fetch"
+object = "bottle_c_green"
+status = ""
+next_questline = ExtResource("1_btmyr")

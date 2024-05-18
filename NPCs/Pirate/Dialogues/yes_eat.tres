@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Dialogue" load_steps=4 format=3 uid="uid://di1cydtdh8u66"]
+
+[ext_resource type="Resource" uid="uid://dc5iotyynx0no" path="res://NPCs/Pirate/Dialogues/Ok.tres" id="1_x0f08"]
+[ext_resource type="Script" path="res://NPCs/Dialogue.gd" id="2_k3ft8"]
+[ext_resource type="Texture2D" uid="uid://sqd5orde5eor" path="res://icon.png" id="3_ua4ww"]
+
+[resource]
+script = ExtResource("2_k3ft8")
+texture = ExtResource("3_ua4ww")
+name = "Pirate"
+dialogue = "Благодарю. "
+ends = true
+path_option = "Да"
+options = Array[ExtResource("2_k3ft8")]([ExtResource("1_x0f08")])
