@@ -1,7 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://c1y34wps60rti"]
+[gd_scene load_steps=4 format=3 uid="uid://c1y34wps60rti"]
+
+[ext_resource type="Script" path="res://systems/menu/options menu/options_menu.gd" id="1_ul52o"]
+[ext_resource type="PackedScene" uid="uid://dqljgpguru076" path="res://systems/menu/options menu/settings_tab_container.tscn" id="2_7b78p"]
 
 [sub_resource type="SystemFont" id="SystemFont_ju4nq"]
 font_names = PackedStringArray("Impact")
+subpixel_positioning = 0
 
 [node name="Options_Menu" type="Control"]
 layout_mode = 3
@@ -10,6 +14,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ul52o")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -28,14 +33,25 @@ layout_mode = 2
 theme_override_constants/separation = -48
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 12
 theme_override_fonts/font = SubResource("SystemFont_ju4nq")
 theme_override_font_sizes/font_size = 32
-text = "Options"
+text = "Настройки
+"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Settings_tab_container" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_7b78p")]
 layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Exit_Button" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(180, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "Вернуться в меню
+"
