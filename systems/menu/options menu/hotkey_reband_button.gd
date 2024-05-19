@@ -33,7 +33,7 @@ func set_text_for_key() -> void:
 	var action_event = action_events[0]
 	var action_keycode = OS.get_keycode_string(action_event.physical_keycode)
 	
-	print(action_keycode)
+	#print(action_keycode)
 	button.text = "%s" % action_keycode
 	
 	
