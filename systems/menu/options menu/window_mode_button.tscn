@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvblctwl4e83t"]
+
+[ext_resource type="PackedScene" uid="uid://cl8qb12ab27at" path="res://systems/menu/options menu/options_display_button.tscn" id="1_iijeo"]
+[ext_resource type="Script" path="res://systems/menu/options menu/window_mode_button.gd" id="2_etw72"]
+
+[node name="Window_mode_button" instance=ExtResource("1_iijeo")]
+script = ExtResource("2_etw72")
+
+[node name="Label" parent="HBoxContainer" index="0"]
+text = "Оконный режим"
