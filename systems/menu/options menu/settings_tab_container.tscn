@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://dqljgpguru076"]
+[gd_scene load_steps=6 format=3 uid="uid://dqljgpguru076"]
 
 [ext_resource type="PackedScene" uid="uid://dw7rjq1wryxhf" path="res://systems/menu/options menu/hotkey_reband_button.tscn" id="1_5hnhu"]
+[ext_resource type="PackedScene" uid="uid://bvblctwl4e83t" path="res://systems/menu/options menu/window_mode_button.tscn" id="1_twdui"]
+[ext_resource type="PackedScene" uid="uid://cbdthacwfvt2u" path="res://systems/menu/options menu/resolution_mode_button.tscn" id="2_tqlb1"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ydwdm"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rj4c6"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0hd4g"]
 
@@ -42,30 +44,18 @@ theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 24
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Графика/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Графика/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 64
-alignment = 1
 
-[node name="Label" type="Label" parent="TabContainer/Графика/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Графика/MarginContainer/ScrollContainer"]
 layout_mode = 2
-text = "111"
+theme_override_constants/separation = 100
 
-[node name="Label2" type="Label" parent="TabContainer/Графика/MarginContainer/VBoxContainer"]
+[node name="Window_mode_button" parent="TabContainer/Графика/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_twdui")]
 layout_mode = 2
-text = "111"
 
-[node name="Label3" type="Label" parent="TabContainer/Графика/MarginContainer/VBoxContainer"]
+[node name="Resolution_mode_button" parent="TabContainer/Графика/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("2_tqlb1")]
 layout_mode = 2
-text = "111"
-
-[node name="Label4" type="Label" parent="TabContainer/Графика/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "111"
-
-[node name="Label5" type="Label" parent="TabContainer/Графика/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "111"
 
 [node name="Управление" type="TabBar" parent="TabContainer"]
 visible = false
@@ -92,8 +82,8 @@ theme_override_constants/separation = 64
 
 [node name="HSeparator2" type="HSeparator" parent="TabContainer/Управление/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 16
-theme_override_styles/separator = SubResource("StyleBoxEmpty_ydwdm")
+theme_override_constants/separation = 1
+theme_override_styles/separator = SubResource("StyleBoxEmpty_rj4c6")
 
 [node name="Hotkey_reband_button" parent="TabContainer/Управление/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_5hnhu")]
 layout_mode = 2
@@ -120,46 +110,5 @@ layout_mode = 2
 
 [node name="HSeparator" type="HSeparator" parent="TabContainer/Управление/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 16
+theme_override_constants/separation = 1
 theme_override_styles/separator = SubResource("StyleBoxEmpty_0hd4g")
-
-[node name="Доступность" type="TabBar" parent="TabContainer"]
-visible = false
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Доступность"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 24
-theme_override_constants/margin_top = 24
-theme_override_constants/margin_right = 24
-theme_override_constants/margin_bottom = 24
-
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Доступность/MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 64
-alignment = 1
-
-[node name="Label" type="Label" parent="TabContainer/Доступность/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "111"
-
-[node name="Label2" type="Label" parent="TabContainer/Доступность/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "111"
-
-[node name="Label3" type="Label" parent="TabContainer/Доступность/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "111"
-
-[node name="Label4" type="Label" parent="TabContainer/Доступность/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "111"
-
-[node name="Label5" type="Label" parent="TabContainer/Доступность/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "111"
