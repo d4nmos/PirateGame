@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="PlayerKeybindResource" load_steps=8 format=3 uid="uid://bagdsvi6xbwef"]
+
+[ext_resource type="Script" path="res://systems/resourses/PlayerKeybindResource.gd" id="1_hofhq"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_jqjs5"]
+device = -1
+keycode = 83
+unicode = 115
+
+[sub_resource type="InputEventKey" id="InputEventKey_dnny8"]
+device = -1
+keycode = 87
+unicode = 119
+
+[sub_resource type="InputEventKey" id="InputEventKey_l3ne0"]
+device = -1
+keycode = 69
+unicode = 101
+
+[sub_resource type="InputEventKey" id="InputEventKey_ejkps"]
+device = -1
+keycode = 73
+unicode = 105
+
+[sub_resource type="InputEventKey" id="InputEventKey_ao2yu"]
+device = -1
+keycode = 65
+unicode = 97
+
+[sub_resource type="InputEventKey" id="InputEventKey_voafh"]
+device = -1
+keycode = 68
+unicode = 100
+
+[resource]
+script = ExtResource("1_hofhq")
+DEFAULT_LEFT_KEY = SubResource("InputEventKey_ao2yu")
+DEFAULT_RIGHT_KEY = SubResource("InputEventKey_voafh")
+DEFAULT_BACKWARD_KEY = SubResource("InputEventKey_jqjs5")
+DEFAULT_FORWARD_KEY = SubResource("InputEventKey_dnny8")
+DEFAULT_INVENTORY_KEY = SubResource("InputEventKey_ejkps")
+DEFAULT_INTERACT_KEY = SubResource("InputEventKey_l3ne0")
