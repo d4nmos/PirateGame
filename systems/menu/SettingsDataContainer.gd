@@ -1,6 +1,7 @@
 extends Node
 
 @onready var DEFAULT_SETTINGS : DefaultSettingsResource = preload("res://systems/resourses/DefaultSettings.tres")
+@onready var keybind_resource : PlayerKeybindResource = preload("res://systems/resourses/PlayerKeybindDefault.tres")
 
 var window_mode_index : int = 0
 var resolution_index : int = 0
@@ -15,6 +16,7 @@ func create_storage_dictionary() -> Dictionary:
 	var settings_container_dict : Dictionary = {
 		"window_mode_index" : window_mode_index,
 		"resolution_index" : resolution_index,
+		"keybinds" : create_keybinds_dictionary()
 		#"left" : InputMap.action_get_events("left"),
 		#"right" : InputMap.action_get_events("right"),
 		#"backward" : InputMap.action_get_events("backward"),
@@ -25,6 +27,20 @@ func create_storage_dictionary() -> Dictionary:
 	
 	#print(settings_container_dict)
 	return settings_container_dict
+
+
+func create_keybinds_dictionary() -> Dictionary:
+	var keybind_container_dict = {
+		keybind_resource.LEFT : keybind_resource.left_key,
+		keybind_resource.RIGHT : keybind_resource.right_key,
+		keybind_resource.BACKWARD : keybind_resource.backward_key,
+		keybind_resource.FORWARD : keybind_resource.forward_key,
+		keybind_resource.INTERACT : keybind_resource.interact_key,
+		keybind_resource.INVENTORY : keybind_resource.inventory_key
+	}
+
+	return keybind_container_dict
+
 
 func get_window_mode_index() -> int:
 	if loaded_data == {}:
