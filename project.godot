@@ -23,6 +23,9 @@ Globals="*res://scripts/globals.gd"
 SimpleGrass="*res://addons/simplegrasstextured/singleton.tscn"
 DialogueManager="*res://NPCs/dialogue_manager.tscn"
 QuestManager="*res://NPCs/quest_manager.tscn"
+SettingsSignalBus="*res://systems/menu/SettingsSignalBus.gd"
+SettingsContainer="*res://systems/menu/SettingsDataContainer.gd"
+SaveOptionsManager="*res://systems/menu/SaveOptionsManager.gd"
 
 [editor_plugins]
 
